@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * <p>
  *  Mapper 接口
  * </p>
- *程云鹏扛不住就睡吧
+ *程云鹏扛不住就睡
  * @author 第三组
  * @since 2022-04-23
  */
