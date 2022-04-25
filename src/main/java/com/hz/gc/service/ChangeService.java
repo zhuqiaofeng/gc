@@ -13,6 +13,4 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ChangeService extends IService<Change> {
 
-
-
 }
