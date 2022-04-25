@@ -13,5 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface AdminService extends IService<Admin> {
    public int select();
+   public int select1();
 
 }
