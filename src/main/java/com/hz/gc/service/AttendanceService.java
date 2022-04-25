@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-04-23
  */
 public interface AttendanceService extends IService<Attendance> {
-
+    public int select();
 }
