@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ChangeService extends IService<Change> {
     public int select();
+    public int select3();
+
 }
