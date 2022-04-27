@@ -4,12 +4,13 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -17,7 +18,7 @@ import lombok.Setter;
  * </p>
  *
  * @author 第三组
- * @since 2022-04-23
+ * @since 2022-04-27
  */
 @Getter
 @Setter
@@ -28,43 +29,43 @@ public class SubProject implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("分部工程id")
-    @TableId(value = "sub_project_id", type = IdType.AUTO)
+    @TableId(value = "subProjectId", type = IdType.AUTO)
     private Integer subProjectId;
 
     @ApiModelProperty("分部工程名称")
-    @TableField("sub_project_name")
+    @TableField("subProjectName")
     private String subProjectName;
 
     @ApiModelProperty("分部工程描述")
-    @TableField("sub_project_desc")
+    @TableField("subProjectDesc")
     private String subProjectDesc;
 
     @ApiModelProperty("分部工程计划开始时间")
-    @TableField("sub_project_start")
+    @TableField("subProjectStart")
     private LocalDateTime subProjectStart;
 
     @ApiModelProperty("分部工程计划结束时间")
-    @TableField("sub_project_end")
+    @TableField("subProjectEnd")
     private LocalDateTime subProjectEnd;
 
     @ApiModelProperty("分部工程工期")
-    @TableField("sub_project_day")
+    @TableField("subProjectDay")
     private Integer subProjectDay;
 
     @ApiModelProperty("分部工程施工区域描述")
-    @TableField("sub_project_region")
+    @TableField("subProjectRegion")
     private String subProjectRegion;
 
     @ApiModelProperty("分部工程负责人id（必须是工程人员信息表员工ID）")
-    @TableField("sub_branch_user")
-    private Integer subBranchUser;
+    @TableField("subPranchUser")
+    private Integer subPranchUser;
 
     @ApiModelProperty("分部工程状态（1未开工2在建3停工4完工5逾期）默认未开工")
-    @TableField("sub_project_state")
+    @TableField("subProjectState")
     private Integer subProjectState;
 
     @ApiModelProperty("总工程id,确认该分部工程所属总工程")
-    @TableField("total_project_id")
+    @TableField("totalProjectId")
     private Integer totalProjectId;
 
 

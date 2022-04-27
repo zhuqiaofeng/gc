@@ -4,12 +4,13 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -17,7 +18,7 @@ import lombok.Setter;
  * </p>
  *
  * @author 第三组
- * @since 2022-04-23
+ * @since 2022-04-27
  */
 @Getter
 @Setter
@@ -28,27 +29,27 @@ public class DailyProgress implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("每日进度id")
-    @TableId(value = "daily_progress_id", type = IdType.AUTO)
+    @TableId(value = "dailyProgressId", type = IdType.AUTO)
     private Integer dailyProgressId;
 
     @ApiModelProperty("进度ID")
-    @TableField("progress_id")
+    @TableField("progressId")
     private Integer progressId;
 
     @ApiModelProperty("每日进度描述")
-    @TableField("daily_progress_desc")
+    @TableField("dailyProgressDesc")
     private String dailyProgressDesc;
 
     @ApiModelProperty("创建时间")
-    @TableField("daily_progress_addtime")
+    @TableField("dailyProgressAddtime")
     private LocalDateTime dailyProgressAddtime;
 
     @ApiModelProperty("填写人ID（必须是工程人员信息表ID）")
-    @TableField("user_id")
+    @TableField("userId")
     private Integer userId;
 
     @ApiModelProperty("分项工程ID待定")
-    @TableField("item_project_id")
+    @TableField("itemProjectId")
     private Integer itemProjectId;
 
 

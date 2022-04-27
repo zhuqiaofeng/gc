@@ -4,20 +4,21 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author 第三组
- * @since 2022-04-23
+ * @since 2022-04-27
  */
 @Getter
 @Setter
@@ -28,47 +29,47 @@ public class Admin implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("管理员ID")
-    @TableId(value = "admin_id", type = IdType.AUTO)
+    @TableId(value = "adminId", type = IdType.AUTO)
     private Integer adminId;
 
     @ApiModelProperty("管理员账号")
-    @TableField("admin_code")
+    @TableField("adminCode")
     private String adminCode;
 
     @ApiModelProperty("管理员密码")
-    @TableField("admint_password")
+    @TableField("admintPassword")
     private String admintPassword;
 
     @ApiModelProperty("管理员姓名")
-    @TableField("admin_name")
+    @TableField("adminName")
     private String adminName;
 
     @ApiModelProperty("角色ID")
-    @TableField("role_id")
+    @TableField("roleId")
     private Integer roleId;
 
     @ApiModelProperty("管理员手机号")
-    @TableField("admin_phone")
+    @TableField("adminPhone")
     private String adminPhone;
 
     @ApiModelProperty("创建时间")
-    @TableField("admin_create_time")
+    @TableField("adminCreateTime")
     private LocalDateTime adminCreateTime;
 
     @ApiModelProperty("创建人id,由超级管理员创建")
-    @TableField("create_person_id")
+    @TableField("createPersonId")
     private Integer createPersonId;
 
     @ApiModelProperty("管理员最后一次登录ip")
-    @TableField("admin_last_ip")
+    @TableField("adminLastIp")
     private String adminLastIp;
 
     @ApiModelProperty("管理员最后一次登录时间")
-    @TableField("admin_last_time")
+    @TableField("adminLastTime")
     private LocalDateTime adminLastTime;
 
     @ApiModelProperty("管理员状态(0启用1禁用 默认0)")
-    @TableField("admin_status")
+    @TableField("adminStatus")
     private Integer adminStatus;
 
 

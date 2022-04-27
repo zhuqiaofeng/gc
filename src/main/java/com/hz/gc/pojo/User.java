@@ -4,12 +4,17 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -17,7 +22,7 @@ import lombok.Setter;
  * </p>
  *
  * @author 第三组
- * @since 2022-04-23
+ * @since 2022-04-27
  */
 @Getter
 @Setter
@@ -28,40 +33,38 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("用户id")
-    @TableId(value = "user_id", type = IdType.AUTO)
+    @TableId(value = "userId", type = IdType.AUTO)
     private Integer userId;
 
     @ApiModelProperty("用户名")
-    @TableField("user_name")
+    @TableField("userName")
     private String userName;
 
     @ApiModelProperty("用户密码")
-    @TableField("user_password")
+    @TableField("userPassword")
     private String userPassword;
 
     @ApiModelProperty("性别：1男2女")
-    @TableField("user_sex")
+    @TableField("userSex")
     private Integer userSex;
 
     @ApiModelProperty("用户手机号")
-    @TableField("user_phone")
+    @TableField("userPhone")
     private String userPhone;
 
     @ApiModelProperty("创建用户的管理员id")
-    @TableField("admin_id")
+    @TableField("adminId")
     private Integer adminId;
 
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @ApiModelProperty("用户创建时间")
-    @TableField("user_addtime")
+    @TableField("userAddtime")
     private LocalDateTime userAddtime;
 
     @ApiModelProperty("岗位id")
-    @TableField("position_id")
+    @TableField("positionId")
     private Integer positionId;
-
-    @ApiModelProperty("角色id")
-    @TableField("role_id")
-    private Integer roleId;
 
 
 }

@@ -2,20 +2,27 @@
 #配置数据源
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
     url: jdbc:mysql://127.0.0.1:3306/gc?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+  web:
+    resources:
+      static-locations: classpath:/templates,classpath:/static/
+
   redis:
     host: 127.0.0.1
     port: 6379
-
+  jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: GMT+8
 
 #mybatis配置
 mybatis-plus:
   type-aliases-package: com.hz.gc.pojo
   mapper-locations: classpath:mappers/*.xml
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #打印SQL语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印SQL语句
+    map-underscore-to-camel-case: false
 
 
