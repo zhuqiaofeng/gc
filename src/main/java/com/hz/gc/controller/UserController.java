@@ -37,6 +37,7 @@ public class UserController {
     public CommonResult queryUserQuery(){
 
         List<User> users = userService.findUserList();
+
         //System.out.println("user = " + user.toString());
         return CommonResult.ok().data("user",users);
     }
