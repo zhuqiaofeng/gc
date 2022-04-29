@@ -52,5 +52,4 @@
         insert into gc_user(userName,userPassword,userSex,userPhone,adminId,positionId)
         values(#{userName},#{userPassword},#{userSex},#{userPhone},#{adminId},#{positionId})
     </insert>
-
 </mapper>
