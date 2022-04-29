@@ -1,3 +1,4 @@
+/*
 package com.hz.gc.security.basicfilter;
 
 import com.hz.gc.common.CommonResult;
@@ -14,9 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+*/
 /*
     无权限访问处理类
- */
+ *//*
+
 @Component
 @Slf4j
 public class JwtAccessDeniedHandler implements AccessDeniedHandler {
@@ -32,3 +35,4 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
 
     }
 }
+*/

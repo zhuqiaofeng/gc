@@ -1,3 +1,4 @@
+/*
 package com.hz.gc.security.basicfilter;
 
 
@@ -32,9 +33,11 @@ import java.io.IOException;
 import java.security.Security;
 import java.util.List;
 
+*/
 /*
     token过滤器,对于token进行认证的.
- */
+ *//*
+
 
 @Slf4j
 @Component
@@ -52,9 +55,11 @@ public class JwtTokenAuthenticationLoginFilter extends BasicAuthenticationFilter
     }
 
 
-    /*
+    */
+/*
             判断当前请求是否携带token.
-         */
+         *//*
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -77,7 +82,9 @@ public class JwtTokenAuthenticationLoginFilter extends BasicAuthenticationFilter
                     // 构建request对象
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     // 将其放入到SecurityContextHolder中,方便security使用
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+
+                    SecurityContextHolder.getContext().setAuthentication(authentication);//集合还有信息
+
                     log.info("JWT过滤器通过校验请求头token自动登录成功, user : {}", user.getUsername());
                 }
             }
@@ -86,3 +93,4 @@ public class JwtTokenAuthenticationLoginFilter extends BasicAuthenticationFilter
 
     }
 }
+*/

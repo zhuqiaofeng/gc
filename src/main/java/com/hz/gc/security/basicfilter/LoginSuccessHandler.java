@@ -1,3 +1,4 @@
+/*
 package com.hz.gc.security.basicfilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,9 +24,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+*/
 /**
  *  登录成功处理器,当由abstractAuthenticationProcessingFilter发起的认证流程结束,登录成功后则会调用此接口.
- */
+ *//*
+
 @Slf4j
 @Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
@@ -59,3 +62,4 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     }
 }
+*/

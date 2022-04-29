@@ -66,5 +66,7 @@ public class User implements Serializable {
     @TableField("positionId")
     private Integer positionId;
 
-
+    @ApiModelProperty("账号状态")
+    @TableField("userStatus")
+    private Integer userStatus;
 }

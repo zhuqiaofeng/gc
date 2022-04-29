@@ -1,3 +1,4 @@
+/*
 package com.hz.gc.security.basicfilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,9 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+*/
 /**
  *  自定义无凭证处理类,未授权统一走这里
- */
+ *//*
+
 @Slf4j
 @Component
 public class TokenAuthenticationEntryPoint implements AuthenticationEntryPoint {
@@ -33,3 +36,4 @@ public class TokenAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     }
 }
+*/

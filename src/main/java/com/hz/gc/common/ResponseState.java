@@ -14,6 +14,7 @@ public interface ResponseState {
     int SUCCESS_CODE = 200;
 
     String REQUEST_FAILURE = "查询错误";
+    String PERMISSION_LIST = "permissionList";
 
 
 }

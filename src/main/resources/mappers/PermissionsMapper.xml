@@ -14,6 +14,24 @@
         b.permId = c.permId
         where a.userId = #{userId}
     </select>
+
+    <select id="getPermissionListByUserId" resultType="com.hz.gc.pojo.Permissions">
+        select
+        c.permValue,
+        c.permId,
+        c.permUrl,
+        c.permName,
+        c.parentId,
+        c.level,
+        c.permIcon
+        from gc_user_role_relation a
+        join gc_role_permissions b
+        on a.roleId = b.roleId
+        join gc_permissions c
+        on b.permId = c.permId
+        where a.userId = #{userId}
+
+    </select>
     
 
 </mapper>

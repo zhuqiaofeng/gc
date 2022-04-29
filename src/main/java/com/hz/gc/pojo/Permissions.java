@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -47,6 +49,10 @@ public class Permissions implements Serializable {
     @TableField("permUrl")
     private String permUrl;
 
+    @ApiModelProperty(value = "下级")
+    @TableField(exist = false)
+    private List<Permissions> children = new ArrayList<>();
+
     @ApiModelProperty("拥有哪些增删改查的权限")
     @TableField("permValue")
     private String permValue;
@@ -54,6 +60,10 @@ public class Permissions implements Serializable {
     @ApiModelProperty("权限类型0是菜单，1是按钮")
     @TableField("permType")
     private Integer permType;
+
+    @ApiModelProperty("权限所属层级,0是菜单,1是子级菜单,2是按钮")
+    @TableField("level")
+    private Integer level;
 
 
 }

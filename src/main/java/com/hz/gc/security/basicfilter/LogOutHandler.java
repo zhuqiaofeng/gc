@@ -1,3 +1,4 @@
+/*
 package com.hz.gc.security.basicfilter;
 
 import org.apache.commons.lang3.StringUtils;
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+*/
 /*
     登出的处理器,只需要做2件事情,移除redis缓存,清除authentication.
- */
+ *//*
+
 
 @Component
 public class LogOutHandler implements LogoutHandler {
@@ -40,3 +43,4 @@ public class LogOutHandler implements LogoutHandler {
 
     }
 }
+*/

@@ -194,33 +194,35 @@ public interface SomsConstants {
         }
     }
 
+
     /**
      *  权限类型
      *  0 菜单
-     *  1 按钮
+     *  1 子级菜单
+     *  2 按钮
      */
     public enum PermissionConstants{
 
-            PERMISSION_TYPE_MENU(0,"菜单"),
-            PERMISSION_TYPE_button(1,"按钮");
+        PERMISSION_TYPE_MENU(0,"父级菜单"),
+        PERMISSION_TYPE_CHILD(1,"子级菜单"),
+        PERMISSION_TYPE_BUTTON(2,"按钮");
 
-            private Integer code;
-            private String msg;
+        private Integer code;
+        private String msg;
 
-            PermissionConstants(Integer code,String msg){
-                this.code = code;
-                this.msg = msg;
-            }
+        PermissionConstants(Integer code,String msg){
+            this.code = code;
+            this.msg = msg;
+        }
 
-            public Integer getCode() {
-                return code;
-            }
+        public Integer getCode() {
+            return code;
+        }
 
-            public String getMsg() {
-                return msg;
-            }
+        public String getMsg() {
+            return msg;
+        }
     }
-
     /**
      *  用户账号状态
      *  0 启用

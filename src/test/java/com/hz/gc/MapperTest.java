@@ -1,3 +1,4 @@
+/*
 package com.hz.gc;
 
 import com.hz.gc.dao.UserDao;
@@ -19,9 +20,11 @@ public class MapperTest {
     @Test
     public void testBCry() {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        /*String encode = passwordEncoder.encode("1001");
+        */
+/*String encode = passwordEncoder.encode("1001");
         //$2a$10$hS6.Hr2QhKKBlQLIDzgkaun30hjuo6DUrTIU2XAg2IpZbEvbMbZJ
-        System.out.println("encode = " + encode);*/
+        System.out.println("encode = " + encode);*//*
+
         boolean matches = passwordEncoder.matches("1001", "$2a$10$FKKyjjwGfLIl5AcwDuzBce5I5q.tOvK2UlhqnJi6xitHR652fuNKq");
         System.out.println("matches = " + matches);
     }
@@ -32,3 +35,4 @@ public class MapperTest {
         System.out.println(users);
     }
 }
+*/

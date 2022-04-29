@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @author 第三组
  * @since 2022-04-23
  */
-
+@Component
 public interface RolePermissionsDao extends BaseMapper<RolePermissions> {
 
 }

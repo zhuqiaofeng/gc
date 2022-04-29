@@ -1,10 +1,13 @@
+/*
 package com.hz.gc.security.basicfilter;
 
+import com.hz.gc.common.ResponseState;
 import com.hz.gc.pojo.Permissions;
 import com.hz.gc.security.entity.SecurityUser;
 
 import com.hz.gc.service.PermissionsService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.access.AccessDecisionManager;
@@ -31,7 +34,7 @@ public class AccessDecisionProcessor implements AccessDecisionVoter<FilterInvoca
                     Collection<ConfigAttribute> attributes) {
             log.info("AccessDecisionManager将请求委托给我们自定义的投票器:{}...",AccessDecisionProcessor.class);
 
-            if(attributes != null && object!= null){
+           // if(attributes != null && object!= null){
 
                 String url = object.getRequestUrl();
                 String method = object.getRequest().getMethod();
@@ -48,20 +51,37 @@ public class AccessDecisionProcessor implements AccessDecisionVoter<FilterInvoca
 
                   }
                 }
-                /*
+                */
+/*
                     数据库当中存储的是受保护的接口路径(每一个接口路径对应需要什么权限),如果能够根据当前用户访问的接口路径到数据库中查到
                     则说明此接口收到保护,如果查不到则说明此接口未收到保护,则弃票.
                     TODO 后续优化在服务器启动后直接把所有权限路径放到redis缓存,然后去缓存查
-                 */
-               Permissions permission =  permissionsService.findAuthorityByUrl(url);
-               if(permission == null){
+                 *//*
+
+        List<Permissions> permissionList = (List<Permissions>)redisTemplate.opsForValue().get(ResponseState.PERMISSION_LIST);
+        System.out.println("permissionList = " + permissionList);
+
+        Permissions permission = null;
+
+        for (Permissions authority : permissionList) {
+
+            if(url.equals(authority.getPermUrl())){
+                permission = new Permissions();
+                BeanUtils.copyProperties(authority,permission);
+            }
+        }
+
+               if(permissionList == null){
+                   System.out.println(permissionList);
                    return ACCESS_ABSTAIN;  // 0为弃票 1为赞成 -1为反对
                }
-                 /*
+                 */
+/*
                     查询到当前请求路径所对应的接口的权限之后,只需要和用户带有的权限做比对即可,若用户的权限包含此请求对应的权限,则视为赞成
                     我们需要通过此对象中的权限和数据库表中此对象所拥有的权限做对比
                     假设此对象的权限是sys:list,sys:delete 而用户请求的是/user/add接口所对应的权限是sys:add,则不可访问
-                 */
+                 *//*
+
                 // 通过当前authentication对象拿到封装的用户主体,用户在登录时如果认证通过则权限已经赋值到当前对象中了
                 SecurityUser principal = (SecurityUser)authentication.getPrincipal();
                 List<String> permissions = principal.getPermissions();
@@ -74,8 +94,7 @@ public class AccessDecisionProcessor implements AccessDecisionVoter<FilterInvoca
                             permission.getPermUrl(),permission.getPermValue(),permissions.toArray());
                     return ACCESS_DENIED;
                 }
-            }
-                    return ACCESS_DENIED;
+            //}
 
     }
 
@@ -91,3 +110,4 @@ public class AccessDecisionProcessor implements AccessDecisionVoter<FilterInvoca
 
 
 }
+*/

@@ -16,4 +16,10 @@ import java.util.List;
 public interface RolePermissionsService extends IService<RolePermissions> {
 
     List<Integer> selectPermissionIdsListByRoleId(Integer roleId);
+
+    boolean deleteRoleIds(Integer roleId);
+
+    boolean addPermission(Integer roleId, List<Integer> permIds);
+
+    List<Integer> getRoleIds(Integer permId);
 }

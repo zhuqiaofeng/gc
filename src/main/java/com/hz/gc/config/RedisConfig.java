@@ -3,6 +3,10 @@ package com.hz.gc.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -40,6 +44,11 @@ public class RedisConfig {
         template.setValueSerializer(jackson2JsonRedisSerializer);
         //value hashmap序列化
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
+
+        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        om.registerModule(new Jdk8Module())
+                .registerModule(new JavaTimeModule())
+                .registerModule(new ParameterNamesModule());
         return template;
     }
 

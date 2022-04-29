@@ -14,9 +14,29 @@ import java.util.List;
  * @since 2022-04-23
  */
 public interface UserService extends IService<User> {
+    User selectUserById(Integer userId);
 
+    int deleteUserById(Integer userId);
+
+    int updateUserById(User user);
+
+    int addUser(User user);
+
+    List<User> findUserList( Integer curr_page, Integer page_size, String userName, String positionName);
+
+    Integer findUserListCount(String userName, String positionName);
+
+
+
+/*
 
     User findUserById(Integer userId);
 
     List<User> findUserList();
+
+    boolean saveUser(User user);
+
+    boolean deleteUserById(Integer userId);
+*/
+
 }
