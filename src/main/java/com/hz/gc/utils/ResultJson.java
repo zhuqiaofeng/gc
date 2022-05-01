@@ -12,6 +12,7 @@ public class ResultJson<T> {
     private String msg;
     private T data; //数据
 
+
   /*  public ResultJson(Integer code,String msg,T data){
         this.code = code;
         this.msg = this.code>0?"操作成功":"操作失败";
