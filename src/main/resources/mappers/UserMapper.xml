@@ -42,7 +42,6 @@
         userSex =#{userSex},
         userPhone=#{userPhone},
 		adminId=#{adminId},
-		userAddtime=#{userAddtime},
 		positionId=#{positionId}
         where
         userId =#{userId}

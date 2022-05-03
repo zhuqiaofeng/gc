@@ -2,4 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.TotalProjectDao">
 
+
+    <sql id="totalProject_where">
+        <where>
+            <if test="totalProjectName!=null">
+                totalProjectName like concat('%',#{totalProjectName},'%')</if>
+            <if test="totalProjectDesc!=null">
+                and totalProjectDesc like concat('%',#{totalProjectDesc},'%')</if>
+        </where>
+    </sql>
+    <select id="findTotalProjectList" resultType="com.hz.gc.pojo.TotalProject">
+        select * from gc_total_project
+        <include refid="totalProject_where"/>
+        limit #{pyl},#{page_size}
+    </select>
+    <select id="findTotalProjectListCount" resultType="int" >
+        select count(1) from gc_total_project
+        <include refid="totalProject_where"/>
+    </select>
+
+
+    <delete id="deleteTotalProjectById">
+        delete from  gc_total_project where totalProjectId=#{totalProjectId}
+    </delete>
+    <select id="findTotalProjectById" resultType="com.hz.gc.pojo.TotalProject">
+        select * from gc_total_project where totalProjectId=#{totalProjectId}
+    </select>
+
+
+
 </mapper>
