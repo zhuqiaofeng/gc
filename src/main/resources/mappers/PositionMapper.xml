@@ -2,4 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.PositionDao">
 
+    <select id="findPositionList" resultType="com.hz.gc.pojo.Position">
+      select * from gc_position
+      limit #{pyl},#{page_size}
+    </select>
+
+    <select id="findPositionListCount" resultType="int">
+      select count(1) from gc_position
+    </select>
+
+    <insert id="savePosition">
+    insert into gc_position(positionName, positionDesc)
+    values (#{positionName},#{positionDesc})
+    </insert>
+    
+    <delete id="deletePositionById">
+        delete from gc_position where positionId = #{positionId}
+    </delete>
+
+    <update id="updatePosition">
+        update gc_position
+        set
+        positionName=#{positionName},
+        positionDesc=#{positionDesc}
+        where positionId=#{positionId}
+    </update>
 </mapper>
