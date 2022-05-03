@@ -2,4 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.NoticeDao">
 
+    <sql id="notice_where">
+        <where>
+            <if test="noticeName!=null">
+                and noticeName like  concat('%',#{noticeName},'%')
+            </if>
+        </where>
+    </sql>
+    <select id="findNoticeList" resultType="com.hz.gc.pojo.Notice">
+        select * from gc_notice
+        <include refid="notice_where"/>
+        limit #{pyl},#{page_size}
+    </select>
+
+    <select id="findNoticeCount" resultType="int">
+        select count(1) from gc_notice
+        <include refid="notice_where"/>
+    </select>
+
+
+
+
+
+    <select id="findNoticeById" resultType="com.hz.gc.pojo.Notice">
+        select * from gc_notice where noticeId =#{noticeId}
+    </select>
+
+
+    <insert id="addNotice">
+        insert into gc_notice(noticeName,noticeContent,noticeAddtime,adminId)
+        values(#{noticeName},#{noticeContent},#{noticeAddtime},#{adminId})
+    </insert>
+
+    <delete id="delNotice">
+        delete from gc_notice where noticeId =#{noticeId}
+    </delete>
 </mapper>
