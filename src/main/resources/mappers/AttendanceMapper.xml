@@ -2,4 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.AttendanceDao">
 
+
+    <insert id="addAttendance">
+        insert into gc_attendance(attendanceAddress,attendanceImg)
+        values(#{attendanceAddress},#{attendanceImg})
+    </insert>
+
+    <sql id="user_where">
+        <where>
+            <if test="userName!=null">
+                userName like concat('%',#{userName},'%')
+            </if>
+        </where>
+    </sql>
+    <select id="findAttendanceList" resultType="com.hz.gc.pojo.Attendance">
+        select * from gc_user a
+        LEFT JOIN gc_attendance b
+        ON a.userId = b.userId
+        <include refid="user_where"/>
+        /*order by userId desc*/
+        limit #{pyl},#{page_size}
+    </select>
+
+    <select id="findAttendanceListCount" resultType="int" >
+        select count(*) from gc_user a
+        LEFT JOIN gc_attendance b
+        ON a.userId = b.userId
+        <include refid="user_where"/>
+    </select>
+
+
+    <select id="selectAttendanceById" resultType="com.hz.gc.pojo.Attendance">
+        select * from gc_attendance where attendanceId =#{attendanceId}
+    </select>
+
+
 </mapper>

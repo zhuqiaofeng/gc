@@ -1,7 +1,16 @@
 package com.hz.gc.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.hz.gc.pojo.Attendance;
+import com.hz.gc.pojo.Material;
+import com.hz.gc.pojo.User;
+import com.hz.gc.service.MaterialService;
+import com.hz.gc.service.UserService;
+import com.hz.gc.utils.JsonMassage;
+import com.hz.gc.utils.ResultJson;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,7 +21,74 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-04-23
  */
 @RestController
-@RequestMapping("/gc/material")
+@RequestMapping("/material")
 public class MaterialController {
+
+    @Autowired
+    private MaterialService materialService;
+
+    /**
+     * 删除指定ID的用户信息
+     * @param materialId
+     * @return
+     */
+    @RequestMapping(value = "/deleteMaterialById",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultJson deleteMaterialById(Integer materialId){
+        int i = materialService.deleteMaterialById(materialId);
+        return new ResultJson(i);
+    }
+
+    /**
+     * 添加用户
+     * @param material
+     * @return
+     */
+    @RequestMapping(value = "/addMaterial",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultJson addMaterial(@RequestBody Material material){
+        int i = materialService.addMaterial(material);
+        return new ResultJson(i);
+    }
+
+
+    /**
+     * 分页+多条件模糊查询
+     * @param page 当前页
+     * @param limit1 显示条数
+     * @param materialDesc 用户名
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/findMaterialList",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonMassage<List<Material>> findAttendanceList(
+            @RequestParam(value = "page",defaultValue = "1") Integer page,
+            @RequestParam(value = "limit1",defaultValue = "10") Integer limit1,
+            String materialDesc
+    ){
+        List<Material> list = materialService.findMaterialList(page,limit1,materialDesc);
+
+        Integer count = materialService.findMaterialListCount(materialDesc);
+
+        JsonMassage<List<Material>> jsonMassage = new JsonMassage<List<Material>>();
+        jsonMassage.setCode(0);
+        jsonMassage.setMsg("请求成功");
+        jsonMassage.setCount(count);
+        jsonMassage.setData(list);
+        return jsonMassage;
+    }
+
+
+    /**
+     * 通过ID查询用户
+     * @param materialId
+     * @return
+     */
+    @PostMapping(value = "/selectMaterialById")
+    public ResultJson<Material> selectMaterialById(Integer materialId){
+        Material material = materialService.selectMaterialById(materialId);
+        return new ResultJson<Material>(200,"成功",material);
+    }
 
 }

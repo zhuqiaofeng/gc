@@ -2,4 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.MaterialDao">
 
+    <delete id="deleteMaterialById">
+        delete from gc_material where materialId =#{materialId}
+    </delete>
+
+    <insert id="addMaterial">
+        insert into gc_material (materialDesc,dailyProgressId)
+        values (#{materialDesc},#{dailyProgressId})
+    </insert>
+
+    <sql id="user_where">
+        <where>
+            <if test="materialDesc!=null">
+                materialDesc like concat('%',#{materialDesc},'%')
+            </if>
+
+        </where>
+    </sql>
+
+    <select id="findMaterialList" resultType="com.hz.gc.pojo.Material">
+        select * from gc_material a
+        LEFT JOIN gc_daily_progress b
+        ON a.dailyProgressId = b.dailyProgressId
+        <include refid="user_where"/>
+        /*order by userId desc*/
+        limit #{pyl},#{page_size}
+    </select>
+
+    <select id="findMaterialListCount" resultType="int" >
+        select count(*) from gc_material a
+        LEFT JOIN gc_daily_progress b
+        ON a.dailyProgressId = b.dailyProgressId
+        <include refid="user_where"/>
+    </select>
+
+    <select id="selectMaterialById" resultType="com.hz.gc.pojo.Material">
+        select * from gc_material where materialId =#{materialId}
+    </select>
 </mapper>
