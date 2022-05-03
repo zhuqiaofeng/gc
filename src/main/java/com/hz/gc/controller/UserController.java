@@ -9,6 +9,8 @@ import com.hz.gc.utils.ResultJson;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +23,9 @@ import java.util.List;
  * @author 第三组
  * @since 2022-04-23
  */
-@RestController
+@Controller
 @RequestMapping("/user")
+//@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -45,9 +48,7 @@ public class UserController {
             String positionName
     ){
         List<User> list = userService.findUserList(page,limit1,userName,positionName);
-
         Integer count = userService.findUserListCount(userName,positionName);
-
         JsonMassage<List<User>> jsonMassage = new JsonMassage<List<User>>();
         jsonMassage.setCode(0);
         jsonMassage.setMsg("请求成功");
@@ -63,7 +64,7 @@ public class UserController {
      */
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson addUser(@RequestBody User user){
+    public ResultJson addUser(User user){
         int i = userService.addUser(user);
         return new ResultJson(i);
     }
@@ -73,10 +74,10 @@ public class UserController {
      * @param userId
      * @return
      */
-    @PostMapping(value = "/selectUserById")
-    public ResultJson<User> selectUserById(Integer userId){
-        User user = userService.selectUserById(userId);
-        return new ResultJson<User>(200,"成功",user);
+    @RequestMapping(value = "/selectUserById/{userId}",method = RequestMethod.GET)
+    public String selectUserById(@PathVariable("userId") Integer userId, Model model){
+        model.addAttribute("user",userService.selectUserById(userId));
+        return "user_edit";
     }
 
     /**

@@ -26,6 +26,11 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
     private RoleDao roleDao;
 
     @Override
+    public Role selectRoleById(Integer roleId) {
+        return roleDao.selectRoleById(roleId);
+    }
+
+   /* @Override
     public List<Role> getRoleListByIds(List<Integer> roleIds) {
         List<Role> roles = roleDao.selectBatchIds(roleIds);
 
@@ -34,5 +39,35 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
             throw new GcException(ResponseState.SERVER_ERROR,"当前id当中没有此角色");
         }
         return roles;
+    }*/
+
+    @Override
+    public int updateRole(Role role) {
+        return roleDao.updateRole(role);
     }
+
+    @Override
+    public int addRole(Role role) {
+        return roleDao.addRole(role);
+    }
+
+    @Override
+    public int deleteRoleById(Integer roleId) {
+        return roleDao.deleteRoleById(roleId);
+    }
+
+    @Override
+    public List<Role> findRoleList(Integer page, Integer page_size,String roleName) {
+        //计算偏移量 = (当前页-1)*每页显示条数
+        Integer pyl = (page-1)*page_size;
+        return roleDao.findRoleList(pyl,page_size,roleName);
+
+    }
+
+    @Override
+    public int findRoleListCount(String roleName) {
+        return roleDao.findRoleListCount(roleName);
+    }
+
+
 }

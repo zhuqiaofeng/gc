@@ -1,3 +1,4 @@
+/*
 package com.hz.gc.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * <p>
  *  服务实现类
@@ -26,7 +28,8 @@ import java.util.List;
  *
  * @author 第三组
  * @since 2022-04-23
- */
+ *//*
+
 @Service
 @Slf4j
 public class PermissionsServiceImpl extends ServiceImpl<PermissionsDao, Permissions> implements PermissionsService {
@@ -38,11 +41,13 @@ public class PermissionsServiceImpl extends ServiceImpl<PermissionsDao, Permissi
     private RoleService roleService;
     @Autowired
     RedisTemplate<String,Object> redisTemplate;
-    /**
+    */
+/**
      *  通过角色来获取权限
      * @param userId 此用户
      * @return
-     */
+     *//*
+
     @Override
     public List<String> getPermissionByUserId(Integer userId) {
 
@@ -61,9 +66,11 @@ public class PermissionsServiceImpl extends ServiceImpl<PermissionsDao, Permissi
         return permissionPath;
     }
 
-    /*
+    */
+/*
         根据path来查对应的权限
-     */
+     *//*
+
     @Override
     public Permissions findAuthorityByUrl(String url) {
         QueryWrapper<Permissions> wrapper = new QueryWrapper<>();
@@ -73,9 +80,11 @@ public class PermissionsServiceImpl extends ServiceImpl<PermissionsDao, Permissi
         return permissionsDao.selectOne(wrapper);
     }
 
-    /*
+    */
+/*
             递归查询此用户所有权限
-         */
+         *//*
+
     @Override
     public List<Permissions> getPermissionListByUserId(Integer userId) {
         List<Permissions> tree = new ArrayList<>();
@@ -89,9 +98,11 @@ public class PermissionsServiceImpl extends ServiceImpl<PermissionsDao, Permissi
         return tree;
     }
 
-    /**
+    */
+/**
      *  递归查询方法
-     */
+     *//*
+
 
     private void getChildTree(Permissions permission, List<Permissions> permissionList) {
 
@@ -110,9 +121,11 @@ public class PermissionsServiceImpl extends ServiceImpl<PermissionsDao, Permissi
         }
     }
 
-    /**
+    */
+/**
      *  删除菜单栏
-     */
+     *//*
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean deleteMenuByPid(Integer id) {
@@ -130,9 +143,11 @@ public class PermissionsServiceImpl extends ServiceImpl<PermissionsDao, Permissi
     }
 
 
-    /**
+    */
+/**
      *  收集父级菜单下的所有菜单id
-     */
+     *//*
+
     private void getChildIds(Integer id, List<Integer> ids) {
         List<Permissions> permissions = (List<Permissions>) redisTemplate.opsForValue().get(ResponseState.PERMISSION_LIST);
         System.out.println("permissions = " + permissions);
@@ -153,12 +168,14 @@ public class PermissionsServiceImpl extends ServiceImpl<PermissionsDao, Permissi
         }
     }
 
-    /**
+    */
+/**
      *  为角色分配权限
      * @param roleId 角色id
      * @param permIds 权限集合
      * @return 结果 true ok  false error
-     */
+     *//*
+
     @Override
     public boolean forRoleAllotPermission(Integer roleId, List<Integer> permIds) {
 
@@ -170,7 +187,8 @@ public class PermissionsServiceImpl extends ServiceImpl<PermissionsDao, Permissi
         return rolePermissionsService.addPermission(roleId,permIds);
     }
 
-    @Override
+   */
+/* @Override
     public List<Role> getWithOutPermissionTheRoles(Integer permId) {
 
         // 可以为空 不能为null,为空则代表此权限所有角色都已经有了
@@ -189,6 +207,8 @@ public class PermissionsServiceImpl extends ServiceImpl<PermissionsDao, Permissi
 
         return  roles;
 
-    }
+    }*//*
+
 
 }
+*/
