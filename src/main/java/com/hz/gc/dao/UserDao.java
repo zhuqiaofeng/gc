@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Component
 public interface UserDao extends BaseMapper<User> {
-    User selectUserById(Integer userId);
+    User selectUserById(@Param("userId") Integer userId);
 
     int deleteUserById(Integer userId);
 
