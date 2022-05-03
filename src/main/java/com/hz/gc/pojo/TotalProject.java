@@ -50,11 +50,11 @@ public class TotalProject implements Serializable {
 
     @ApiModelProperty("计划开始时间")
     @TableField("totalProjectStart")
-    private LocalDateTime totalProjectStart;
+    private String totalProjectStart;
 
     @ApiModelProperty("计划结束时间")
     @TableField("totalProjectEnd")
-    private LocalDateTime totalProjectEnd;
+    private String totalProjectEnd;
 
     @ApiModelProperty("总工期")
     @TableField("totalProjectDay")

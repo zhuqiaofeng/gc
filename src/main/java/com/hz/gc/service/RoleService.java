@@ -15,5 +15,20 @@ import java.util.List;
  */
 public interface RoleService extends IService<Role> {
 
-    List<Role> getRoleListByIds(List<Integer> roleIds);
+    Role selectRoleById(Integer roleId);
+
+   // List<Role> getRoleListByIds(List<Integer> roleIds);
+
+    int updateRole(Role role);
+
+    int addRole(Role role);
+
+    //根据删除角色
+    int deleteRoleById(Integer roleId);
+
+    List<Role> findRoleList(Integer page, Integer page_size,String roleName);
+
+    int findRoleListCount(String roleName);
+
+   // List<Role> getRoleListByIds(List<Integer> ids);
 }

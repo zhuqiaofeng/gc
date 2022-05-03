@@ -31,9 +31,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
     @Override
     public User selectUserById(Integer userId) {
-
-       User user = userDao.selectUserById(userId);
-        return user;
+        return userDao.selectUserById(userId);
     }
 
     @Override
@@ -71,6 +69,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
         return userDao.findUserListCount(userName,positionName);
     }
+
 
 
 

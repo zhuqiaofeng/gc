@@ -10,6 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,6 +29,7 @@ import java.time.LocalDateTime;
 @Setter
 @TableName("gc_user")
 @ApiModel(value = "User对象", description = "")
+@Data
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
