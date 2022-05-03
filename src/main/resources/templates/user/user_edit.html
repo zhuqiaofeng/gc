@@ -16,14 +16,10 @@
 </head>
 <body>
 <div class="layui-form layuimini-form">
-    <div class="layui-form-item">
-        <label class="layui-form-label required">用户ID</label>
-        <div class="layui-input-block">
-            <input th:value="${user.userId}"  lay-verify="required" type="hidden" name="userId"/>
-        </div>
-    </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label required">用户名</label>
+        <input th:value="${user.userId}"  lay-verify="required" type="hidden" name="userId"/>
         <div class="layui-input-block">
             <input type="text" name="userName" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入用户名" th:value="${user.userName}" class="layui-input">
         </div>

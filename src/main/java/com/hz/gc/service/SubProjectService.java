@@ -3,6 +3,8 @@ package com.hz.gc.service;
 import com.hz.gc.pojo.SubProject;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,24 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SubProjectService extends IService<SubProject> {
 
+
+    public List<SubProject> findSubProjectList1(
+            Integer curr_page, Integer page_size,
+            String subProjectName,
+            String subProjectDesc
+    );
+    public Integer findSubProjectListCount(String subProjectName, String subProjectDesc);
+
+//根据id删除
+    public int deleteSubProjectById(Integer subProjectId);
+
+//修改
+    public int updateSubProject(SubProject subProject);
+
+
+   //新增
+    public int saveSubProject(SubProject subProject);
+
+
+    SubProject selectSubProjectById(Integer subProjectId);
 }

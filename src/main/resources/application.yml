@@ -28,6 +28,6 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印SQL语句
     map-underscore-to-camel-case: false
 server:
-  port: 9001
+  port: 8080
 
 
