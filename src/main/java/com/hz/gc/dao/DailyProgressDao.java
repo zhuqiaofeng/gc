@@ -13,5 +13,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface DailyProgressDao extends BaseMapper<DailyProgress> {
 
+
     DailyProgress selectDate(String itemProjectName);
 }
