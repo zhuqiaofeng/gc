@@ -2,4 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.ProjectUserDao">
 
+    <insert id="addProjectUser">
+        insert into gc_project_user(totalProjectId,userId,projectUserDesc)
+        values (#{totalProjectId},#{userId},#{projectUserDesc})
+    </insert>
+
+    <delete id="deleteProjectUser">
+        delete from gc_project_user where projectUserId=#{projectUserId}
+    </delete>
+
+    <update id="updateProjectUser">
+        update gc_project_user set totalProjectId=#{totalProjectId},
+        userId=#{userId},projectUserDesc=#{projectUserDesc}
+        where projectUserId=#{projectUserId}
+    </update>
+
+    <sql id="ProjectUser_where">
+        <where>
+            <if test="userName!=null">
+                userName like concat('%',#{userName},'%')
+            </if>
+            <if test="totalProjectName!=null">
+                and totalProjectName concat('%',#{totalProjectName},'%')
+            </if>
+        </where>
+    </sql>
+
+    <select id="selectProjectUserList" resultType="ProjectUser">
+        select b.userName,c.totalProjectName,c.totalProjectDesc,d.subProjectName,d.subProjectDesc,e.itemProjectName,e.itemProjectDesc
+        from gc_project_user a
+        left join  gc_user b ON a.userId=b.userId
+        left join gc_total_project c on a.totalProjectId=c.totalProjectId
+        LEFT JOIN gc_sub_project d ON c.totalProjectId=d.totalProjectId
+        LEFT JOIN gc_item_project e ON d.subProjectId=e.itemProjectId
+        <include refid="ProjectUser_where"/>
+        limit #{pyl},#{page_size}
+    </select>
+
+    <select id="selectProjectUserListCount" resultType="int">
+        select count(1) from
+         gc_project_user a
+        left join  gc_user b ON a.userId=b.userId
+        left join gc_total_project c on a.totalProjectId=c.totalProjectId
+        LEFT JOIN gc_sub_project d ON c.totalProjectId=d.totalProjectId
+        LEFT JOIN gc_item_project e ON d.subProjectId=e.itemProjectId
+        <include refid="ProjectUser_where"/>
+
+    </select>
 </mapper>
