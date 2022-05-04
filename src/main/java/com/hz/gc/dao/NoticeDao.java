@@ -19,8 +19,8 @@ import java.util.List;
 @Component
 public interface NoticeDao extends BaseMapper<Notice> {
     /**
-     *  查询所有公告信息：根据id和公告名称
-     *   noticeId  公告id
+     *  查询所有公告信息：根据公告名称
+     *
      *   noticeName   公告名称
      * @return
      */

@@ -8,4 +8,5 @@ public class JsonMassage<T> {
     private String msg;
     private Integer count;//总条数
     private T data; //数据
+
 }

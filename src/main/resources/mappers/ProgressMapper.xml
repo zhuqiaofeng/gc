@@ -2,4 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.ProgressDao">
 
+    <select id="findProgressList" resultType="com.hz.gc.pojo.Progress">
+        select
+        gc_progress.progressId,
+        gc.gc_item_project.itemProjectName,
+        gc.gc_progress.progressExpectedStater,
+        gc.gc_progress.progressExpectedEnd,
+        gc_progress.progressActualStart,
+        gc_progress.progressActualEnd
+        from gc_progress
+        left join gc_item_project
+        on gc_progress.itemProjectId = gc_item_project.itemProjectId
+        limit #{pyl},#{page_size}
+
+    </select>
+
+    <select id="findProgressListCount" resultType="int">
+        select count(*) from gc_progress
+    </select>
+
+
+
+    <insert id="saveProgress">
+        insert into gc_progress(itemProjectId,progressExpectedStater,progressExpectedEnd,progressActualStart,progressActualEnd)
+        VALUES(
+        (SELECT itemProjectId FROM gc_item_project WHERE itemProjectName = #{itemProjectName}),
+        (SELECT itemProjectStart FROM gc_item_project WHERE itemProjectName = #{itemProjectName}),
+        (SELECT itemProjectEnd FROM gc_item_project WHERE itemProjectName = #{itemProjectName}),
+        (SELECT a.progressActualStart FROM gc_daily_progress a
+        LEFT JOIN gc_progress b ON a.progressId = b.progressId
+        LEFT JOIN gc_item_project c ON c.itemProjectId = b.itemProjectId
+        WHERE itemProjectName = #{itemProjectName}
+        ),
+        (SELECT a.progressActualEnd FROM gc_daily_progress a
+        LEFT JOIN gc_progress b ON a.progressId = b.progressId
+        LEFT JOIN gc_item_project c ON c.itemProjectId = b.itemProjectId
+        WHERE itemProjectName = #{itemProjectName}
+        )
+        )
+    </insert>
+
+
+    <update id="updateProgressDate">
+        update gc_progress set
+        progressActualStart = #{progressActualStart},
+        progressActualEnd = #{progressActualEnd}
+        where
+        progressId = #{progressId}
+    </update>
+
+
 </mapper>
