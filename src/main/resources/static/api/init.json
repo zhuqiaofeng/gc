@@ -119,7 +119,7 @@
         },
         {
           "title": "公告管理",
-          "href": "pagetting.html",
+          "href": "notice/notice.html",
           "icon": "fa fa-file-text",
           "target": ""
         },
