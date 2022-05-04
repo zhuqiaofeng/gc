@@ -99,7 +99,7 @@ public class UserController {
      */
     @RequestMapping(value = "/updateUserById",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson updateUserById(@RequestBody User user){
+    public ResultJson updateUserById(User user){
         int i = userService.updateUserById(user);
         return new ResultJson(i);
     }

@@ -2,4 +2,66 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.ItemProjectDao">
 
+
+    <!--//新增-->
+    <insert id="saveItemProject">
+        insert into gc_item_project(itemProjectName,itemProjectDesc,itemProjectState,itemProjectStart,
+                    itemProjectEnd,itemProjectDay,userId,subProjectId)
+        values(#{itemProjectName},#{itemProjectDesc},#{itemProjectState},#{itemProjectStart},
+                       #{itemProjectEnd},#{itemProjectDay},#{userId},#{subProjectId})
+    </insert>
+
+    <delete id="deleteItemProjectById">
+        delete from gc_item_project where itemProjectId=#{itemProjectId}
+    </delete>
+
+    <update id="updateItemProjectById">
+        update gc_item_project set
+        itemProjectName=#{itemProjectName},
+        itemProjectDesc=#{itemProjectDesc},
+        itemProjectState=#{itemProjectState},
+        itemProjectStart=#{itemProjectStart},
+        itemProjectEnd=#{itemProjectEnd},
+        itemProjectDay=#{itemProjectDay},
+        userId=#{userId} where
+        itemProjectId=#{itemProjectId}
+    </update>
+    <!--根据id查询-->
+    <select id="findItemProjectById" resultType="ItemProject">
+SELECT
+a.itemProjectName,
+a.itemProjectDesc,
+a.itemProjectState,
+a.itemProjectStart,
+a.itemProjectEnd,
+a.itemProjectDay,
+a.userId,
+a.subProjectId,
+b.subProjectName
+FROM gc_item_project a LEFT JOIN gc_sub_project b
+ON a.itemProjectId = b.subProjectId
+WHERE itemProjectId=#{itemProjectId}
+    </select>
+
+    <sql id="user_where">
+        <where>
+            <if test="itemProjectName!=null">
+                itemProjectName like concat('%',#{itemProjectName},'%')</if>
+            <if test="itemProjectDesc!=null">
+                and itemProjectDesc like concat('%',#{itemProjectDesc},'%')</if>
+        </where>
+    </sql>
+    <select id="finditemProjectList" resultType="ItemProject">
+        select * from gc_item_project
+        <include refid="user_where"/>
+        /*order by userId desc*/
+        limit #{pyl},#{page_size}
+    </select>
+
+    <select id="findUserListCount" resultType="int" >
+        select count(*) from gc_user a
+        LEFT JOIN gc_position b
+        ON a.positionId = b.positionId
+        <include refid="user_where"/>
+    </select>
 </mapper>
