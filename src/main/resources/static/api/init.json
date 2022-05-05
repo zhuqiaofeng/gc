@@ -40,8 +40,8 @@
               "target": "_self"
             },
             {
-              "title": "主页二",
-              "href": "page/welcome-2.html",
+              "title": "分部工程",
+              "href": "progress/project_branch.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },

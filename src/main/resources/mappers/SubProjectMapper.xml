@@ -14,7 +14,7 @@
     <select id="findSubProjectList" resultType="SubProject">
         select * from gc_sub_project
         <include refid="provider_where"/>
-        order by creationDate desc
+--         order by creationDate desc
         limit #{pyl},#{page_size}
     </select>
     <!--计算条数-->
