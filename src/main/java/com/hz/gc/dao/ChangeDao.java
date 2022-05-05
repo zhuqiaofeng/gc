@@ -2,6 +2,7 @@ package com.hz.gc.dao;
 
 import com.hz.gc.pojo.Change;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hz.gc.vo.ChangeVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public interface ChangeDao extends BaseMapper<Change> {
      * @param userName
      * @return
      */
-    public List<Change>  findChangeList(
+    public List<ChangeVo>  findChangeList(
             @Param("pyl") Integer pyl,
             @Param("page_size") Integer page_size,
             @Param("changeContent") String changeContent,

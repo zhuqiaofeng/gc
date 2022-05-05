@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.DailyProgressDao">
-
-
     <select id="selectDate" resultType="com.hz.gc.pojo.DailyProgress">
         SELECT * FROM gc_daily_progress a
         LEFT JOIN gc_progress b ON a.progressId = b.progressId
@@ -10,3 +8,4 @@
         WHERE itemProjectName = #{itemProjectName}
     </select>
 </mapper>
+

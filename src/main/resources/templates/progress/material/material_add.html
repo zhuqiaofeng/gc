@@ -17,25 +17,26 @@
 <body>
 <div class="layui-form layuimini-form" >
     <div class="layui-form-item">
-        <label class="layui-form-label required">公告名称</label>
+        <label class="layui-form-label required">图片或文件路径</label>
         <div class="layui-input-block">
-            <input type="text" name="noticeName" lay-verify="required" lay-reqtext="公告名不能为空" placeholder="请输入公告名称" value="" class="layui-input">
+            <input type="text" name="materialUrl" lay-verify="required" lay-reqtext="图片或文件路径不能为空" placeholder="请输入图片或文件路径" value="" class="layui-input">
             <!--<tip>填写自己管理账号的名称。</tip>-->
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">公告内容</label>
+        <label class="layui-form-label required">资料说明</label>
         <div class="layui-input-block">
-            <input type="text" name="noticeContent" lay-verify="required" lay-reqtext="公告内容不能为空" placeholder="请输入公告内容" value="" class="layui-input">
+            <input type="text" name="materialDesc" lay-verify="required" lay-reqtext="资料说明不能为空" placeholder="请输入资料说明" value="" class="layui-input">
         </div>
     </div>
 
-   <!-- <div class="layui-form-item">
-        <label class="layui-form-label required">公告发布时间</label>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">所属每日进度ID</label>
         <div class="layui-input-block">
-            <input type="number" name="noticeAddtime" lay-verify="required" lay-reqtext="公告时间" placeholder="请输入发布时间" value="" class="layui-input">
+            <input type="number" name="dailyProgressId" lay-verify="required" lay-reqtext="所属每日进度不能为空" placeholder="请输入所属每日进度" value="" class="layui-input">
         </div>
-    </div>-->
+    </div>
+
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
@@ -63,7 +64,7 @@
 
             parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
-            $.post("/notice/addNotice",data.field,function(res){
+            $.post("/material/addMaterial",data.field,function(res){
                 var index = parent.layer.alert(res.msg, function () {
 
                     //刷新表格
@@ -78,6 +79,7 @@
 
         });
         return false;
+
 
     });
 </script>

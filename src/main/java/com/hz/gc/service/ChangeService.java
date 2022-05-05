@@ -2,6 +2,7 @@ package com.hz.gc.service;
 
 import com.hz.gc.pojo.Change;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hz.gc.vo.ChangeVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public interface ChangeService extends IService<Change> {
      *  @param  userName      用户姓名
      *  @return
      */
-    public List<Change> findChangeList(
+    public List<ChangeVo> findChangeList(
             @Param("pyl") Integer pyl,
             @Param("page_size") Integer page_size,
             @Param("changeContent") String changeContent,
