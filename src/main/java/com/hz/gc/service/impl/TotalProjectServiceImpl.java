@@ -24,7 +24,7 @@ public class TotalProjectServiceImpl extends ServiceImpl<TotalProjectDao, TotalP
     private TotalProjectDao totalProjectDao;
     @Override
     public int saveTotalProject(TotalProject totalProject) {
-        int i = totalProjectDao.insert(totalProject);
+        int i = totalProjectDao.saveTotalProject(totalProject);
         return i;
     }
 
@@ -42,7 +42,7 @@ public class TotalProjectServiceImpl extends ServiceImpl<TotalProjectDao, TotalP
 
     @Override
     public int updateTotalProject(TotalProject totalProject) {
-        int i = totalProjectDao.updateById(totalProject);
+        int i = totalProjectDao.updateTotalProject(totalProject);
         return i;
     }
 

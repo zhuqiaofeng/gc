@@ -7,8 +7,14 @@
     <insert id="saveItemProject">
         insert into gc_item_project(itemProjectName,itemProjectDesc,itemProjectState,itemProjectStart,
                     itemProjectEnd,itemProjectDay,userId,subProjectId)
-        values(#{itemProjectName},#{itemProjectDesc},#{itemProjectState},#{itemProjectStart},
-                       #{itemProjectEnd},#{itemProjectDay},#{userId},#{subProjectId})
+        values(#{itemProjectName},
+        #{itemProjectDesc},
+        #{itemProjectState},
+        #{itemProjectStart},
+        #{itemProjectEnd},
+        (SELECT DATEDIFF(#{itemProjectEnd},#{itemProjectStart})),
+        #{userId},
+        #{subProjectId})
     </insert>
 
     <delete id="deleteItemProjectById">
@@ -22,25 +28,25 @@
         itemProjectState=#{itemProjectState},
         itemProjectStart=#{itemProjectStart},
         itemProjectEnd=#{itemProjectEnd},
-        itemProjectDay=#{itemProjectDay},
+        itemProjectDay=(SELECT DATEDIFF(#{itemProjectEnd},#{itemProjectStart})),
         userId=#{userId} where
         itemProjectId=#{itemProjectId}
     </update>
     <!--根据id查询-->
     <select id="findItemProjectById" resultType="ItemProject">
-SELECT
-a.itemProjectName,
-a.itemProjectDesc,
-a.itemProjectState,
-a.itemProjectStart,
-a.itemProjectEnd,
-a.itemProjectDay,
-a.userId,
-a.subProjectId,
-b.subProjectName
-FROM gc_item_project a LEFT JOIN gc_sub_project b
-ON a.itemProjectId = b.subProjectId
-WHERE itemProjectId=#{itemProjectId}
+        SELECT
+        a.itemProjectName,
+        a.itemProjectDesc,
+        a.itemProjectState,
+        a.itemProjectStart,
+        a.itemProjectEnd,
+        a.itemProjectDay,
+        a.userId,
+        a.subProjectId,
+        b.subProjectName
+        FROM gc_item_project a LEFT JOIN gc_sub_project b
+        ON a.itemProjectId = b.subProjectId
+        WHERE itemProjectId=#{itemProjectId}
     </select>
 
     <sql id="user_where">

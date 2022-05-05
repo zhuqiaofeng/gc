@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -46,11 +45,11 @@ public class ItemProject implements Serializable {
 
     @ApiModelProperty("计划开始时间")
     @TableField("itemProjectStart")
-    private LocalDateTime itemProjectStart;
+    private String itemProjectStart;
 
     @ApiModelProperty("计划结束时间")
     @TableField("itemProjectEnd")
-    private LocalDateTime itemProjectEnd;
+    private String itemProjectEnd;
 
     @ApiModelProperty("分项工程工期")
     @TableField("itemProjectDay")
