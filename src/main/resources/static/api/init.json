@@ -29,7 +29,7 @@
             },
             {
               "title": "变更记录管理",
-              "href": "",
+              "href": "change/change.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
