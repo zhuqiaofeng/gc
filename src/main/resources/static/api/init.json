@@ -55,7 +55,7 @@
         },
         {
           "title": "进度管理",
-          "href": "page/menu.html",
+          "href": "",
           "icon": "fa fa-window-maximize",
           "target": "_self",
           "child": [
@@ -85,7 +85,7 @@
             },
             {
               "title": "文件上传",
-              "href": "",
+              "href": "progress/material/material.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             }

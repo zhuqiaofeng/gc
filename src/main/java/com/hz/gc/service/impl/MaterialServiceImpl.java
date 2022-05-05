@@ -24,12 +24,25 @@ public class MaterialServiceImpl extends ServiceImpl<MaterialDao, Material> impl
 
     @Autowired
     private MaterialDao materialDao;
+
+    /**
+     * 根据资料ID查询信息
+     * @param materialId
+     * @return
+     */
+
     @Override
     public Material selectMaterialById(Integer materialId) {
         Material material = materialDao.selectMaterialById(materialId);
         return material;
     }
-
+    /**
+     * 根据资料说明查询信息
+     * @param curr_page
+     * @param page_size 当前页
+     * @param materialDesc 资料说明
+     * @return
+     */
     @Override
     public List<Material> findMaterialList(Integer curr_page, Integer page_size, String materialDesc) {
         //计算偏移量 = (当前页-1)*每页显示条数
@@ -44,12 +57,22 @@ public class MaterialServiceImpl extends ServiceImpl<MaterialDao, Material> impl
         return materialDao.findMaterialListCount(materialDesc);
     }
 
+    /**
+     * 上传资料
+     * @param material
+     * @return
+     */
     @Override
     public int addMaterial(Material material) {
         int i = materialDao.addMaterial(material);
         return i;
     }
 
+    /**
+     * 根据ID删除上传资料
+     * @param materialId
+     * @return
+     */
     @Override
     public int deleteMaterialById(Integer materialId) {
         int i = materialDao.deleteMaterialById(materialId);
