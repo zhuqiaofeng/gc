@@ -5,7 +5,7 @@
     <sql id="notice_where">
         <where>
             <if test="noticeName!=null">
-                and noticeName like  concat('%',#{noticeName},'%')
+                noticeName like  concat('%',#{noticeName},'%')
             </if>
         </where>
     </sql>
