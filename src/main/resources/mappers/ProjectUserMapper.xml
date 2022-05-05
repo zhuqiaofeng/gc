@@ -23,7 +23,7 @@
                 userName like concat('%',#{userName},'%')
             </if>
             <if test="totalProjectName!=null">
-                and totalProjectName concat('%',#{totalProjectName},'%')
+                and totalProjectName like concat('%',#{totalProjectName},'%')
             </if>
         </where>
     </sql>
