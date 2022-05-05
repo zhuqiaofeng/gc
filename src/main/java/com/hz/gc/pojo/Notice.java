@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -42,7 +41,7 @@ public class Notice implements Serializable {
 
     @ApiModelProperty("发布时间，规则范文颁发时间")
     @TableField("noticeAddtime")
-    private LocalDateTime noticeAddtime;
+    private String noticeAddtime;
 
     @ApiModelProperty("管理员id")
     @TableField("adminId")
