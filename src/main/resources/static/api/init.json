@@ -4,13 +4,13 @@
     "href": "page/welcome-1.html?t=1"
   },
   "logoInfo": {
-    "title": "LAYUI MINI",
-    "image": "images/logo.png",
+    "title": "鑫桑",
+    "image": "images/8.png",
     "href": ""
   },
   "menuInfo": [
     {
-      "title": "常规管理",
+      "title": "主页",
       "icon": "fa fa-address-book",
       "href": "",
       "target": "_self",
@@ -22,32 +22,26 @@
           "target": "_self",
           "child": [
             {
-              "title": "新建工程计划",
+              "title": "总工程管理",
+              "href": "project/total_project/total_project.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            },
+            {
+              "title": "分部工程管理",
               "href": "",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
-              "title": "变更记录管理",
-              "href": "",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-            {
-              "title": "主页一",
+              "title": "分项工程管理",
               "href": "page/welcome-1.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
-              "title": "主页二",
+              "title": "变更记录管理",
               "href": "page/welcome-2.html",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-            {
-              "title": "主页三",
-              "href": "page/welcome-3.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             }
@@ -55,36 +49,24 @@
         },
         {
           "title": "进度管理",
-          "href": "",
+          "href": "page/menu.html",
           "icon": "fa fa-window-maximize",
           "target": "_self",
           "child": [
             {
-              "title": "总项目",
+              "title": "进度统计",
               "href": "",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
-              "title": "分部项目",
+              "title": "每日进度管理",
               "href": "",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
-              "title": "分项项目",
-              "href": "",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-            {
-              "title": "项目预览",
-              "href": "progress/preview_progress.html",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-            {
-              "title": "文件上传",
+              "title": "项目资料",
               "href": "progress/material/material.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
@@ -119,7 +101,7 @@
         },
         {
           "title": "公告管理",
-          "href": "pagetting.html",
+          "href": "notice/notice.html",
           "icon": "fa fa-file-text",
           "target": ""
         },
@@ -127,21 +109,7 @@
           "title": "打卡记录管理",
           "href": "",
           "icon": "fa fa-calendar",
-          "target": "",
-          "child": [
-            {
-              "title": "普通表单",
-              "href": "page/form.html",
-              "icon": "fa fa-list-alt",
-              "target": "_self"
-            },
-            {
-              "title": "分步表单",
-              "href": "page/form-step.html",
-              "icon": "fa fa-navicon",
-              "target": "_self"
-            }
-          ]
+          "target": ""
         },
         {
           "title": "评论管理",
@@ -167,26 +135,6 @@
               "title": "404页面",
               "href": "page/404.html",
               "icon": "fa fa-hourglass-end",
-              "target": "_self"
-            }
-          ]
-        },
-        {
-          "title": "其它界面",
-          "href": "",
-          "icon": "fa fa-snowflake-o",
-          "target": "",
-          "child": [
-            {
-              "title": "按钮示例",
-              "href": "pagetton.html",
-              "icon": "fa fa-snowflake-o",
-              "target": "_self"
-            },
-            {
-              "title": "弹出层",
-              "href": "page/layer.html",
-              "icon": "fa fa-shield",
               "target": "_self"
             }
           ]
