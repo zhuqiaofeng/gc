@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -54,7 +53,7 @@ public class Admin implements Serializable {
 
     @ApiModelProperty("创建时间")
     @TableField("adminCreateTime")
-    private LocalDateTime adminCreateTime;
+    private String adminCreateTime;
 
     @ApiModelProperty("创建人id,由超级管理员创建")
     @TableField("createPersonId")
@@ -66,7 +65,7 @@ public class Admin implements Serializable {
 
     @ApiModelProperty("管理员最后一次登录时间")
     @TableField("adminLastTime")
-    private LocalDateTime adminLastTime;
+    private String adminLastTime;
 
     @ApiModelProperty("管理员状态(0启用1禁用 默认0)")
     @TableField("adminStatus")

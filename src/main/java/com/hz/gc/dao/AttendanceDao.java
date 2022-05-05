@@ -17,9 +17,20 @@ import java.util.List;
  */
 @Component
 public interface AttendanceDao extends BaseMapper<Attendance> {
-
+    /**
+     * 通过ID查询信息
+     * @param attendanceId
+     * @return
+     */
     Attendance selectAttendanceById(Integer attendanceId);
-
+    /**
+     * 分页+多条件模糊查询
+     * @param pyl 当前页
+     * @param page_size 显示条数
+     * @param userName 用户名
+     * @param
+     * @return
+     */
     List<Attendance> findAttendanceList(
             @Param("pyl") Integer pyl,
             @Param("page_size") Integer page_size,
@@ -27,6 +38,10 @@ public interface AttendanceDao extends BaseMapper<Attendance> {
 
     Integer findAttendanceListCount(
             String userName);
-
+    /**
+     * 添加打卡信息
+     * @param attendance
+     * @return
+     */
     int addAttendance(Attendance attendance);
 }

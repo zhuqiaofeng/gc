@@ -15,12 +15,29 @@ import java.util.List;
  */
 public interface AttendanceService extends IService<Attendance> {
 
+    /**
+     * 通过ID查询信息
+     * @param attendanceId
+     * @return
+     */
     Attendance selectAttendanceById(Integer attendanceId);
-
+    /**
+     * 分页+多条件模糊查询
+     * @param curr_page 当前页
+     * @param page_size 显示条数
+     * @param userName 用户名
+     * @param
+     * @return
+     */
 
     List<Attendance> findAttendanceList(Integer curr_page, Integer page_size, String userName);
 
     Integer findAttendanceListCount(String userName);
 
+    /**
+     * 添加打卡信息
+     * @param attendance
+     * @return
+     */
     int addAttendance(Attendance attendance);
 }

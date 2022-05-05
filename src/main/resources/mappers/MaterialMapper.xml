@@ -7,8 +7,8 @@
     </delete>
 
     <insert id="addMaterial">
-        insert into gc_material (materialDesc,dailyProgressId)
-        values (#{materialDesc},#{dailyProgressId})
+        insert into gc_material (materialUrl,materialDesc,dailyProgressId)
+        values (#{materialUrl},#{materialDesc},#{dailyProgressId})
     </insert>
 
     <sql id="user_where">

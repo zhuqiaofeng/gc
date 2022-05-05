@@ -17,11 +17,31 @@ public interface MaterialService extends IService<Material> {
 
     Material selectMaterialById(Integer materialId);
 
+    /**
+     * 分页+多条件模糊查询
+     * @param curr_page 当前页
+     * @param page_size 显示条数
+     * @param materialDesc 资料说明
+     * @param
+     * @return
+     */
     List<Material> findMaterialList(Integer curr_page, Integer page_size, String materialDesc);
 
     Integer findMaterialListCount(String materialDesc);
 
+    /**
+     * 上传资料
+     * @param material
+     * @return
+     */
     int addMaterial(Material material);
+
+
+    /**
+     * 根据ID删除上传资料
+     * @param materialId
+     * @return
+     */
 
     int deleteMaterialById(Integer materialId);
 }
