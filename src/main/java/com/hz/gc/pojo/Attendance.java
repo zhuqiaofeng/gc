@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -38,7 +37,7 @@ public class Attendance implements Serializable {
 
     @ApiModelProperty("打卡时间")
     @TableField("attendanceTime")
-    private LocalDateTime attendanceTime;
+    private String attendanceTime;
 
     @ApiModelProperty("打卡地点")
     @TableField("attendanceAddress")
