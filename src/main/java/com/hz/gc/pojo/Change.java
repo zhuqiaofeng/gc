@@ -42,7 +42,7 @@ public class Change implements Serializable {
 
     @ApiModelProperty("变更时间")
     @TableField("changeTime")
-    private LocalDateTime changeTime;
+    private String changeTime;
 
     @ApiModelProperty("变更内容:XX工程XXX部分XXX项进行改动为XXX")
     @TableField("changeContent")

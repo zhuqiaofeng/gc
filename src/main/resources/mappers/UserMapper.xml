@@ -19,7 +19,7 @@
         limit #{pyl},#{page_size}
     </select>
 
-    <select id="findUserListCount" resultType="int" >
+       <select id="findUserListCount" resultType="int" >
         select count(*) from gc_user a
         LEFT JOIN gc_position b
         ON a.positionId = b.positionId

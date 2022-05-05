@@ -38,31 +38,24 @@ public class Progress implements Serializable {
 
     @ApiModelProperty("计划开始日期从分项计划中获取")
     @TableField("progressExpectedStater")
-    private LocalDateTime progressExpectedStater;
+    private String progressExpectedStater;
 
     @ApiModelProperty("计划结束日期从分项计划中获取")
     @TableField("progressExpectedEnd")
-    private LocalDateTime progressExpectedEnd;
+    private String progressExpectedEnd;
 
     @ApiModelProperty("实际开始日期")
     @TableField("progressActualStart")
-    private LocalDateTime progressActualStart;
+    private String  progressActualStart;
 
     @ApiModelProperty("实际结束日期")
     @TableField("progressActualEnd")
-    private LocalDateTime progressActualEnd;
+    private String progressActualEnd;
 
     @ApiModelProperty("已持续天数从开始时间到当前时间  自动更新？")
     @TableField("progressDay")
     private Integer progressDay;
 
-    @ApiModelProperty("用户ID  上传进度信息的那个用户ID")
-    @TableField("userId")
-    private Integer userId;
-
-    @ApiModelProperty("进度统计说明")
-    @TableField("progressDesc")
-    private String progressDesc;
 
 
 }

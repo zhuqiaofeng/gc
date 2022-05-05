@@ -13,12 +13,4 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface DailyProgressDao extends BaseMapper<DailyProgress> {
 
-    /**
-     * 根据ID查询信息
-     * @param dailyProgressId
-     * @return
-     */
-    DailyProgress selectDailyProgressById(Integer dailyProgressId);
-
-    int addDailyProgress(DailyProgress dailyProgress);
 }

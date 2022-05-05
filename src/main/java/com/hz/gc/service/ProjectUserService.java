@@ -2,6 +2,9 @@ package com.hz.gc.service;
 
 import com.hz.gc.pojo.ProjectUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hz.gc.vo.ProjectUserVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ProjectUserService extends IService<ProjectUser> {
 
+    int addProjectUser(ProjectUser projectUser);
+
+    int deleteProjectUser(Integer projectUserId);
+
+    int updateProjectUser(Integer projectUserId);
+
+    List<ProjectUserVo> selectProjectUserList(Integer curr_page,Integer page_size,String totalProjectName,String userName);
+
+    int selectProjectUserListCount(String totalProjectName,String userName);
 }

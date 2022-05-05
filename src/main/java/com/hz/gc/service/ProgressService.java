@@ -3,6 +3,8 @@ package com.hz.gc.service;
 import com.hz.gc.pojo.Progress;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ProgressService extends IService<Progress> {
 
+    List<Progress> findProgressList(Integer page, Integer page_size);
+
+    Integer findProgressListCount();
+
+    int saveProgress(String itemProjectName);
+
+    int updateProgress(Integer progressId,String itemProjectName);
 }

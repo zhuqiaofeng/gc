@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.DailyProgressDao">
-
-
-
-
-
-
-
-    <insert id="addDailyProgress">
-        insert into gc_daily_progress(progressId,dailyProgressDesc,userId,itemProjectId)
-        values(#{progressId},#{dailyProgressDesc},#{userId},#{itemProjectId})
-    </insert>
-
-    <select id="selectDailyProgressById" resultType="com.hz.gc.pojo.DailyProgress">
-        select * from gc_daily_progress where dailyProgressId =#{dailyProgressId}
+    <select id="selectDate" resultType="com.hz.gc.pojo.DailyProgress">
+        SELECT * FROM gc_daily_progress a
+        LEFT JOIN gc_progress b ON a.progressId = b.progressId
+        LEFT JOIN gc_item_project c ON c.itemProjectId = b.itemProjectId
+        WHERE itemProjectName = #{itemProjectName}
     </select>
-
 </mapper>
+

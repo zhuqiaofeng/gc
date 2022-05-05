@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author 第三组
- * @since 2022-04-27
+ * @since 2022-05-04
  */
 @Getter
 @Setter
@@ -36,17 +36,25 @@ public class DailyProgress implements Serializable {
     @TableField("progressId")
     private Integer progressId;
 
+    @ApiModelProperty("填写人ID（必须是工程人员信息表ID）")
+    @TableField("userId")
+    private Integer userId;
+
     @ApiModelProperty("每日进度描述")
     @TableField("dailyProgressDesc")
     private String dailyProgressDesc;
 
+    @ApiModelProperty("工程实际开始时间")
+    @TableField("progressActualStart")
+    private String progressActualStart;
+
+    @ApiModelProperty("工程实际开始结束")
+    @TableField("progressActualEnd")
+    private String progressActualEnd;
+
     @ApiModelProperty("创建时间")
     @TableField("dailyProgressAddtime")
-    private LocalDateTime dailyProgressAddtime;
-
-    @ApiModelProperty("填写人ID（必须是工程人员信息表ID）")
-    @TableField("userId")
-    private Integer userId;
+    private String dailyProgressAddtime;
 
     @ApiModelProperty("分项工程ID待定")
     @TableField("itemProjectId")
