@@ -24,12 +24,24 @@ public class AttendanceServiceImpl extends ServiceImpl<AttendanceDao, Attendance
     @Autowired
     private AttendanceDao attendanceDao;
 
+    /**
+     * 通过ID查询信息
+     * @param attendanceId
+     * @return
+     */
     @Override
     public Attendance selectAttendanceById(Integer attendanceId) {
         Attendance attendance = attendanceDao.selectAttendanceById(attendanceId);
         return attendance;
     }
-
+    /**
+     * 分页+多条件模糊查询
+     * @param curr_page 当前页
+     * @param page_size 显示条数
+     * @param userName 用户名
+     * @param
+     * @return
+     */
     @Override
     public List<Attendance> findAttendanceList(Integer curr_page, Integer page_size, String userName) {
         //计算偏移量 = (当前页-1)*每页显示条数
@@ -43,7 +55,11 @@ public class AttendanceServiceImpl extends ServiceImpl<AttendanceDao, Attendance
     public Integer findAttendanceListCount(String userName) {
         return attendanceDao.findAttendanceListCount(userName);
     }
-
+    /**
+     * 添加打卡信息
+     * @param attendance
+     * @return
+     */
     @Override
     public int addAttendance(Attendance attendance) {
         int i = attendanceDao.addAttendance(attendance);

@@ -5,7 +5,7 @@
   },
   "logoInfo": {
     "title": "鑫桑",
-    "image": "images/logo.png",
+    "image": "images/8.png",
     "href": ""
   },
   "menuInfo": [
@@ -23,7 +23,7 @@
           "child": [
             {
               "title": "总工程管理",
-              "href": "",
+              "href": "project/total_project/total_project.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
@@ -67,7 +67,7 @@
             },
             {
               "title": "项目资料",
-              "href": "",
+              "href": "progress/material/material.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             }

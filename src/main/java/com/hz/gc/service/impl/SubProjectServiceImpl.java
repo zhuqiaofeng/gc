@@ -28,7 +28,7 @@ public class SubProjectServiceImpl extends ServiceImpl<SubProjectDao, SubProject
 
     //    多条件组合查询
     @Override
-    public List<SubProject> findSubProjectList1(Integer curr_page, Integer page_size, String subProjectName, String subProjectDesc) {
+    public List<SubProject> findSubProjectList(Integer curr_page, Integer page_size, String subProjectName, String subProjectDesc) {
 
         Integer pyl = (curr_page-1)*page_size;
         return subProjectDao.findSubProjectList(pyl,page_size,subProjectName,subProjectDesc);
@@ -37,7 +37,7 @@ public class SubProjectServiceImpl extends ServiceImpl<SubProjectDao, SubProject
     //计算条数
     @Override
     public Integer findSubProjectListCount(String subProjectName, String subProjectDesc) {
-        return subProjectDao.findProviderListCount(subProjectName,subProjectDesc);
+        return subProjectDao.findSubProjectListCount(subProjectName,subProjectDesc);
     }
     //根据id删除
     @Override
@@ -55,11 +55,11 @@ public class SubProjectServiceImpl extends ServiceImpl<SubProjectDao, SubProject
     public int saveSubProject(SubProject subProject) {
         return subProjectDao.saveSubProject(subProject);
     }
-
+//根据id查询
     @Override
     public SubProject selectSubProjectById(Integer subProjectId) {
 
-        return subProjectDao.selectSubProjectById(subProjectId);
+            return subProjectDao.selectSubProjectById(subProjectId);
     }
 
 }

@@ -28,7 +28,7 @@ public class MaterialController {
     private MaterialService materialService;
 
     /**
-     * 删除指定ID的用户信息
+     * 根据ID删除上传资料
      * @param materialId
      * @return
      */
@@ -40,13 +40,13 @@ public class MaterialController {
     }
 
     /**
-     * 添加用户
+     * 上传资料
      * @param material
      * @return
      */
     @RequestMapping(value = "/addMaterial",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson addMaterial(@RequestBody Material material){
+    public ResultJson addMaterial(Material material){
         int i = materialService.addMaterial(material);
         return new ResultJson(i);
     }
@@ -56,7 +56,7 @@ public class MaterialController {
      * 分页+多条件模糊查询
      * @param page 当前页
      * @param limit1 显示条数
-     * @param materialDesc 用户名
+     * @param materialDesc 资料说明
      * @param
      * @return
      */
@@ -68,9 +68,7 @@ public class MaterialController {
             String materialDesc
     ){
         List<Material> list = materialService.findMaterialList(page,limit1,materialDesc);
-
         Integer count = materialService.findMaterialListCount(materialDesc);
-
         JsonMassage<List<Material>> jsonMassage = new JsonMassage<List<Material>>();
         jsonMassage.setCode(0);
         jsonMassage.setMsg("请求成功");
@@ -78,10 +76,8 @@ public class MaterialController {
         jsonMassage.setData(list);
         return jsonMassage;
     }
-
-
     /**
-     * 通过ID查询用户
+     * 通过资料ID查询信息
      * @param materialId
      * @return
      */
