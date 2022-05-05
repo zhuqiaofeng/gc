@@ -16,4 +16,6 @@ public interface DailyProgressDao extends BaseMapper<DailyProgress> {
     DailyProgress selectDailyProgressById(Integer dailyProgressId);
 
     int addDailyProgress(DailyProgress dailyProgress);
+
+    DailyProgress selectDate(String itemProjectName);
 }
