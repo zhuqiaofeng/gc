@@ -42,11 +42,11 @@ public class SubProject implements Serializable {
 
     @ApiModelProperty("分部工程计划开始时间")
     @TableField("subProjectStart")
-    private LocalDateTime subProjectStart;
+    private String subProjectStart;
 
     @ApiModelProperty("分部工程计划结束时间")
     @TableField("subProjectEnd")
-    private LocalDateTime subProjectEnd;
+    private String subProjectEnd;
 
     @ApiModelProperty("分部工程工期")
     @TableField("subProjectDay")
