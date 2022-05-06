@@ -24,9 +24,9 @@ public class ProgressController {
     @Autowired
     private ProgressService progressService;
 
-    @RequestMapping(value = "/findPositionList",method = RequestMethod.GET)
+    @RequestMapping(value = "/findProgressList",method = RequestMethod.GET)
     @ResponseBody
-    public JsonMassage<List<Progress>> findPositionList(
+    public JsonMassage<List<Progress>> findProgressList(
             @RequestParam(value = "page",defaultValue = "1") Integer page,
             @RequestParam(value = "page_size",defaultValue = "10") Integer page_size
     ){
@@ -34,7 +34,7 @@ public class ProgressController {
         Integer count = progressService.findProgressListCount();
 
         JsonMassage<List<Progress>> jsonMassage = new JsonMassage<List<Progress>>();
-        jsonMassage.setCode(200);
+        jsonMassage.setCode(0);
         jsonMassage.setMsg("请求成功");
         jsonMassage.setCount(count);
         jsonMassage.setData(list);

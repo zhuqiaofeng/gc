@@ -29,7 +29,7 @@
             },
             {
               "title": "分部工程管理",
-              "href": "",
+              "href": "project/sub_project/sub_project.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },

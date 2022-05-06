@@ -23,6 +23,24 @@
 
 
 
+    <update id="updateProgressDate">
+        update gc_progress set
+        progressActualStart = #{progressActualStart},
+        progressActualEnd = #{progressActualEnd},
+
+        <choose>
+            <when test="progressActualEnd == null">
+                progressDay = (SELECT DATEDIFF(NOW(),progressActualStart))
+            </when>
+            <otherwise>
+                progressDay = (SELECT DATEDIFF(progressActualEnd,progressActualStart))
+            </otherwise>
+        </choose>
+        where
+        progressId = #{progressId}
+    </update>
+
+
     <insert id="saveProgress">
         insert into gc_progress(itemProjectId,progressExpectedStater,progressExpectedEnd,progressActualStart,progressActualEnd)
         VALUES(
@@ -41,15 +59,6 @@
         )
         )
     </insert>
-
-
-    <update id="updateProgressDate">
-        update gc_progress set
-        progressActualStart = #{progressActualStart},
-        progressActualEnd = #{progressActualEnd}
-        where
-        progressId = #{progressId}
-    </update>
 
 
 </mapper>
