@@ -99,7 +99,7 @@
             },
             {
               "title": "角色管理",
-              "href": "",
+              "href": "role/role.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },

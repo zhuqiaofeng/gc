@@ -2,7 +2,7 @@
 #配置数据源
 spring:
  thymeleaf:
-    prefix: classpath:/templates/user/
+    prefix: classpath:/templates/
     suffix: .html
     encoding: UTF-8
     cache: false

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">角色名称</label>
+        <input th:value="${role.roleId}"  lay-verify="required" type="hidden" name="roleId"/>
+        <div class="layui-input-block">
+            <input type="text" name="roleName" lay-verify="required" lay-reqtext="角色名不能为空" placeholder="请输入角色名" th:value="${role.roleName}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">角色描述</label>
+        <div class="layui-input-block">
+            <input type="text" name="roleDesc" lay-verify="required" lay-reqtext="角色描述不能为空" placeholder="请输入角色描述" th:value="${role.roleDesc}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
+    </div>
+</div>
+</div>
+<script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form','laydate'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+        laydate = layui.laydate;
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
+
+            $.post("/role/updateRole",data.field,function(res){
+                var index = parent.layer.alert(res.msg, function () {
+                    //刷新表格
+                    parent.tab.reload();
+                    // 关闭弹出层
+                    parent.layer.close(index);
+                    parent.layer.closeAll();
+
+                });
+            },"json");
+
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>
