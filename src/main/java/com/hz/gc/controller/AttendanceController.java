@@ -26,7 +26,7 @@ public class AttendanceController {
     private AttendanceService attendanceService;
 
     /**
-     * 添加用户
+     * 添加打卡信息
      * @param attendance
      * @return
      */
@@ -67,7 +67,7 @@ public class AttendanceController {
 
 
     /**
-     * 通过ID查询用户
+     * 通过ID查询信息
      * @param attendanceId
      * @return
      */

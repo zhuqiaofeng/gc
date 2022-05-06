@@ -27,13 +27,13 @@ public class SubProjectController {
     //多条件组合查询
     @RequestMapping(value = "/findSubProjectList",method = RequestMethod.GET)
     @ResponseBody
-    public JsonMassage<List<SubProject>> findSubProjectList(
-            @RequestParam(value = "page",defaultValue = "1") Integer page,
-            @RequestParam(value = "limitl",defaultValue = "10") Integer limitl,
+    public JsonMassage<List<SubProject>> findList(
+            @RequestParam(value = "pyl",defaultValue = "1") Integer pyl,
+            @RequestParam(value = "page_size",defaultValue = "10") Integer page_size,
             String subProjectName,
             String subProjectDesc
     ){
-        List<SubProject> list = subProjectService.findSubProjectList1(page,limitl,subProjectName,subProjectDesc);
+        List<SubProject> list = subProjectService.findSubProjectList(pyl,page_size,subProjectName,subProjectDesc);
         Integer count = subProjectService.findSubProjectListCount(subProjectName,subProjectDesc);
         JsonMassage<List<SubProject>> jsonMassage = new JsonMassage<>();
         jsonMassage.setCode(0);

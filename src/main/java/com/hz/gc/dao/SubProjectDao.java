@@ -2,7 +2,8 @@ package com.hz.gc.dao;
 
 import com.hz.gc.pojo.SubProject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import io.lettuce.core.dynamic.annotation.Param;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -32,7 +33,8 @@ public interface SubProjectDao extends BaseMapper<SubProject> {
             @Param("subProjectDesc")String subProjectDesc
     );
 
-    Integer findProviderListCount(String subProjectName, String subProjectDesc);
+    Integer findSubProjectListCount( @Param("subProjectName")String subProjectName,
+                                     @Param("subProjectDesc")String subProjectDesc);
 
   //根据id删除
     public int deleteSubProjectById(Integer subProjectId);
@@ -47,6 +49,17 @@ public interface SubProjectDao extends BaseMapper<SubProject> {
 
     public int saveSubProject(SubProject subProject);
 
-
+//根据id查询
     SubProject selectSubProjectById(@Param("subProjectId") Integer subProjectId);
+
+//    List<SubProject> findSubProjectList(
+//            @Param("pyl") Integer pyl,
+//            @Param("page_size") Integer page_size,
+//            @Param("subProjectName") String subProjectName,
+//            @Param("subProjectDesc") String subProjectDesc);
+
+//    Integer findSubProjectListCount(
+//            @Param("subProjectName") String subProjectName,
+//            @Param("subProjectDesc") String subProjectDesc);
+
 }

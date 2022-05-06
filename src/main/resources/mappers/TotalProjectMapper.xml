@@ -29,5 +29,31 @@
         select * from gc_total_project where totalProjectId=#{totalProjectId}
     </select>
 
+    <insert id="saveTotalProject">
+        insert into gc_total_project(totalProjectName,totalProjectDesc,totalProjectState,totalProjectAddress,totalProjectStart,
+                    totalProjectEnd,totalProjectDay)
+        values(#{totalProjectName},
+        #{totalProjectDesc},
+        #{totalProjectState},
+        #{totalProjectAddress},
+        #{totalProjectStart},
+        #{totalProjectEnd},
+        (SELECT DATEDIFF(#{totalProjectEnd},#{totalProjectStart}))
+        )
+    </insert>
+
+    <update id="updateTotalProject">
+        update gc_total_project set
+        totalProjectName=#{totalProjectName},
+        totalProjectDesc=#{totalProjectDesc},
+        totalProjectState=#{totalProjectState},
+        totalProjectStart=#{totalProjectStart},
+        totalProjectEnd=#{totalProjectEnd},
+        totalProjectDay=(SELECT DATEDIFF(#{totalProjectEnd},#{totalProjectStart})),
+        userId=#{userId}
+         where
+        totalProjectId=#{totalProjectId}
+    </update>
+
 
 </mapper>

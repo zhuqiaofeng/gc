@@ -14,7 +14,7 @@
     <select id="findSubProjectList" resultType="SubProject">
         select * from gc_sub_project
         <include refid="provider_where"/>
-        order by creationDate desc
+--         order by creationDate desc
         limit #{pyl},#{page_size}
     </select>
     <!--计算条数-->
@@ -29,11 +29,16 @@
 <!--//修改-->
     <update id="updateSubProject">
         update gc_sub_project set
-        subProjectName=#{subProjectName},subProjectDesc=#{subProjectDesc},
-        subProjectStart=#{subProjectStart},subProjectEnd=#{subProjectEnd},
-        subProjectDay=#{subProjectDay},subProjectRegion=#{subProjectRegion},
-        subPranchUser=#{subPranchUser},subProjectState=#{subProjectState},
-        where subProjectId=#{subProjectId}
+        subProjectName=#{subProjectName},
+        subProjectDesc=#{subProjectDesc},
+        subProjectStart=#{subProjectStart},
+        subProjectEnd=#{subProjectEnd},
+        subProjectDay=(SELECT DATEDIFF(#{subProjectEnd},#{subProjectStart})),
+        subProjectRegion=#{subProjectRegion},
+        subPranchUser=#{subPranchUser},
+        subProjectState=#{subProjectState},
+        where
+        subProjectId=#{subProjectId}
     </update>
     <!--//根据id查询-->
     <select id="selectSubProjectById" resultType="com.hz.gc.pojo.SubProject">
@@ -42,10 +47,23 @@
 
     <!--//新增-->
     <insert id="saveSubProject">
-        insert into gc_sub_project(subProjectName,subProjectDesc,subProjectStart,subProjectEnd,
-                    subProjectDay,subProjectRegion,subPranchUser,subProjectState)
-        values(#{subProjectName},#{subProjectDesc},#{subProjectStart},#{subProjectEnd},
-                       #{subProjectDay},#{subProjectRegion},#{subPranchUser},#{subProjectState})
+        insert into gc_sub_project(
+        subProjectName,
+        subProjectDesc,
+        subProjectStart,
+        subProjectEnd,
+        subProjectDay,
+        subProjectRegion,
+        subPranchUser,
+        subProjectState)
+        values(#{subProjectName},
+        #{subProjectDesc},
+        #{subProjectStart},
+        #{subProjectEnd},
+        (SELECT DATEDIFF(#{subProjectEnd},#{subProjectStart})),
+        #{subProjectRegion},
+        #{subPranchUser},
+        #{subProjectState})
 
     </insert>
 

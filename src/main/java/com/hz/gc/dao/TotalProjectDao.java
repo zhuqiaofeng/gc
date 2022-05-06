@@ -32,4 +32,8 @@ public interface TotalProjectDao extends BaseMapper<TotalProject> {
     Integer findTotalProjectListCount(
             @Param("totalProjectName") String totalProjectName,
             @Param("totalProjectDesc") String totalProjectDesc);
+//添加
+    int saveTotalProject(TotalProject totalProject);
+
+    int updateTotalProject(TotalProject totalProject);
 }

@@ -16,7 +16,7 @@ import java.util.List;
 public interface SubProjectService extends IService<SubProject> {
 
 
-    public List<SubProject> findSubProjectList1(
+    public List<SubProject> findSubProjectList(
             Integer curr_page, Integer page_size,
             String subProjectName,
             String subProjectDesc
@@ -33,6 +33,6 @@ public interface SubProjectService extends IService<SubProject> {
    //新增
     public int saveSubProject(SubProject subProject);
 
-
+//根据id查询
     SubProject selectSubProjectById(Integer subProjectId);
 }

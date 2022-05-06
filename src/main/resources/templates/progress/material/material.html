@@ -19,17 +19,12 @@
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">公告名称</label>
+                            <label class="layui-form-label">资料说明</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="noticeName" autocomplete="off" class="layui-input">
+                                <input type="text" name="materialDesc" autocomplete="off" class="layui-input">
                             </div>
                         </div>
-<!--                        <div class="layui-inline">-->
-<!--                            <label class="layui-form-label">公告id</label>-->
-<!--                            <div class="layui-input-inline">-->
-<!--                                <input type="text" name="positionName" autocomplete="off" class="layui-input">-->
-<!--                            </div>-->
-<!--                        </div>-->
+
                         <div class="layui-inline">
                             <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
                         </div>
@@ -48,10 +43,16 @@
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
-<!--            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>-->
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
-
+        <script type="text/html" id="sexTpl">
+            {{#  if(d.sex==1){   }}
+            男
+            {{# }else{ }}
+            女
+            {{#  }    }}
+        </script>
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
@@ -66,7 +67,7 @@
 
         tab1=table.render({
             elem: '#currentTableId',
-            url: '/notice/findNoticeList',
+            url: '/material/findMaterialList',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -75,10 +76,10 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
-                {field: 'noticeId', width: 120, title: '公告ID', sort: true},
-                {field: 'noticeName', width: 120, title: '公告名称'},
-                {field: 'noticeContent', width: 120, title: '公告内容'},
-                {field: 'noticeAddtime', width: 180, title: '发布时间'},
+                {field: 'materialId', width: 200, title: '资料ID', sort: true},
+                {field: 'materialUrl', width: 200, title: '图片或文件路径'},
+                {field: 'materialDesc', width: 200, title: '资料说明'},
+                {field: 'dailyProgressId', width: 200, title: '所属每日进度ID'},
                 {fixed:'right',title: '操作', minWidth: 50, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -100,7 +101,7 @@
                     curr: 1
                 }
                 , where: {
-                    "noticeName":data.field.noticeName,
+                    "materialDesc":data.field.materialDesc,
 
                 }
             }, 'data');
@@ -114,8 +115,8 @@
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
                 window.parent.open(
-                    "添加公告",
-                    "/notice/notice_add.html",
+                    "新增用户",
+                    "/material/material_add.html",
                     '800px',
                     '550px',
                     tab1);
@@ -135,24 +136,23 @@
 
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
-            // if (obj.event === 'edit') {
-            //
-            //     window.parent.open(
-            //         "修改用户信息",
-            //         "/notice/findNoticeById/" + data.userId,
-            //         '600px',
-            //         '500px',
-            //         tab1);
-            //     return false;
-            //
-            // } else
-             if (obj.event === 'delete') {
+            if (obj.event === 'edit') {
+
+                window.parent.open(
+                    "修改用户信息",
+                    "/material/selectmaterialById/" + data.selectmaterialById,
+                    '600px',
+                    '500px',
+                    tab1);
+                return false;
+
+            } else if (obj.event === 'delete') {
                 layer.confirm('真的删除行么', function (index) {
 
 
                     // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
-                    $.post("/notice/delNotice",{noticeId:data.noticeId},function(res){
+                    $.post("/material/deleteMaterialById",{materialId:data.materialId},function(res){
                         var index = parent.layer.alert(res.msg, function () {
                             // 关闭弹出层
                             obj.del();
