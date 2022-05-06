@@ -4,6 +4,7 @@ import com.hz.gc.pojo.Change;
 import com.hz.gc.dao.ChangeDao;
 import com.hz.gc.service.ChangeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hz.gc.vo.ChangeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class ChangeServiceImpl extends ServiceImpl<ChangeDao, Change> implements
     }
 
     @Override
-    public List<Change> findChangeList(Integer page, Integer page_size, String changeContent, String userName) {
+    public List<ChangeVo> findChangeList(Integer page, Integer page_size, String changeContent, String userName) {
         //计算偏移量= （当前页-1）*page_size;
         Integer pyl =(page-1)*page_size;
         return changeDao.findChangeList(pyl,page_size,changeContent,userName);

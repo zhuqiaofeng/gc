@@ -5,7 +5,7 @@
   },
   "logoInfo": {
     "title": "鑫桑",
-    "image": "images/logo.png",
+    "image": "images/8.png",
     "href": ""
   },
   "menuInfo": [
@@ -23,25 +23,25 @@
           "child": [
             {
               "title": "总工程管理",
-              "href": "",
+              "href": "project/total_project/total_project.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
               "title": "分部工程管理",
-              "href": "",
+              "href": "project/sub_project/sub_project.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
               "title": "分项工程管理",
-              "href": "page/welcome-1.html",
+              "href": "project/item_project/item_project.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
               "title": "变更记录管理",
-              "href": "page/welcome-2.html",
+              "href": "project/change/change.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             }
@@ -81,7 +81,7 @@
           "child": [
             {
               "title": "用户管理",
-              "href": "user/user.html",
+              "href": "admin/user/user.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
@@ -93,7 +93,7 @@
             },
             {
               "title": "岗位管理",
-              "href": "",
+              "href": "admin/position/position.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             }

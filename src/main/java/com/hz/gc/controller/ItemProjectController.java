@@ -62,17 +62,17 @@ public class ItemProjectController {
      * @param itemProjectDesc 描述
      * @return
      */
-    @RequestMapping(value = "/finditemProjectList",method = RequestMethod.GET)
+    @RequestMapping(value = "/findItemProjectList",method = RequestMethod.GET)
     @ResponseBody
-    public JsonMassage<List<ItemProject>> finditemProjectList(
+    public JsonMassage<List<ItemProject>> findItemProjectList(
             @RequestParam(value = "page",defaultValue = "1") Integer page,
             @RequestParam(value = "limit1",defaultValue = "10") Integer limit1,
             String itemProjectName,
             String itemProjectDesc
 
     ){
-        List<ItemProject> list = itemProjectService.finditemProjectList(page,limit1,itemProjectName,itemProjectDesc);
-        Integer count = itemProjectService.finditemProjectListCount(itemProjectName,itemProjectDesc);
+        List<ItemProject> list = itemProjectService.findItemProjectList(page,limit1,itemProjectName,itemProjectDesc);
+        Integer count = itemProjectService.findItemProjectListCount(itemProjectName,itemProjectDesc);
         JsonMassage<List<ItemProject>> jsonMassage = new JsonMassage<List<ItemProject>>();
         jsonMassage.setCode(0);
         jsonMassage.setMsg("请求成功");

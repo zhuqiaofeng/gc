@@ -7,6 +7,16 @@
         values(#{itemProjectId},#{userId},#{changeTime},#{changeContent})
     </insert>
 
+   <!-- <resultMap id="Change" type="Change">
+       <collection property="userList" ofType="User">
+           <result property="userName" column="userName"/>
+       </collection>
+        <collection property="itemProjectList" ofType="com.hz.gc.pojo.ItemProject">
+            <result property="itemProjectName" column="itemProjectName"/>
+        </collection>
+    </resultMap>-->
+
+
     <sql id="change_where">
         <where>
             <if test="changeContent!=null">
@@ -18,8 +28,7 @@
         </where>
     </sql>
 
-
-    <select id="findChangeList" resultType="com.hz.gc.pojo.Change">
+    <select id="findChangeList" resultType="com.hz.gc.vo.ChangeVo">
       select  a.changeId,a.changeContent,b.userName,c.itemProjectName,a.changeTime from gc_change a
       left join gc_user b  on a.userId =b.userId
       left join gc_item_project c on a.itemProjectId =c.itemProjectId

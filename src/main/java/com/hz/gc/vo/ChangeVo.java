@@ -1,33 +1,21 @@
-package com.hz.gc.pojo;
+package com.hz.gc.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
+import com.hz.gc.pojo.ItemProject;
+import com.hz.gc.pojo.SubProject;
+import com.hz.gc.pojo.TotalProject;
+import com.hz.gc.pojo.User;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.ToString;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author 第三组
- * @since 2022-04-27
- */
-@Getter
-@Setter
-@TableName("gc_change")
-@ApiModel(value = "Change对象", description = "")
-public class Change implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@Data
+@ToString
+public class ChangeVo {
 
     @ApiModelProperty("变更记录ID")
     @TableId(value = "changeId", type = IdType.AUTO)
@@ -57,4 +45,13 @@ public class Change implements Serializable {
 
     private List<ItemProject> itemProjectList;
 
+
+    @ApiModelProperty("用户名")
+    @TableField("userName")
+    private String userName;
+
+
+    @ApiModelProperty("分项工程名称")
+    @TableField("itemProjectName")
+    private String itemProjectName;
 }

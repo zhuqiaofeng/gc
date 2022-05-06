@@ -5,6 +5,7 @@ import com.hz.gc.pojo.Change;
 import com.hz.gc.service.ChangeService;
 import com.hz.gc.utils.JsonMassage;
 import com.hz.gc.utils.ResultJson;
+import com.hz.gc.vo.ChangeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,24 +32,25 @@ public class ChangeController {
 
    @RequestMapping(value = "/findChangeList",method = RequestMethod.GET)
    @ResponseBody
-    public JsonMassage<List<Change>> findChangeList(
+    public JsonMassage<List<ChangeVo>> findChangeList(
             @RequestParam(value = "page",defaultValue = "1") Integer page,
             @RequestParam(value = "page_size",defaultValue = "10") Integer page_size,
             String changeContent,
             String userName
     ){
-       List<Change> changeList = changeService.findChangeList(page, page_size, changeContent, userName);
+       List<ChangeVo> changeList = changeService.findChangeList(page, page_size, changeContent, userName);
        Integer count = changeService.findChangeCount(changeContent, userName);
 //       Integer changeCount= 0;
 //       if (changeContent!=null){
 //           changeCount= changeService.findChangeCount(changeContent, userName);
 //       }
       //
-       JsonMassage<List<Change>> jsonMassage = new  JsonMassage<List<Change>>();
+       JsonMassage<List<ChangeVo>> jsonMassage = new  JsonMassage<List<ChangeVo>>();
        jsonMassage.setCode(0);
        jsonMassage.setMsg("请求成功");
        jsonMassage.setCount(count);
        jsonMassage.setData(changeList);
+       System.out.println(jsonMassage.toString());
        return jsonMassage;
         /* //条件构造器
        QueryWrapper<Change> queryWrapper = new QueryWrapper<>();
