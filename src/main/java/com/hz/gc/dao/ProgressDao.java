@@ -1,7 +1,8 @@
 package com.hz.gc.dao;
 
-import com.hz.gc.pojo.Progress;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hz.gc.pojo.Progress;
+import com.hz.gc.vo.ProgressVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public interface ProgressDao extends BaseMapper<Progress> {
 
-    List<Progress> findProgressList(
+    List<ProgressVo> findProgressList(
             @Param("pyl") Integer pyl,
             @Param("page_size")Integer page_size
     );
