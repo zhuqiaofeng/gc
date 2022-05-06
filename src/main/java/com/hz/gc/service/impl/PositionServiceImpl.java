@@ -54,4 +54,9 @@ public class PositionServiceImpl extends ServiceImpl<PositionDao, Position> impl
 
         return i;
     }
+
+    @Override
+    public Position findPositionById(Integer positionId) {
+        return positionDao.findPositionById(positionId);
+    }
 }

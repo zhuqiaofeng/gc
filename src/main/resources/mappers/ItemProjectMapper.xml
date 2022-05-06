@@ -57,7 +57,7 @@
                 and itemProjectDesc like concat('%',#{itemProjectDesc},'%')</if>
         </where>
     </sql>
-    <select id="finditemProjectList" resultType="ItemProject">
+    <select id="findItemProjectList" resultType="ItemProject">
         select * from gc_item_project
         <include refid="user_where"/>
         /*order by userId desc*/

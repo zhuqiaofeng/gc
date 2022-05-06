@@ -27,4 +27,8 @@
         positionDesc=#{positionDesc}
         where positionId=#{positionId}
     </update>
+
+    <select id="findPositionById" resultType="com.hz.gc.pojo.Position">
+        select * from gc_position where positionId=#{positionId}
+    </select>
 </mapper>

@@ -21,13 +21,13 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">工程名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="totalProjectName" autocomplete="off" class="layui-input">
+                                <input type="text" name="subProjectName" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">工程描述</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="totalProjectDesc" autocomplete="off" class="layui-input">
+                                <input type="text" name="subProjectDesc" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -72,7 +72,7 @@
 
         tab1=table.render({
             elem: '#currentTableId',
-            url: '/totalProject/findTotalProjectList',
+            url: '/itemProject/findItemProjectList',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -81,15 +81,15 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
-                {field: 'totalProjectId', width: 80, title: '工程ID', sort: true},
-                {field: 'totalProjectName', width: 120, title: '工程名称'},
-                {field: 'totalProjectDesc', width: 120, title: '工程描述'},
-                {field: 'totalProjectAddress', width: 120, title: '区域描述'},
-                {field: 'totalProjectStart', width: 120, title: '预计开始时间'},
-                {field: 'totalProjectEnd', width: 120, title: '预计结束时间'},
-                {field: 'totalProjectDay', width: 80, title: '总工期'},
-                {field: 'subProjectState', width: 80, title: '工程状态'},
-/*                {field: 'userAddtime', width: 180, title: '用户添加时间'},*/
+                {field: 'subProjectId', width: 120, title: '工程ID', sort: true},
+                {field: 'subProjectName', width: 120, title: '工程名称'},
+                {field: 'subProjectDesc', width: 120, title: '工程描述'},
+                {field: 'subProjectStart', width: 120, title: '预计开始时间'},
+                {field: 'subProjectEnd', width: 120, title: '预计结束时间'},
+                {field: 'subProjectRegion', width: 120, title: '区域描述'},
+                {field: 'subProjectState', width: 120, title: '工程状态'},
+                {field: 'subProjectDay', width: 120, title: '天数'},
+                {field: 'userAddtime', width: 180, title: '用户添加时间'},
                 {fixed:'right',title: '操作', minWidth: 50, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -111,8 +111,8 @@
                     curr: 1
                 }
                 , where: {
-                    "totalProjectName":data.field.totalProjectName,
-                    "totalProjectDesc":data.field.totalProjectDesc
+                    "subProjectName":data.field.subProjectName,
+                    "subProjectDesc":data.field.subProjectDesc
                 }
             }, 'data');
 
@@ -126,7 +126,7 @@
             if (obj.event === 'add') {  // 监听添加操作
                 window.parent.open(
                     "新增用户",
-                    "/project/total_project/total_project_add.html",
+                    "/user/user_add.html",
                     '800px',
                     '550px',
                     tab1);
@@ -150,7 +150,7 @@
 
                 window.parent.open(
                     "修改用户信息",
-                    "/totalProject/findTotalProjectById/" + data.totalProjectId,
+                    "/user/selectUserById/" + data.userId,
                     '600px',
                     '500px',
                     tab1);
@@ -162,7 +162,7 @@
 
                     // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
-                    $.post("/totalProject/deleteTotalProjectById",{totalProjectId:data.totalProjectId},function(res){
+                    $.post("/user/deleteUserById",{userId:data.userId},function(res){
                         var index = parent.layer.alert(res.msg, function () {
                             // 关闭弹出层
                             obj.del();

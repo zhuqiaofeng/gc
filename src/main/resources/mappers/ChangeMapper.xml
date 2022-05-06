@@ -7,6 +7,8 @@
         values(#{itemProjectId},#{userId},#{changeTime},#{changeContent})
     </insert>
 
+
+
     <sql id="change_where">
         <where>
             <if test="changeContent!=null">
@@ -19,7 +21,7 @@
     </sql>
 
 
-    <select id="findChangeList" resultType="com.hz.gc.pojo.Change">
+    <select id="findChangeList" resultType="com.hz.gc.vo.ChangeVo">
       select  a.changeId,a.changeContent,b.userName,c.itemProjectName,a.changeTime from gc_change a
       left join gc_user b  on a.userId =b.userId
       left join gc_item_project c on a.itemProjectId =c.itemProjectId
