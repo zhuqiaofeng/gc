@@ -29,13 +29,13 @@
             },
             {
               "title": "分部工程管理",
-              "href": "",
+              "href": "project/sub_project/sub_project.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
               "title": "分项工程管理",
-              "href": "page/welcome-1.html",
+              "href": "project/item_project/item_project.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
