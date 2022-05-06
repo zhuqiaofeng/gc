@@ -23,8 +23,8 @@ public interface ItemProjectService extends IService<ItemProject> {
 //根据id查询信息
 ItemProject findItemProjectById(Integer itemProjectId);
 
-    List<ItemProject> finditemProjectList(Integer curr_page, Integer page_size, String itemProjectName, String itemProjectDesc);
+    List<ItemProject> findItemProjectList(Integer curr_page, Integer page_size, String itemProjectName, String itemProjectDesc);
 
 
-    Integer finditemProjectListCount(String itemProjectName, String itemProjectDesc);
+    Integer findItemProjectListCount(String itemProjectName, String itemProjectDesc);
 }

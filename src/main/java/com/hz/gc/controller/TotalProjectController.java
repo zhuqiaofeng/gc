@@ -46,7 +46,7 @@ public class TotalProjectController {
         Integer count = totalProjectService.findTotalProjectListCount(totalProjectName,totalProjectDesc);
 
         JsonMassage<List<TotalProject>> jsonMassage = new JsonMassage<List<TotalProject>>();
-        jsonMassage.setCode(200);
+        jsonMassage.setCode(0);
         jsonMassage.setMsg("请求成功");
         jsonMassage.setCount(count);
         jsonMassage.setData(list);
@@ -61,7 +61,7 @@ public class TotalProjectController {
      */
     @RequestMapping(value = "/saveTotalProject",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson saveTotalProject(@RequestBody TotalProject totalProject){
+    public ResultJson saveTotalProject(TotalProject totalProject){
         int i = totalProjectService.saveTotalProject(totalProject);
         return new ResultJson(i);
     }
@@ -84,7 +84,7 @@ public class TotalProjectController {
      * @param model
      * @return
      */
-    @RequestMapping("/findTotalProjectById/{totalProjectId}")
+    @RequestMapping(value = "/findTotalProjectById/{totalProjectId}")
     public String findTotalProjectById(@PathVariable("totalProjectId") Integer totalProjectId, Model model){
 
         model.addAttribute("totalProject",totalProjectService.findTotalProjectById(totalProjectId));
@@ -98,7 +98,7 @@ public class TotalProjectController {
      */
     @RequestMapping(value = "/updateTotalProject",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson updateTotalProject(@RequestBody TotalProject totalProject){
+    public ResultJson updateTotalProject(TotalProject totalProject){
         int i = totalProjectService.updateTotalProject(totalProject);
         return new ResultJson(i);
     }

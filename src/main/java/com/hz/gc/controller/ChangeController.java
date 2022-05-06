@@ -50,6 +50,7 @@ public class ChangeController {
        jsonMassage.setMsg("请求成功");
        jsonMassage.setCount(count);
        jsonMassage.setData(changeList);
+       System.out.println(jsonMassage.toString());
        return jsonMassage;
         /* //条件构造器
        QueryWrapper<Change> queryWrapper = new QueryWrapper<>();

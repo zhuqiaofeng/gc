@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
+@Data
 @TableName("gc_position")
 @ApiModel(value = "Position对象", description = "")
 public class Position implements Serializable {

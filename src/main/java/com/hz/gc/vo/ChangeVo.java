@@ -3,19 +3,19 @@ package com.hz.gc.vo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.hz.gc.pojo.ItemProject;
+import com.hz.gc.pojo.SubProject;
+import com.hz.gc.pojo.TotalProject;
+import com.hz.gc.pojo.User;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.ToString;
+
+import java.util.List;
 
 @Data
+@ToString
 public class ChangeVo {
-
-    @ApiModelProperty("分项工程名称")
-    @TableField("itemProjectName")
-    private String itemProjectName;
-
-    @ApiModelProperty("用户名")
-    @TableField("userName")
-    private String userName;
 
     @ApiModelProperty("变更记录ID")
     @TableId(value = "changeId", type = IdType.AUTO)
@@ -36,4 +36,22 @@ public class ChangeVo {
     @ApiModelProperty("变更内容:XX工程XXX部分XXX项进行改动为XXX")
     @TableField("changeContent")
     private String changeContent;
+
+    private List<User> userList;
+
+    private List<TotalProject> totalProjectList;
+
+    private List<SubProject> subProjectList;
+
+    private List<ItemProject> itemProjectList;
+
+
+    @ApiModelProperty("用户名")
+    @TableField("userName")
+    private String userName;
+
+
+    @ApiModelProperty("分项工程名称")
+    @TableField("itemProjectName")
+    private String itemProjectName;
 }

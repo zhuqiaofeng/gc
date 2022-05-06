@@ -48,19 +48,19 @@ public class ItemProjectServiceImpl extends ServiceImpl<ItemProjectDao, ItemProj
 }
 
     @Override
-    public List<ItemProject> finditemProjectList(Integer curr_page, Integer page_size, String userName, String positionName) {
+    public List<ItemProject> findItemProjectList(Integer curr_page, Integer page_size, String userName, String positionName) {
         //计算偏移量 = (当前页-1)*每页显示条数
         Integer pyl = (curr_page-1)*page_size;
 
-        List<ItemProject> users = itemProjectDao.finditemProjectList(pyl,page_size,userName,positionName);
+        List<ItemProject> users = itemProjectDao.findItemProjectList(pyl,page_size,userName,positionName);
 
         return users;
     }
 
     @Override
-    public Integer finditemProjectListCount(String itemProjectName, String itemProjectDesc) {
+    public Integer findItemProjectListCount(String itemProjectName, String itemProjectDesc) {
 
 
-        return itemProjectDao.finditemProjectListCount(itemProjectName,itemProjectDesc);
+        return itemProjectDao.findItemProjectListCount(itemProjectName,itemProjectDesc);
     }
 }

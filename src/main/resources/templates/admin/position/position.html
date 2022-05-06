@@ -13,21 +13,15 @@
 <div class="layuimini-container">
     <div class="layuimini-main">
 
-        <fieldset class="table-search-fieldset">
+        <!--<fieldset class="table-search-fieldset">
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">工程名称</label>
+                            <label class="layui-form-label">岗位名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="totalProjectName" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">工程描述</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="totalProjectDesc" autocomplete="off" class="layui-input">
+                                <input type="text" name="positionName" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -36,7 +30,7 @@
                     </div>
                 </form>
             </div>
-        </fieldset>
+        </fieldset>-->
 
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
@@ -51,13 +45,6 @@
             <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
-       <!-- <script type="text/html" id="sexTpl">
-            {{#  if(d.sex==1){   }}
-            男
-            {{# }else{ }}
-            女
-            {{#  }    }}
-        </script>-->
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
@@ -70,9 +57,9 @@
             form = layui.form,
             table = layui.table;
 
-        tab1=table.render({
+           tab1=table.render({
             elem: '#currentTableId',
-            url: '/totalProject/findTotalProjectList',
+            url: '/position/findPositionList',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -81,15 +68,9 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
-                {field: 'totalProjectId', width: 80, title: '工程ID', sort: true},
-                {field: 'totalProjectName', width: 120, title: '工程名称'},
-                {field: 'totalProjectDesc', width: 120, title: '工程描述'},
-                {field: 'totalProjectAddress', width: 120, title: '区域描述'},
-                {field: 'totalProjectStart', width: 120, title: '预计开始时间'},
-                {field: 'totalProjectEnd', width: 120, title: '预计结束时间'},
-                {field: 'totalProjectDay', width: 80, title: '总工期'},
-                {field: 'subProjectState', width: 80, title: '工程状态'},
-/*                {field: 'userAddtime', width: 180, title: '用户添加时间'},*/
+                {field: 'positionId', width: 120, title: '岗位ID', sort: true},
+                {field: 'positionName', width: 120, title: '岗位名称'},
+                {field: 'positionDesc', width: 120, title: '岗位描述'},
                 {fixed:'right',title: '操作', minWidth: 50, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -99,11 +80,11 @@
         });
 
         // 监听搜索操作
-        form.on('submit(data-search-btn)', function (data) {
-            /*var result = JSON.stringify(data.field);
+        /*form.on('submit(data-search-btn)', function (data) {
+            /!*var result = JSON.stringify(data.field);
             layer.alert(result, {
                 title: '最终的搜索信息'
-            });*/
+            });*!/
 
             //执行搜索重载
             table.reload('currentTableId', {
@@ -111,13 +92,12 @@
                     curr: 1
                 }
                 , where: {
-                    "totalProjectName":data.field.totalProjectName,
-                    "totalProjectDesc":data.field.totalProjectDesc
+                    "positionName":data.field.positionName,
                 }
             }, 'data');
 
             return false;
-        });
+        });*/
 
         /**
          * toolbar监听事件
@@ -125,8 +105,8 @@
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
                 window.parent.open(
-                    "新增用户",
-                    "/project/total_project/total_project_add.html",
+                    "新增岗位",
+                    "/admin/position/position_add.html",
                     '800px',
                     '550px',
                     tab1);
@@ -149,8 +129,8 @@
             if (obj.event === 'edit') {
 
                 window.parent.open(
-                    "修改用户信息",
-                    "/totalProject/findTotalProjectById/" + data.totalProjectId,
+                    "修改岗位信息",
+                    "/position/findPositionById/" + data.positionId,
                     '600px',
                     '500px',
                     tab1);
@@ -160,9 +140,9 @@
                 layer.confirm('真的删除行么', function (index) {
 
 
-                    // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
+                   // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
-                    $.post("/totalProject/deleteTotalProjectById",{totalProjectId:data.totalProjectId},function(res){
+                    $.post("/position/deletePosition",{positionId:data.positionId},function(res){
                         var index = parent.layer.alert(res.msg, function () {
                             // 关闭弹出层
                             obj.del();
