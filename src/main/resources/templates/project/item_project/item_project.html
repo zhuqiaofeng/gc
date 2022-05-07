@@ -51,8 +51,13 @@
             <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
-
-
+       <!-- <script type="text/html" id="sexTpl">
+            {{#  if(d.sex==1){   }}
+            男
+            {{# }else{ }}
+            女
+            {{#  }    }}
+        </script>-->
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
@@ -67,7 +72,7 @@
 
         tab1=table.render({
             elem: '#currentTableId',
-            url: '/subProject/findSubProjectList',
+            url: '/itemProject/findItemProjectList',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -83,21 +88,9 @@
                 {field: 'subProjectEnd', width: 120, title: '预计结束时间'},
                 {field: 'subProjectRegion', width: 120, title: '区域描述'},
                 {field: 'subProjectState', width: 120, title: '工程状态'},
-                {field: 'subProjectDay', width: 80, title: '天数'},
-
-                //
-                // {field: 'positionId', width: 120, title: '岗位名称',templet:function(res){
-                //         if(res.positionId==1)
-                //         {
-                //             return "监理";
-                //         }else if (res.positionId==2){
-                //             return "包工头";
-                //         }else if (res.positionId==3) {
-                //             return "测绘人员";
-                //         }
-                //     }},
-                {field: 'userAddtime', width: 130, title: '用户添加时间'},
-                {fixed:'right',title: '操作', minWidth: 60, toolbar: '#currentTableBar', align: "center"}
+                {field: 'subProjectDay', width: 120, title: '天数'},
+                {field: 'userAddtime', width: 180, title: '用户添加时间'},
+                {fixed:'right',title: '操作', minWidth: 50, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 10,
@@ -133,14 +126,14 @@
             if (obj.event === 'add') {  // 监听添加操作
                 window.parent.open(
                     "新增用户",
-                    "/project/sub_project/sub_add.html",
+                    "/user/user_add.html",
                     '800px',
                     '550px',
                     tab1);
 
 
             } else if (obj.event === 'delete') {  // 监听删除操作
-                var checkStatus = subProject.checkStatus('SubProjectById')
+                var checkStatus = user.checkStatus('currentTableId')
                     , data = checkStatus.data;
                 layer.alert(JSON.stringify(data));
             }
@@ -157,16 +150,19 @@
 
                 window.parent.open(
                     "修改用户信息",
-                    "/subProject/selectSubProjectById/" + data.subProjectId,
+                    "/user/selectUserById/" + data.userId,
                     '600px',
                     '500px',
                     tab1);
                 return false;
+
             } else if (obj.event === 'delete') {
-                layer.confirm('真的删 除行么', function (index) {
+                layer.confirm('真的    删除行么', function (index) {
+
+
                     // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
-                    $.post("/subProject/deleteSubProjectrById",{subProjectId:data.subProjectId},function(res){
+                    $.post("/user/deleteUserById",{userId:data.userId},function(res){
                         var index = parent.layer.alert(res.msg, function () {
                             // 关闭弹出层
                             obj.del();
