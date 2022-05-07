@@ -50,7 +50,7 @@
         totalProjectStart=#{totalProjectStart},
         totalProjectEnd=#{totalProjectEnd},
         totalProjectDay=(SELECT DATEDIFF(#{totalProjectEnd},#{totalProjectStart})),
-        userId=#{userId}
+
          where
         totalProjectId=#{totalProjectId}
     </update>
