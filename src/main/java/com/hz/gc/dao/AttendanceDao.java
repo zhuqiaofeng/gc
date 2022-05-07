@@ -1,7 +1,8 @@
 package com.hz.gc.dao;
 
-import com.hz.gc.pojo.Attendance;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hz.gc.pojo.Attendance;
+import com.hz.gc.vo.AttendanceVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +32,7 @@ public interface AttendanceDao extends BaseMapper<Attendance> {
      * @param
      * @return
      */
-    List<Attendance> findAttendanceList(
+    List<AttendanceVo> findAttendanceList(
             @Param("pyl") Integer pyl,
             @Param("page_size") Integer page_size,
             @Param("userName") String userName);

@@ -1,11 +1,10 @@
 package com.hz.gc.controller;
 
 import com.hz.gc.pojo.Attendance;
-import com.hz.gc.pojo.User;
 import com.hz.gc.service.AttendanceService;
-import com.hz.gc.service.UserService;
 import com.hz.gc.utils.JsonMassage;
 import com.hz.gc.utils.ResultJson;
+import com.hz.gc.vo.AttendanceVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,16 +47,16 @@ public class AttendanceController {
      */
     @RequestMapping(value = "/findAttendanceList",method = RequestMethod.GET)
     @ResponseBody
-    public JsonMassage<List<Attendance>> findAttendanceList(
+    public JsonMassage<List<AttendanceVo>> findAttendanceList(
             @RequestParam(value = "page",defaultValue = "1") Integer page,
             @RequestParam(value = "limit1",defaultValue = "10") Integer limit1,
             String userName
     ){
-        List<Attendance> list = attendanceService.findAttendanceList(page,limit1,userName);
+        List<AttendanceVo> list = attendanceService.findAttendanceList(page,limit1,userName);
 
         Integer count = attendanceService.findAttendanceListCount(userName);
 
-        JsonMassage<List<Attendance>> jsonMassage = new JsonMassage<List<Attendance>>();
+        JsonMassage<List<AttendanceVo>> jsonMassage = new JsonMassage<List<AttendanceVo>>();
         jsonMassage.setCode(0);
         jsonMassage.setMsg("请求成功");
         jsonMassage.setCount(count);

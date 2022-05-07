@@ -19,9 +19,15 @@
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">用户姓名查询</label>
+                            <label class="layui-form-label">用户姓名</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="userName" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">分项工程名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="itemProjectName" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -66,7 +72,7 @@
 
         tab1=table.render({
             elem: '#currentTableId',
-            url: '/attendance/findAttendanceList',
+            url: '/dailyProgress/findDailyProgressList',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -75,12 +81,14 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
-                {field: 'attendanceId', width: 150, title: '打卡id', sort: true},
-                {field: 'userName', width: 190, title: '打卡人员'},
-                {field: 'attendanceTime', width: 260, title: '打卡时间'},
-                {field: 'attendanceAddress', width: 290, title: '打卡地点'},
-                {field: 'attendanceImg', width: 330, title: '打卡图片路径'},
-                 // {fixed:'right',title: '操作', minWidth: 50, toolbar: '#currentTableBar', align: "center"}
+                {field: 'dailyProgressId', width: 120, title: '每日进度id', sort: true},
+                {field: 'userName', width: 150, title: '用户名称'},
+                {field: 'itemProjectId', width: 150, title: '分项工程名称'},
+                {field: 'dailyProgressDesc', width: 240, title: '每日进度描述'},
+                {field: 'progressActualStart', width: 200, title: '工程实际开始时间'},
+                {field: 'progressActualEnd', width: 200, title: '工程实际开始结束'},
+                {field: 'dailyProgressAddtime', width: 200, title: '创建时间'},
+                // {fixed:'right',title: '操作', minWidth: 50, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 10,
@@ -101,7 +109,8 @@
                     curr: 1
                 }
                 , where: {
-                    "userName":data.field.userName
+                    "userName":data.field.userName,
+                    "itemProjectName":data.field.itemProjectName
                 }
             }, 'data');
 

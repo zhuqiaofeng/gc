@@ -61,7 +61,7 @@
             },
             {
               "title": "每日进度管理",
-              "href": "",
+              "href": "progress/dailyProgress.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
@@ -107,7 +107,7 @@
         },
         {
           "title": "打卡记录管理",
-          "href": "",
+          "href": "attendance/attendance.html",
           "icon": "fa fa-calendar",
           "target": ""
         },
