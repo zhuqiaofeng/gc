@@ -19,15 +19,15 @@
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">工程名称</label>
+                            <label class="layui-form-label">变更内容</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="totalProjectName" autocomplete="off" class="layui-input">
+                                <input type="text" name="changeContent" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">工程描述</label>
+                            <label class="layui-form-label">变更人</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="totalProjectDesc" autocomplete="off" class="layui-input">
+                                <input type="text" name="userName" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -48,16 +48,10 @@
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+            <!--            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>-->
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
-       <!-- <script type="text/html" id="sexTpl">
-            {{#  if(d.sex==1){   }}
-            男
-            {{# }else{ }}
-            女
-            {{#  }    }}
-        </script>-->
+
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
@@ -72,7 +66,7 @@
 
         tab1=table.render({
             elem: '#currentTableId',
-            url: '/totalProject/findTotalProjectList',
+            url: '/change/findChangeList',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -81,15 +75,11 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
-                {field: 'totalProjectId', width: 80, title: '工程ID', sort: true},
-                {field: 'totalProjectName', width: 120, title: '工程名称'},
-                {field: 'totalProjectDesc', width: 120, title: '工程描述'},
-                {field: 'totalProjectAddress', width: 120, title: '区域描述'},
-                {field: 'totalProjectStart', width: 120, title: '预计开始时间'},
-                {field: 'totalProjectEnd', width: 120, title: '预计结束时间'},
-                {field: 'totalProjectDay', width: 80, title: '总工期'},
-                {field: 'subProjectState', width: 80, title: '工程状态'},
-/*                {field: 'userAddtime', width: 180, title: '用户添加时间'},*/
+                {field: 'changeId', width: 120, title: '变更id', sort: true},
+                {field: 'changeContent', width: 120, title: '变更内容'},
+                {field: 'userName',width: 120, title: '变更人'},
+                {field: 'itemProjectName',width: 180, title: '分项工程名称'},
+                {field: 'changeTime',width: 180, title: '变更时间'},
                 {fixed:'right',title: '操作', minWidth: 50, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -111,8 +101,8 @@
                     curr: 1
                 }
                 , where: {
-                    "totalProjectName":data.field.totalProjectName,
-                    "totalProjectDesc":data.field.totalProjectDesc
+                    "changeContent":data.field.changeContent,
+                    "userName":data.field.userName
                 }
             }, 'data');
 
@@ -125,8 +115,8 @@
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
                 window.parent.open(
-                    "新增用户",
-                    "/project/total_project/total_project_add.html",
+                    "添加变更",
+                    "/change/change_add.html",
                     '800px',
                     '550px',
                     tab1);
@@ -144,36 +134,37 @@
             console.log(obj)
         });
 
-        table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'edit') {
-
-                window.parent.open(
-                    "修改用户信息",
-                    "/totalProject/findTotalProjectById/" + data.totalProjectId,
-                    '600px',
-                    '500px',
-                    tab1);
-                return false;
-
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-
-
-                    // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
-
-                    $.post("/totalProject/deleteTotalProjectById",{totalProjectId:data.totalProjectId},function(res){
-                        var index = parent.layer.alert(res.msg, function () {
-                            // 关闭弹出层
-                            obj.del();
-                            parent.layer.close(index);
-                            parent.layer.closeAll();
-                        });
-                    },"json");
-                    layer.close(index);
-                });
-            }
-        });
+        // table.on('tool(currentTableFilter)', function (obj) {
+        //     var data = obj.data;
+        //     // if (obj.event === 'edit') {
+        //     //
+        //     //     window.parent.open(
+        //     //         "修改用户信息",
+        //     //         "/notice/findNoticeById/" + data.userId,
+        //     //         '600px',
+        //     //         '500px',
+        //     //         tab1);
+        //     //     return false;
+        //     //
+        //     // } else
+        //     if (obj.event === 'delete') {
+        //         layer.confirm('真的删除行么', function (index) {
+        //
+        //
+        //             // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
+        //
+        //             $.post("/notice/delNotice",{noticeId:data.noticeId},function(res){
+        //                 var index = parent.layer.alert(res.msg, function () {
+        //                     // 关闭弹出层
+        //                     obj.del();
+        //                     parent.layer.close(index);
+        //                     parent.layer.closeAll();
+        //                 });
+        //             },"json");
+        //             layer.close(index);
+        //         });
+        //     }
+        // });
 
     });
 

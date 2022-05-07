@@ -1,11 +1,12 @@
 package com.hz.gc.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hz.gc.dao.DailyProgressDao;
+import com.hz.gc.dao.ProgressDao;
 import com.hz.gc.pojo.DailyProgress;
 import com.hz.gc.pojo.Progress;
-import com.hz.gc.dao.ProgressDao;
 import com.hz.gc.service.ProgressService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hz.gc.vo.ProgressVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -32,7 +33,7 @@ public class ProgressServiceImpl extends ServiceImpl<ProgressDao, Progress> impl
     private DailyProgressDao dailyProgressDao;
 
     @Override
-    public List<Progress> findProgressList(Integer page, Integer page_size) {
+    public List<ProgressVo> findProgressList(Integer page, Integer page_size) {
 
         Integer pyl = (page-1)*page_size;
 
@@ -60,12 +61,14 @@ public class ProgressServiceImpl extends ServiceImpl<ProgressDao, Progress> impl
     public int updateProgress(Integer progressId, String itemProjectName) {
 
         DailyProgress dailyProgress = dailyProgressDao.selectDate(itemProjectName);
-        String progressActualStart = dailyProgress.getProgressActualStart();
-        String progressActualEnd = dailyProgress.getProgressActualEnd();
 
-       int i = progressDao.updateProgressDate(progressId,progressActualStart,progressActualEnd);
-
-       return i;
-
+        if(dailyProgress == null){
+            throw new NullPointerException("工程暂无进度");
+        }else{
+            String progressActualStart = dailyProgress.getProgressActualStart();
+            String progressActualEnd = dailyProgress.getProgressActualEnd();
+            int i = progressDao.updateProgressDate(progressId, progressActualStart, progressActualEnd);
+            return i;
+        }
     }
 }

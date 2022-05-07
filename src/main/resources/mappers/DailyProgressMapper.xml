@@ -1,11 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.DailyProgressDao">
+
+    <sql id="dailyProgress_where">
+        <where>
+            <if test="userName!=null">
+                userName like concat('%',#{userName},'%')</if>
+            <if test="itemProjectName!=null">
+                and itemProjectName like concat('%',#{itemProjectName},'%')</if>
+        </where>
+    </sql>
+    <select id="findDailyProgressList" resultType="com.hz.gc.vo.DailyProgressUserVo">
+        select
+        a.progressId,
+        a.userId,
+        d.itemProjectId,
+        a.dailyProgressId,
+        d.itemProjectName,
+        b.userName,
+        a.dailyProgressDesc,
+        a.progressActualStart,
+        a.progressActualEnd,
+        a.dailyProgressAddtime
+        from gc_daily_progress a
+        left join gc_user b on a.userId = b.userId
+        left join gc_progress c on a.progressId = c.progressId
+        left join gc_item_project d on c.itemProjectId = d.itemProjectId
+        <include refid="dailyProgress_where"/>
+        /*order by creationDate desc*/
+        limit #{pyl},#{page_size}
+    </select>
+    <select id="findDailyProgressListCount" resultType="int" >
+        select count(1)
+        from gc_daily_progress a
+        left join gc_user b on a.userId = b.userId
+        left join gc_progress c on a.progressId = c.progressId
+        left join gc_item_project d on c.itemProjectId = d.itemProjectId
+        <include refid="dailyProgress_where"/>
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <insert id="addDailyProgress">
+        insert into gc_daily_progress
+        (progressId,userId,dailyProgressDesc, progressActualStart, progressActualEnd, itemProjectId)
+        values
+        (#{progressId},
+        (select userId from gc_user where userName = #{userName}),
+        #{dailyProgressDesc},#{progressActualStart},#{progressActualEnd},#{itemProjectId})
+    </insert>
+
+
+
+
     <select id="selectDate" resultType="com.hz.gc.pojo.DailyProgress">
         SELECT * FROM gc_daily_progress a
         LEFT JOIN gc_progress b ON a.progressId = b.progressId
         LEFT JOIN gc_item_project c ON c.itemProjectId = b.itemProjectId
-        WHERE itemProjectName = #{itemProjectName}
+        WHERE itemProjectName = #{itemProjectName} and a.dailyProgressId = (SELECT max(dailyProgressId) FROM gc_daily_progress)
     </select>
 </mapper>
 

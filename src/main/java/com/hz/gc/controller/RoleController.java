@@ -5,6 +5,7 @@ import com.hz.gc.service.RoleService;
 import com.hz.gc.utils.JsonMassage;
 import com.hz.gc.utils.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ import java.util.List;
  * @author 第三组
  * @since 2022-04-23
  */
-@RestController
+@Controller
 @RequestMapping("/role")
 public class RoleController {
 
@@ -60,7 +61,7 @@ public class RoleController {
     @RequestMapping("selectRoleById/{roleId}")
     public String selectRoleById(@PathVariable("roleId") Integer roleId, Model model){
     model.addAttribute(roleService.selectRoleById(roleId));
-    return "role_edit";
+    return "role/role_edit";
 }
 
 

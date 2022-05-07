@@ -28,4 +28,6 @@ public interface PositionDao extends BaseMapper<Position> {
     int deletePositionById(Integer positionId);
 
     int updatePosition(Position position);
+
+    Position findPositionById(Integer positionId);
 }

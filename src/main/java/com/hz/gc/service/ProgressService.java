@@ -1,7 +1,8 @@
 package com.hz.gc.service;
 
-import com.hz.gc.pojo.Progress;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hz.gc.pojo.Progress;
+import com.hz.gc.vo.ProgressVo;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface ProgressService extends IService<Progress> {
 
-    List<Progress> findProgressList(Integer page, Integer page_size);
+    List<ProgressVo> findProgressList(Integer page, Integer page_size);
 
     Integer findProgressListCount();
 

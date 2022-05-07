@@ -1,8 +1,10 @@
 package com.hz.gc.utils;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class JsonMassage<T> {
     private Integer code; // 错误代码  0代码成功
     private String msg;

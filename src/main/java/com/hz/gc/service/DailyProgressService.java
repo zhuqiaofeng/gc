@@ -2,6 +2,9 @@ package com.hz.gc.service;
 
 import com.hz.gc.pojo.DailyProgress;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hz.gc.vo.DailyProgressUserVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -19,5 +22,9 @@ public interface DailyProgressService extends IService<DailyProgress> {
      */
     DailyProgress selectDailyProgressById(Integer dailyProgressId);
 
-    int addDailyProgress(DailyProgress dailyProgress);
+    int addDailyProgress(DailyProgressUserVo dailyProgressUserVo);
+
+    List<DailyProgressUserVo> findDailyProgressList(Integer page, Integer page_size, String userName, String itemProjectName);
+
+    Integer findDailyProgressListCount(String userName, String itemProjectName);
 }

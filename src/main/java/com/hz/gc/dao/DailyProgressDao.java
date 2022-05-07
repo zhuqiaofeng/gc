@@ -1,7 +1,11 @@
 package com.hz.gc.dao;
 
-import com.hz.gc.pojo.DailyProgress;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hz.gc.pojo.DailyProgress;
+import com.hz.gc.vo.DailyProgressUserVo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,7 +19,17 @@ public interface DailyProgressDao extends BaseMapper<DailyProgress> {
 
     DailyProgress selectDailyProgressById(Integer dailyProgressId);
 
-    int addDailyProgress(DailyProgress dailyProgress);
+    int addDailyProgress(DailyProgressUserVo dailyProgressUserVo);
 
     DailyProgress selectDate(String itemProjectName);
+
+    List<DailyProgressUserVo> findDailyProgressList(
+            @Param("pyl") Integer pyl,
+            @Param("page_size") Integer page_size,
+            @Param("userName") String userName,
+            @Param("itemProjectName") String itemProjectName);
+
+    Integer findDailyProgressListCount(
+            @Param("userName") String userName,
+            @Param("itemProjectName") String itemProjectName);
 }
