@@ -2,14 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.ProgressDao">
 
-    <select id="findProgressList" resultType="com.hz.gc.pojo.Progress">
+    <select id="findProgressList" resultType="com.hz.gc.vo.ProgressVo">
         select
         gc_progress.progressId,
         gc.gc_item_project.itemProjectName,
         gc.gc_progress.progressExpectedStater,
         gc.gc_progress.progressExpectedEnd,
+        gc.gc_item_project.itemProjectDay,
         gc_progress.progressActualStart,
-        gc_progress.progressActualEnd
+        gc_progress.progressActualEnd,
+        gc_progress.progressDay
         from gc_progress
         left join gc_item_project
         on gc_progress.itemProjectId = gc_item_project.itemProjectId
@@ -21,6 +23,24 @@
         select count(*) from gc_progress
     </select>
 
+
+
+    <update id="updateProgressDate">
+        update gc_progress set
+        progressActualStart = #{progressActualStart},
+        progressActualEnd = #{progressActualEnd},
+
+        <choose>
+            <when test="progressActualEnd == null">
+                progressDay = (SELECT DATEDIFF(NOW(),progressActualStart))
+            </when>
+            <otherwise>
+                progressDay = (SELECT DATEDIFF(progressActualEnd,progressActualStart))
+            </otherwise>
+        </choose>
+        where
+        progressId = #{progressId}
+    </update>
 
 
     <insert id="saveProgress">
@@ -41,15 +61,6 @@
         )
         )
     </insert>
-
-
-    <update id="updateProgressDate">
-        update gc_progress set
-        progressActualStart = #{progressActualStart},
-        progressActualEnd = #{progressActualEnd}
-        where
-        progressId = #{progressId}
-    </update>
 
 
 </mapper>

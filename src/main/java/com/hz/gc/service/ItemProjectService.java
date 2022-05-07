@@ -2,6 +2,8 @@ package com.hz.gc.service;
 
 import com.hz.gc.pojo.ItemProject;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hz.gc.vo.ProjectUserVo;
+import com.hz.gc.vo.itemVo;
 
 import java.util.List;
 
@@ -23,7 +25,7 @@ public interface ItemProjectService extends IService<ItemProject> {
 //根据id查询信息
 ItemProject findItemProjectById(Integer itemProjectId);
 
-    List<ItemProject> finditemProjectList(Integer curr_page, Integer page_size, String itemProjectName, String itemProjectDesc);
+    List<itemVo> finditemProjectList(Integer curr_page, Integer page_size, String itemProjectName, String itemProjectDesc);
 
 
     Integer finditemProjectListCount(String itemProjectName, String itemProjectDesc);

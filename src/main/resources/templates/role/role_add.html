@@ -17,30 +17,19 @@
 <body>
 <div class="layui-form layuimini-form" >
     <div class="layui-form-item">
-        <label class="layui-form-label required"></label>
+        <label class="layui-form-label required">角色名称</label>
         <div class="layui-input-block">
-            <input type="text" name="changeContent" lay-verify="required" lay-reqtext="内容不能为空" placeholder="请输入变更内容" value="" class="layui-input">
+            <input type="text" name="roleName" lay-verify="required" lay-reqtext="角色名称不能为空" placeholder="请输入角色名称" value="" class="layui-input">
             <!--<tip>填写自己管理账号的名称。</tip>-->
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">变更人</label>
+        <label class="layui-form-label required">角色描述</label>
         <div class="layui-input-block">
-            <input type="text" name="userId" lay-verify="required" lay-reqtext="变更id不能为空" placeholder="请输入变更id" value="" class="layui-input">
+            <input type="text" name="roleDesc" lay-verify="required" lay-reqtext="角色描述不能为空" placeholder="请输入角色描述" value="" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">分项工程名称</label>
-        <div class="layui-input-block">
-            <input type="text" name="itemProjectId" lay-verify="required" lay-reqtext="分项工程不能为空" placeholder="请输入分项工程id" value="" class="layui-input">
-        </div>
-    </div>
-    <!-- <div class="layui-form-item">
-         <label class="layui-form-label required">公告发布时间</label>
-         <div class="layui-input-block">
-             <input type="number" name="noticeAddtime" lay-verify="required" lay-reqtext="公告时间" placeholder="请输入发布时间" value="" class="layui-input">
-         </div>
-     </div>-->
+
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
@@ -68,7 +57,7 @@
 
             parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
-            $.post("/change/addChange",data.field,function(res){
+            $.post("/role/addRole",data.field,function(res){
                 var index = parent.layer.alert(res.msg, function () {
 
                     //刷新表格
@@ -76,7 +65,6 @@
                     // 关闭弹出层
                     parent.layer.close(index);
                     parent.layer.closeAll();
-
 
                 });
             },"json");

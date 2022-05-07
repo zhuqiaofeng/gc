@@ -29,19 +29,19 @@
             },
             {
               "title": "分部工程管理",
-              "href": "",
+              "href": "project/sub_project/sub_project.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
               "title": "分项工程管理",
-              "href": "page/welcome-1.html",
+              "href": "project/item_project/item_project.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
               "title": "变更记录管理",
-              "href": "change/change.html",
+              "href": "project/change/change.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             }
@@ -54,19 +54,7 @@
           "target": "_self",
           "child": [
             {
-              "title": "总项目",
-              "href": "",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-            {
-              "title": "分部项目",
-              "href": "",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-            {
-              "title": "分项项目",
+              "title": "进度统计",
               "href": "",
               "icon": "fa fa-tachometer",
               "target": "_self"
@@ -93,19 +81,19 @@
           "child": [
             {
               "title": "用户管理",
-              "href": "user/user.html",
+              "href": "admin/user/user.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
               "title": "角色管理",
-              "href": "",
+              "href": "role/role.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
               "title": "岗位管理",
-              "href": "",
+              "href": "admin/position/position.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             }
@@ -122,7 +110,6 @@
           "href": "",
           "icon": "fa fa-calendar",
           "target": ""
-
         },
         {
           "title": "评论管理",
@@ -149,7 +136,6 @@
               "href": "page/404.html",
               "icon": "fa fa-hourglass-end",
               "target": "_self"
-
             }
           ]
         }

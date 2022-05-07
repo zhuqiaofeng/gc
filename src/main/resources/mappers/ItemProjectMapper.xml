@@ -49,7 +49,7 @@
         WHERE itemProjectId=#{itemProjectId}
     </select>
 
-    <sql id="user_where">
+    <sql id="item_where">
         <where>
             <if test="itemProjectName!=null">
                 itemProjectName like concat('%',#{itemProjectName},'%')</if>
@@ -57,17 +57,15 @@
                 and itemProjectDesc like concat('%',#{itemProjectDesc},'%')</if>
         </where>
     </sql>
-    <select id="finditemProjectList" resultType="ItemProject">
+    <select id="finditemProjectList" resultType="com.hz.gc.vo.itemVo">
         select * from gc_item_project
-        <include refid="user_where"/>
+        <include refid="item_where"/>
         /*order by userId desc*/
         limit #{pyl},#{page_size}
     </select>
 
-    <select id="findUserListCount" resultType="int" >
-        select count(*) from gc_user a
-        LEFT JOIN gc_position b
-        ON a.positionId = b.positionId
-        <include refid="user_where"/>
+    <select id="finditemProjectListCount" resultType="int" >
+        select count(1) from gc_item_project
+        <include refid="item_where"/>
     </select>
 </mapper>

@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -48,5 +49,12 @@ public class Change implements Serializable {
     @TableField("changeContent")
     private String changeContent;
 
+    private List<User> userList;
+
+    private List<TotalProject> totalProjectList;
+
+    private List<SubProject> subProjectList;
+
+    private List<ItemProject> itemProjectList;
 
 }

@@ -4,6 +4,8 @@ import com.hz.gc.pojo.ItemProject;
 import com.hz.gc.dao.ItemProjectDao;
 import com.hz.gc.service.ItemProjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hz.gc.vo.ProjectUserVo;
+import com.hz.gc.vo.itemVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,29 +40,19 @@ public class ItemProjectServiceImpl extends ServiceImpl<ItemProjectDao, ItemProj
         int i= itemProjectDao.updateItemProjectById(itemProject);
         return i;
     }
-
-
 //根据id查询
-
     @Override
     public ItemProject findItemProjectById(Integer itemProjectId) {
     return itemProjectDao.findItemProjectById(itemProjectId);
 }
-
     @Override
-    public List<ItemProject> finditemProjectList(Integer curr_page, Integer page_size, String userName, String positionName) {
+    public List<itemVo> finditemProjectList(Integer curr_page, Integer page_size, String itemProjectName, String itemProjectDesc) {
         //计算偏移量 = (当前页-1)*每页显示条数
         Integer pyl = (curr_page-1)*page_size;
-
-        List<ItemProject> users = itemProjectDao.finditemProjectList(pyl,page_size,userName,positionName);
-
-        return users;
+        return  itemProjectDao.finditemProjectList(pyl,page_size,itemProjectName,itemProjectDesc);
     }
-
     @Override
     public Integer finditemProjectListCount(String itemProjectName, String itemProjectDesc) {
-
-
         return itemProjectDao.finditemProjectListCount(itemProjectName,itemProjectDesc);
     }
 }

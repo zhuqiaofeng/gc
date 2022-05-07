@@ -77,7 +77,7 @@ public class UserController {
     @RequestMapping(value = "/selectUserById/{userId}",method = RequestMethod.GET)
     public String selectUserById(@PathVariable("userId") Integer userId, Model model){
         model.addAttribute("user",userService.selectUserById(userId));
-        return "user_edit";
+        return "admin/user/user_edit";
     }
 
     /**

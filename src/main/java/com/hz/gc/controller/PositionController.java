@@ -5,6 +5,9 @@ import com.hz.gc.service.PositionService;
 import com.hz.gc.utils.JsonMassage;
 import com.hz.gc.utils.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +20,7 @@ import java.util.List;
  * @author 第三组
  * @since 2022-04-23
  */
-@RestController
+@Controller
 @RequestMapping("/position")
 public class PositionController {
 
@@ -34,7 +37,7 @@ public class PositionController {
         Integer count = positionService.findPositionListCount();
 
         JsonMassage<List<Position>> jsonMassage = new JsonMassage<List<Position>>();
-        jsonMassage.setCode(200);
+        jsonMassage.setCode(0);
         jsonMassage.setMsg("请求成功");
         jsonMassage.setCount(count);
         jsonMassage.setData(list);
@@ -43,7 +46,7 @@ public class PositionController {
 
     @RequestMapping(value = "/savePosition",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson savePosition(@RequestBody Position position){
+    public ResultJson savePosition( Position position){
        int i = positionService.savePosition(position);
         return new ResultJson(i);
     }
@@ -55,9 +58,15 @@ public class PositionController {
         return new ResultJson(i);
     }
 
+    @RequestMapping(value = "/findPositionById/{positionId}",method = RequestMethod.GET)
+    public String findPositionById(@PathVariable("positionId") Integer positionId, Model model){
+        model.addAttribute("position",positionService.findPositionById(positionId));
+        return "admin/position/position_edit";
+    }
+
     @RequestMapping(value = "/updatePosition",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson updatePosition(@RequestBody Position position){
+    public ResultJson updatePosition( Position position){
         int i = positionService.updatePosition(position);
         return new ResultJson(i);
     }
