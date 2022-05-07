@@ -55,7 +55,7 @@
           "child": [
             {
               "title": "进度统计",
-              "href": "",
+              "href": "progress/progress.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
