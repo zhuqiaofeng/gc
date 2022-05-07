@@ -5,6 +5,7 @@ import com.hz.gc.service.SubProjectService;
 import com.hz.gc.utils.JsonMassage;
 import com.hz.gc.utils.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ import java.util.List;
  * @author 第三组
  * @since 2022-04-23
  */
-@RestController
+@Controller
 @RequestMapping("/subProject")
 public class SubProjectController {
     @Autowired
@@ -50,7 +51,7 @@ public class SubProjectController {
         return new ResultJson(i);
     }
     //修改
-    @RequestMapping(value = "/updateSubProjectr",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateSubProject",method = RequestMethod.POST)
     @ResponseBody
     public ResultJson updateSubProjectr(SubProject subProject){
         int i = subProjectService.updateSubProject(subProject);
@@ -72,6 +73,6 @@ public class SubProjectController {
     @RequestMapping(value = "/selectSubProjectById/{subProjectId}",method = RequestMethod.GET)
     public String selectSubProjectById(@PathVariable("subProjectId") Integer subProjectId, Model model){
         model.addAttribute("subProject",subProjectService.selectSubProjectById(subProjectId));
-        return "user_edit";
+        return "project/sub_project/sub_edit";
     }
 }
