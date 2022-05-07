@@ -37,19 +37,10 @@
         left join gc_progress c on a.progressId = c.progressId
         left join gc_item_project d on c.itemProjectId = d.itemProjectId
         <include refid="dailyProgress_where"/>
+
+
+
     </select>
-
-
-
-
-
-
-
-
-
-
-
-
 
     <insert id="addDailyProgress">
         insert into gc_daily_progress
@@ -59,9 +50,6 @@
         (select userId from gc_user where userName = #{userName}),
         #{dailyProgressDesc},#{progressActualStart},#{progressActualEnd},#{itemProjectId})
     </insert>
-
-
-
 
     <select id="selectDate" resultType="com.hz.gc.pojo.DailyProgress">
         SELECT * FROM gc_daily_progress a

@@ -24,13 +24,13 @@
             <input type="text" name="userName" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入用户名" th:value="${user.userName}" class="layui-input">
         </div>
     </div>
-   <!-- <div class="layui-form-item">
+    <div class="layui-form-item">
         <label class="layui-form-label required">性别</label>
         <div class="layui-input-block">
-            <input type="radio" name="userSex" title="男"  th:value="${user.userSex}">
-            <input type="radio" name="userSex" title="女"  th:value="${user.userSex}">
+            <input type="radio" name="userSex" title="男"  value="1">
+            <input type="radio" name="userSex" title="女"  value="2">
         </div>
-    </div>-->
+    </div>
     <div class="layui-form-item">
     <label class="layui-form-label required">手机</label>
     <div class="layui-input-block">
@@ -43,21 +43,14 @@
     <input type="number" name="userPassword" lay-verify="required" lay-reqtext="密码不能为空" placeholder="请输入密码" th:value="${user.userPassword}"  class="layui-input">
     </div>
     </div>
-    <!--<div class="layui-form-item">
+    <div class="layui-form-item">
         <label class="layui-form-label required">岗位</label>
         <div class="layui-input-block">
-            <input type="radio" name="positionId" title="监理" th:value="${user.positionId}">
-            <input type="radio" name="positionId" title="包工头" th:value="${user.positionId}">
-            <input type="radio" name="positionId" title="测绘人员" th:value="${user.positionId}">
+            <input type="radio" name="positionId" title="监理" value="1">
+            <input type="radio" name="positionId" title="包工头"  value="2">
+            <input type="radio" name="positionId" title="测绘人员"  value="3">
         </div>
-    </div>-->
-    <!--<div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注信息</label>
-        <div class="layui-input-block">
-            <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息"></textarea>
-        </div>
-    </div>-->
-
+    </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
@@ -75,7 +68,7 @@
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {
-           // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
+          parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
             $.post("/user/updateUserById",data.field,function(res){
                 var index = parent.layer.alert(res.msg, function () {

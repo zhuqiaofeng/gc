@@ -61,7 +61,7 @@ public class RoleController {
     @RequestMapping("selectRoleById/{roleId}")
     public String selectRoleById(@PathVariable("roleId") Integer roleId, Model model){
     model.addAttribute(roleService.selectRoleById(roleId));
-    return "role/role_edit";
+    return "admin/role/role_edit";
 }
 
 

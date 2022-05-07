@@ -28,10 +28,11 @@ public class ProgressController {
     @ResponseBody
     public JsonMassage<List<ProgressVo>> findProgressList(
             @RequestParam(value = "page",defaultValue = "1") Integer page,
-            @RequestParam(value = "page_size",defaultValue = "10") Integer page_size
+            @RequestParam(value = "page_size",defaultValue = "10") Integer page_size,
+            String itemProjectName
     ){
-        List<ProgressVo> list = progressService.findProgressList(page,page_size);
-        Integer count = progressService.findProgressListCount();
+        List<ProgressVo> list = progressService.findProgressList(page,page_size,itemProjectName);
+        Integer count = progressService.findProgressListCount(itemProjectName);
 
         JsonMassage<List<ProgressVo>> jsonMassage = new JsonMassage<List<ProgressVo>>();
         jsonMassage.setCode(0);

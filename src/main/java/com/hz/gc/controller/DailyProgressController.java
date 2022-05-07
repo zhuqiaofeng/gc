@@ -6,6 +6,7 @@ import com.hz.gc.utils.JsonMassage;
 import com.hz.gc.utils.ResultJson;
 import com.hz.gc.vo.DailyProgressUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +31,9 @@ public class DailyProgressController {
      * @param dailyProgressUserVo
      * @return
      */
-    @RequestMapping(value = "/addDailyProgress",method = RequestMethod.POST)
+    @RequestMapping(value = "/addDailyProgress",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResultJson addDailyProgress(DailyProgressUserVo dailyProgressUserVo){
+    public ResultJson addDailyProgress(@RequestBody DailyProgressUserVo dailyProgressUserVo){
         int i = dailyProgressService.addDailyProgress(dailyProgressUserVo);
         return new ResultJson(i);
     }
