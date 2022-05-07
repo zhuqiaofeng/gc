@@ -4,7 +4,6 @@ import com.hz.gc.pojo.ItemProject;
 import com.hz.gc.service.ItemProjectService;
 import com.hz.gc.utils.JsonMassage;
 import com.hz.gc.utils.ResultJson;
-import com.hz.gc.vo.ProjectUserVo;
 import com.hz.gc.vo.itemVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,7 +64,7 @@ public class ItemProjectController {
      * @param itemProjectDesc 描述
      * @return
      */
-    @RequestMapping(value = "/finditemProjectList",method = RequestMethod.GET)
+    @RequestMapping(value = "/findItemProjectList",method = RequestMethod.GET)
     @ResponseBody
     public JsonMassage<List<itemVo>> finditemProjectList(
             @RequestParam(value = "pyl",defaultValue = "1") Integer pyl,
