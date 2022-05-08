@@ -51,7 +51,6 @@
         #{dailyProgressDesc},#{progressActualStart},#{progressActualEnd},#{itemProjectId})
     </insert>
 
-
     <select id="selectDate" resultType="com.hz.gc.pojo.DailyProgress">
         SELECT * FROM gc_daily_progress a
         LEFT JOIN gc_progress b ON a.progressId = b.progressId
