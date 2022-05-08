@@ -16,9 +16,9 @@ import java.util.List;
  */
 public interface ProgressService extends IService<Progress> {
 
-    List<ProgressVo> findProgressList(Integer page, Integer page_size);
+    List<ProgressVo> findProgressList(Integer page, Integer page_size,String itemProjectName);
 
-    Integer findProgressListCount();
+    Integer findProgressListCount(String itemProjectName);
 
     int saveProgress(String itemProjectName);
 

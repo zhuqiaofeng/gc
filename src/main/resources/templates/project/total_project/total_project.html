@@ -81,16 +81,15 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
-                {field: 'totalProjectId', width: 80, title: '工程ID', sort: true},
+                {field: 'totalProjectId', width: 100, title: '工程ID', sort: true},
                 {field: 'totalProjectName', width: 120, title: '工程名称'},
                 {field: 'totalProjectDesc', width: 120, title: '工程描述'},
                 {field: 'totalProjectAddress', width: 120, title: '区域描述'},
                 {field: 'totalProjectStart', width: 120, title: '预计开始时间'},
                 {field: 'totalProjectEnd', width: 120, title: '预计结束时间'},
-                {field: 'totalProjectDay', width: 80, title: '总工期'},
-                {field: 'subProjectState', width: 80, title: '工程状态'},
-/*                {field: 'userAddtime', width: 180, title: '用户添加时间'},*/
-                {fixed:'right',title: '操作', minWidth: 50, toolbar: '#currentTableBar', align: "center"}
+                {field: 'totalProjectDay', width: 100, title: '总工期'},
+                {field: 'totalProjectState', width: 100, title: '工程状态'},
+                {fixed:'right',title: '操作', minWidth: 120, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 10,

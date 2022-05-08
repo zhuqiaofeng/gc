@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hz.gc.dao.ProgressDao">
 
+    <sql id="progress_where">
+        <where>
+            <if test="itemProjectName!=null">
+                itemProjectName like concat('%',#{itemProjectName},'%')
+            </if>
+        </where>
+    </sql>
+
     <select id="findProgressList" resultType="com.hz.gc.vo.ProgressVo">
         select
         gc_progress.progressId,
@@ -15,12 +23,17 @@
         from gc_progress
         left join gc_item_project
         on gc_progress.itemProjectId = gc_item_project.itemProjectId
+        <include refid="progress_where"/>
         limit #{pyl},#{page_size}
+
 
     </select>
 
     <select id="findProgressListCount" resultType="int">
         select count(*) from gc_progress
+        left join gc_item_project
+        on gc_progress.itemProjectId = gc_item_project.itemProjectId
+        <include refid="progress_where"/>
     </select>
 
 

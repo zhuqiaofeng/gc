@@ -19,10 +19,11 @@ public interface ProgressDao extends BaseMapper<Progress> {
 
     List<ProgressVo> findProgressList(
             @Param("pyl") Integer pyl,
-            @Param("page_size")Integer page_size
+            @Param("page_size")Integer page_size,
+            @Param("itemProjectName") String itemProjectName
     );
 
-    int findProgressListCount();
+    int findProgressListCount(String itemProjectName);
 
     int saveProgress(String itemProjectName);
 

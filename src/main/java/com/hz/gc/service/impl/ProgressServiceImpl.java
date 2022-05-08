@@ -33,16 +33,16 @@ public class ProgressServiceImpl extends ServiceImpl<ProgressDao, Progress> impl
     private DailyProgressDao dailyProgressDao;
 
     @Override
-    public List<ProgressVo> findProgressList(Integer page, Integer page_size) {
+    public List<ProgressVo> findProgressList(Integer page, Integer page_size,String itemProjectName) {
 
         Integer pyl = (page-1)*page_size;
 
-        return progressDao.findProgressList(pyl,page_size);
+        return progressDao.findProgressList(pyl,page_size,itemProjectName);
     }
 
     @Override
-    public Integer findProgressListCount() {
-        int i = progressDao.findProgressListCount();
+    public Integer findProgressListCount(String itemProjectName) {
+        int i = progressDao.findProgressListCount(itemProjectName);
         return i;
     }
 

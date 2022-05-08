@@ -18,45 +18,43 @@
 <div class="layui-form layuimini-form">
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">用户名</label>
-        <input th:value="${user.userId}"  lay-verify="required" type="hidden" name="userId"/>
+        <label class="layui-form-label required">总工程名称</label>
+        <input th:value="${totalProject.totalProjectId}"  lay-verify="required" type="hidden" name="totalProjectId"/>
         <div class="layui-input-block">
-            <input type="text" name="userName" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入用户名" th:value="${user.userName}" class="layui-input">
+            <input type="text" name="totalProjectName" lay-verify="required" lay-reqtext="总工程名不能为空" placeholder="请输入总工程名" th:value="${totalProject.totalProjectName}" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">总工程描述</label>
+        <div class="layui-input-block">
+            <input type="text" name="totalProjectDesc" lay-verify="required" lay-reqtext="‘总工程描述不能为空" placeholder="请输入总工程描述" th:value="${totalProject.totalProjectDesc}" class="layui-input">
         </div>
     </div>
    <!-- <div class="layui-form-item">
-        <label class="layui-form-label required">性别</label>
+        <label class="layui-form-label required">总工程状态</label>
         <div class="layui-input-block">
-            <input type="radio" name="userSex" title="男"  th:value="${user.userSex}">
-            <input type="radio" name="userSex" title="女"  th:value="${user.userSex}">
+            <input type="text" name="totalProjectState" lay-verify="required" lay-reqtext="总工程状态不能为空" placeholder="请输入总工程状态" th:value="${totalProject.totalProjectState}" class="layui-input">
         </div>
     </div>-->
     <div class="layui-form-item">
-    <label class="layui-form-label required">手机</label>
+    <label class="layui-form-label required">计划开始时间</label>
     <div class="layui-input-block">
-    <input type="number" name="userPhone" lay-verify="required" lay-reqtext="手机不能为空" placeholder="请输入手机" th:value="${user.userPhone}" class="layui-input">
+    <input type="text" name="totalProjectStart" lay-verify="required" lay-reqtext="计划开始时间不能为空" placeholder="请输入计划开始时间" th:value="${totalProject.totalProjectStart}" class="layui-input">
     </div>
     </div>
     <div class="layui-form-item">
-    <label class="layui-form-label required">密码</label>
+    <label class="layui-form-label required">计划结束时间</label>
     <div class="layui-input-block">
-    <input type="number" name="userPassword" lay-verify="required" lay-reqtext="密码不能为空" placeholder="请输入密码" th:value="${user.userPassword}"  class="layui-input">
+    <input type="text" name="totalProjectEnd" lay-verify="required" lay-reqtext="计划结束时间不能为空" placeholder="请输入计划结束时间" th:value="${totalProject.totalProjectEnd}"  class="layui-input">
     </div>
     </div>
-    <!--<div class="layui-form-item">
-        <label class="layui-form-label required">岗位</label>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">总工期</label>
         <div class="layui-input-block">
-            <input type="radio" name="positionId" title="监理" th:value="${user.positionId}">
-            <input type="radio" name="positionId" title="包工头" th:value="${user.positionId}">
-            <input type="radio" name="positionId" title="测绘人员" th:value="${user.positionId}">
+            <input type="number" name="totalProjectDay" lay-verify="required" lay-reqtext="总工期不能为空" placeholder="请输入总工期" th:value="${totalProject.totalProjectDay}"  class="layui-input">
         </div>
-    </div>-->
-    <!--<div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注信息</label>
-        <div class="layui-input-block">
-            <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息"></textarea>
-        </div>
-    </div>-->
+    </div>
+
 
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -77,7 +75,7 @@
         form.on('submit(saveBtn)', function (data) {
            // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
-            $.post("/user/updateUserById",data.field,function(res){
+            $.post("/totalProject/updateTotalProject",data.field,function(res){
                 var index = parent.layer.alert(res.msg, function () {
                     //刷新表格
                     parent.tab.reload();

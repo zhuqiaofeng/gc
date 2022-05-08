@@ -5,6 +5,7 @@ import com.hz.gc.service.TotalProjectService;
 import com.hz.gc.utils.JsonMassage;
 import com.hz.gc.utils.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ import java.util.List;
  * @author 第三组
  * @since 2022-04-23
  */
-@RestController
+@Controller
 @RequestMapping("/totalProject")
 public class TotalProjectController {
 
@@ -88,7 +89,7 @@ public class TotalProjectController {
     public String findTotalProjectById(@PathVariable("totalProjectId") Integer totalProjectId, Model model){
 
         model.addAttribute("totalProject",totalProjectService.findTotalProjectById(totalProjectId));
-        return "totalProject_edit";
+        return "project/total_project/total_project_edit.html";
     }
 
     /**

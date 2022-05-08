@@ -1,7 +1,8 @@
 package com.hz.gc.service;
 
-import com.hz.gc.pojo.Attendance;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hz.gc.pojo.Attendance;
+import com.hz.gc.vo.AttendanceVo;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public interface AttendanceService extends IService<Attendance> {
      * @return
      */
 
-    List<Attendance> findAttendanceList(Integer curr_page, Integer page_size, String userName);
+    List<AttendanceVo> findAttendanceList(Integer curr_page, Integer page_size, String userName);
 
     Integer findAttendanceListCount(String userName);
 

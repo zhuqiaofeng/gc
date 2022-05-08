@@ -48,8 +48,8 @@
     </update>
 
     <insert id="addUser">
-        insert into gc_user(userName,userPassword,userPhone,adminId)
-        values(#{userName},#{userPassword},#{userPhone},#{adminId})
+        insert into gc_user(userName,userPassword,userSex,userPhone,positionId,adminId)
+        values(#{userName},#{userPassword},#{userSex},#{userPhone},#{positionId},#{adminId})
     </insert>
 
 </mapper>
