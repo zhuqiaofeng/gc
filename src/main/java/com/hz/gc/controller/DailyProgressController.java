@@ -32,7 +32,8 @@ public class DailyProgressController {
      */
     @RequestMapping(value = "/addDailyProgress",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson addDailyProgress(DailyProgressUserVo dailyProgressUserVo){
+    public ResultJson addDailyProgress( @RequestBody DailyProgressUserVo dailyProgressUserVo){
+        System.out.println(dailyProgressUserVo);
         int i = dailyProgressService.addDailyProgress(dailyProgressUserVo);
         return new ResultJson(i);
     }
