@@ -4,6 +4,7 @@
 
     <select id="findPositionList" resultType="com.hz.gc.pojo.Position">
       select * from gc_position
+      order by positionId desc
       limit #{pyl},#{page_size}
     </select>
 

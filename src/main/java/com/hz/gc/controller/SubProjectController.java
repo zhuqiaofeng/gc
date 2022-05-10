@@ -44,23 +44,23 @@ public class SubProjectController {
         return jsonMassage;
     }
     //根据id删除
-    @RequestMapping(value = "/deleteSubProjectrById",method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteSubProjectById",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson deleteSubProjectrById(Integer subProjectId){
+    public ResultJson deleteSubProjectById(Integer subProjectId){
         int i = subProjectService.deleteSubProjectById(subProjectId);
         return new ResultJson(i);
     }
     //修改
     @RequestMapping(value = "/updateSubProject",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson updateSubProjectr(SubProject subProject){
+    public ResultJson updateSubProject(SubProject subProject){
         int i = subProjectService.updateSubProject(subProject);
         return new ResultJson(i);
     }
 //新增
     @RequestMapping(value = "/saveSubProject",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson saveProvider(SubProject subProject){
+    public ResultJson saveSubProject(SubProject subProject){
         int i = subProjectService.saveSubProject(subProject);
         return new ResultJson(i);
     }

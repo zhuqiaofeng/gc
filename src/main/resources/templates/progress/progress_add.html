@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/public.css" media="all">
-    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/modules/laydate/default/laydate.css" media="all">
     <style>
         body {
             background-color: #ffffff;
@@ -21,30 +20,23 @@
         <label class="layui-form-label required">分项工程名称</label>
         <div class="layui-input-block">
             <input type="text" name="itemProjectName" lay-verify="required" lay-reqtext="分项工程名称不能为空" placeholder="请输入分项工程名称" value="" class="layui-input">
+            <!--<tip>填写自己管理账号的名称。</tip>-->
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">分项工程描述</label>
+   <!-- <div class="layui-form-item">
+        <label class="layui-form-label required">资料说明</label>
         <div class="layui-input-block">
-            <input type="text" name="itemProjectDesc" lay-verify="required" lay-reqtext="分部工程描述不能为空" placeholder="请输入分项工程描述" value="" class="layui-input">
+            <input type="text" name="materialDesc" lay-verify="required" lay-reqtext="资料说明不能为空" placeholder="请输入资料说明" value="" class="layui-input">
         </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label">分项工程计划开始时间</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="test5" name="itemProjectStart" placeholder="请选择分项工程计划开始时间">
-        </div>
-        <label class="layui-form-label">分项工程计划结束时间</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="test6" name="itemProjectEnd" placeholder="请选择分项工程计划结束时间">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">所属分部工程编号</label>
+        <label class="layui-form-label required">所属每日进度ID</label>
         <div class="layui-input-block">
-            <input type="number" name="subProjectId" lay-verify="required"  placeholder="请输入该工程所属分部工程编号" value="" class="layui-input">
+            <input type="number" name="dailyProgressId" lay-verify="required" lay-reqtext="所属每日进度不能为空" placeholder="请输入所属每日进度" value="" class="layui-input">
         </div>
-    </div>
+    </div>-->
+
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
@@ -52,23 +44,7 @@
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-<script src="/lib/layui-v2.5.5/lay/modules/laydate.js" charset="utf-8"></script>
 <script>
-    layui.use('laydate', function() {
-        var laydate = layui.laydate;
-        //日期时间选择器
-        laydate.render({
-            elem: '#test5'
-            ,type: 'datetime'
-        });
-        var laydate2 = layui.laydate;
-        //日期时间选择器
-        laydate2.render({
-            elem: '#test6'
-            ,type: 'datetime'
-        });
-
-    });
     layui.use(['form', 'laydate'], function () {
         var form = layui.form,
             layer = layui.layer,
@@ -77,7 +53,7 @@
 
 
 
-        //loadi ng层
+        //loading层
 
         //日期
         laydate.render({
@@ -88,12 +64,12 @@
 
             parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
-                $.post("/itemProject/saveItemProject",data.field,function(res){
+            $.post("/progress/saveProgress",data.field,function(res){
                 var index = parent.layer.alert(res.msg, function () {
 
                     //刷新表格
                     parent.tab.reload();
-                    // 关闭  弹出层
+                    // 关闭弹出层
                     parent.layer.close(index);
                     parent.layer.closeAll();
 
@@ -102,7 +78,7 @@
             },"json");
 
         });
-            return false;
+        return false;
 
 
     });

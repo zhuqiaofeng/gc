@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/public.css" media="all">
+    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/modules/laydate/default/laydate.css" media="all">
     <style>
         body {
             background-color: #ffffff;
@@ -17,48 +18,38 @@
 <body>
 <div class="layui-form layuimini-form" >
     <div class="layui-form-item">
-        <label class="layui-form-label required">用户名称</label>
+        <label class="layui-form-label required">分部工程名称</label>
         <div class="layui-input-block">
-            <input type="text" name="subProjectName" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入用户名称" value="" class="layui-input">
+            <input type="text" name="subProjectName" lay-verify="required" lay-reqtext="分部名称不能为空" placeholder="请输入分部工程名称" value="" class="layui-input">
             <!--<tip>填写自己管理账号的名称。</tip>-->
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">工程描述</label>
+        <label class="layui-form-label required">分部工程描述</label>
         <div class="layui-input-block">
-            <input type="text" name="subProjectDesc" lay-verify="required" lay-reqtext="工程描述不能为空" placeholder="请输入工程描述" value="" class="layui-input">
+            <input type="text" name="subProjectDesc" lay-verify="required" lay-reqtext="分部工程描述不能为空" placeholder="请输入分部工程描述" value="" class="layui-input">
         </div>
     </div>
-    <!--<div class="layui-form-item">
-        <label class="layui-form-label required">性别</label>
-        <div class="layui-input-block">
-            <input type="radio" name="userSex" value=1 title="男" checked="">
-            <input type="radio" name="userSex" value=2 title="女">
-        </div>
-    </div>-->
     <div class="layui-form-item">
-        <label class="layui-form-label required">预计开始时间</label>
-        <div class="layui-input-block">
-            <input type="text" name="subProjectStart" lay-verify="required"  placeholder="预计开始时间" value="" class="layui-input">
+        <label class="layui-form-label">分部工程计划开始时间</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input" id="test5" name="subProjectStart" placeholder="请选择分部工程计划开始时间">
+        </div>
+        <label class="layui-form-label">分部工程计划结束时间</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input" id="test6" name="subProjectEnd" placeholder="请选择分部工程计划结束日期">
         </div>
     </div>
-    <!--lay-reqtext="手机 号不能为空"-->
     <div class="layui-form-item">
-    <label class="layui-form-label required">预计结束日期</label>
-    <div class="layui-input-block">
-        <input type="text" name="subProjectEnd" lay-verify="required" ay-reqtext="手机号不能为空" placeholder="请输入结束日期" value="" class="layui-input">
-    </div>
-</div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">请输入地 区</label>
+        <label class="layui-form-label required">请输入分部地区描述</label>
         <div class="layui-input-block">
             <input type="text" name="subProjectRegion" lay-verify="required"  placeholder="请输入地区描述" value="" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">请输入编号</label>
+        <label class="layui-form-label required">请输入所属总工程编号</label>
         <div class="layui-input-block">
-            <input type="number" name="totalProjectId" lay-verify="required"  placeholder="请输入请输入编号 " value="" class="layui-input">
+            <input type="number" name="totalProjectId" lay-verify="required"  placeholder="请输入所属总工程编号 " value="" class="layui-input">
         </div>
     </div>
     <!--<div class="layui-form-item">-->
@@ -76,7 +67,23 @@
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="/lib/layui-v2.5.5/lay/modules/laydate.js" charset="utf-8"></script>
 <script>
+    layui.use('laydate', function() {
+        var laydate = layui.laydate;
+        //日期时间选择器
+        laydate.render({
+            elem: '#test5'
+            ,type: 'datetime'
+        });
+        var laydate2 = layui.laydate;
+        //日期时间选择器
+        laydate2.render({
+            elem: '#test6'
+            ,type: 'datetime'
+        });
+
+    });
     layui.use(['form', 'laydate'], function () {
         var form = layui.form,
             layer = layui.layer,

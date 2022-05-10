@@ -21,12 +21,12 @@ public interface ItemProjectDao extends BaseMapper<ItemProject> {
     int updateItemProjectById(ItemProject itemProject);
     //根据id查询
     ItemProject findItemProjectById(Integer itemProjectId);
-    List<itemVo> finditemProjectList(
+    List<itemVo> findItemProjectList(
             @Param("pyl") Integer pyl,
             @Param("page_size") Integer page_size,
             @Param("itemProjectName") String itemProjectName,
             @Param("itemProjectDesc") String itemProjectDesc);
-    Integer finditemProjectListCount(
+    Integer findItemProjectListCount(
             @Param("itemProjectName") String itemProjectName,
             @Param("itemProjectDesc") String itemProjectDesc);
 

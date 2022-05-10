@@ -1,12 +1,16 @@
 package com.hz.gc.service.impl;
 
-import com.hz.gc.pojo.DailyProgress;
-import com.hz.gc.dao.DailyProgressDao;
-import com.hz.gc.service.DailyProgressService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hz.gc.dao.DailyProgressDao;
+import com.hz.gc.dao.ProgressDao;
+import com.hz.gc.pojo.DailyProgress;
+import com.hz.gc.service.DailyProgressService;
 import com.hz.gc.vo.DailyProgressUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,11 +27,21 @@ public class DailyProgressServiceImpl extends ServiceImpl<DailyProgressDao, Dail
 
     @Autowired
     private DailyProgressDao dailyProgressDao;
+    @Autowired
+    private ProgressDao progressDao;
 
 
+    @Transactional(propagation = Propagation.REQUIRED,
+            isolation = Isolation.DEFAULT,
+            readOnly = false,
+            timeout = -1)
     @Override
     public int addDailyProgress(DailyProgressUserVo dailyProgressUserVo) {
         int i = dailyProgressDao.addDailyProgress(dailyProgressUserVo);
+        Integer   progressId = dailyProgressUserVo.getProgressId();
+        String progressActualStart = dailyProgressUserVo.getProgressActualStart();
+        String progressActualEnd =  dailyProgressUserVo.getProgressActualEnd();
+        progressDao.updateProgressDate(progressId,progressActualStart,progressActualEnd);
         return i;
     }
 

@@ -11,6 +11,7 @@
     <select id="findRoleList" resultType="com.hz.gc.pojo.Role">
         select * from gc_role
         <include refid="role_where"/>
+        order by roleId desc
         limit #{pyl},#{page_size}
     </select>
 

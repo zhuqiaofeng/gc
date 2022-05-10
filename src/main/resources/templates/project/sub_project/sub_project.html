@@ -82,8 +82,19 @@
                 {field: 'subProjectStart', width: 120, title: '预计开始时间'},
                 {field: 'subProjectEnd', width: 120, title: '预计结束时间'},
                 {field: 'subProjectRegion', width: 120, title: '区域描述'},
-                {field: 'subProjectState', width: 120, title: '工程状态'},
-                {field: 'subProjectDay', width: 80, title: '天数'},
+                {field: 'subProjectState', width: 120, title: '工程状态',templet:function(res){
+                        if(res.subProjectState==1)
+                        {
+                            return "未开工";
+                        }else if (res.subProjectState==2){
+                            return "在建";
+                        }else if (res.subProjectState==3) {
+                            return "停工";
+                        }else if (res.subProjectState==4) {
+                            return "逾期";
+                        }
+                    }},
+                {field: 'subProjectDay', width: 80, title: '总工期'},
 
                 //
                 // {field: 'positionId', width: 120, title: '岗位名称',templet:function(res){
@@ -96,7 +107,7 @@
                 //             return "测绘人员";
                 //         }
                 //     }},
-                {field: 'userAddtime', width: 130, title: '用户添加时间'},
+                {field: 'totalProjectName', width: 130, title: '所属总工程'},
                 {fixed:'right',title: '操作', minWidth: 60, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -132,7 +143,7 @@
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
                 window.parent.open(
-                    "新增用户",
+                    "新增分部工程",
                     "/project/sub_project/sub_add.html",
                     '800px',
                     '550px',
@@ -156,17 +167,17 @@
             if (obj.event === 'edit') {
 
                 window.parent.open(
-                    "修改用户信息",
+                    "修改分部工程信息",
                     "/subProject/selectSubProjectById/" + data.subProjectId,
                     '600px',
                     '500px',
                     tab1);
                 return false;
             } else if (obj.event === 'delete') {
-                layer.confirm('真的删 除行么', function (index) {
+                layer.confirm('是否确认删除', function (index) {
                     // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
-                    $.post("/subProject/deleteSubProjectrById",{subProjectId:data.subProjectId},function(res){
+                    $.post("/subProject/deleteSubProjectById",{subProjectId:data.subProjectId},function(res){
                         var index = parent.layer.alert(res.msg, function () {
                             // 关闭弹出层
                             obj.del();

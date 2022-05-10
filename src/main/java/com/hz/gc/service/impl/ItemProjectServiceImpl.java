@@ -1,13 +1,16 @@
 package com.hz.gc.service.impl;
 
-import com.hz.gc.pojo.ItemProject;
-import com.hz.gc.dao.ItemProjectDao;
-import com.hz.gc.service.ItemProjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.hz.gc.vo.ProjectUserVo;
+import com.hz.gc.dao.ItemProjectDao;
+import com.hz.gc.dao.ProgressDao;
+import com.hz.gc.pojo.ItemProject;
+import com.hz.gc.service.ItemProjectService;
 import com.hz.gc.vo.itemVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,9 +28,26 @@ public class ItemProjectServiceImpl extends ServiceImpl<ItemProjectDao, ItemProj
     @Autowired
     private ItemProjectDao itemProjectDao;
 
+    @Autowired
+    private ProgressDao progressDao;
+
+    /**
+     * 新建分项工程同时添加进度统计
+     * @param itemProject
+     * @return
+     */
+    @Transactional(propagation = Propagation.REQUIRED,
+            isolation = Isolation.DEFAULT,
+            readOnly = false,
+            timeout = -1)
     @Override
     public int saveItemProject(ItemProject itemProject) {
-        return itemProjectDao.saveItemProject(itemProject);
+
+        int i = itemProjectDao.saveItemProject(itemProject);
+        String itemProjectName = itemProject.getItemProjectName();
+        progressDao.saveProgress(itemProjectName);
+
+        return i;
     }
     //根据id删除
     @Override
@@ -46,13 +66,13 @@ public class ItemProjectServiceImpl extends ServiceImpl<ItemProjectDao, ItemProj
     return itemProjectDao.findItemProjectById(itemProjectId);
 }
     @Override
-    public List<itemVo> finditemProjectList(Integer curr_page, Integer page_size, String itemProjectName, String itemProjectDesc) {
+    public List<itemVo> findItemProjectList(Integer page, Integer page_size, String itemProjectName, String itemProjectDesc) {
         //计算偏移量 = (当前页-1)*每页显示条数
-        Integer pyl = (curr_page-1)*page_size;
-        return  itemProjectDao.finditemProjectList(pyl,page_size,itemProjectName,itemProjectDesc);
+        Integer pyl = (page-1)*page_size;
+        return  itemProjectDao.findItemProjectList(pyl,page_size,itemProjectName,itemProjectDesc);
     }
     @Override
-    public Integer finditemProjectListCount(String itemProjectName, String itemProjectDesc) {
-        return itemProjectDao.finditemProjectListCount(itemProjectName,itemProjectDesc);
+    public Integer findItemProjectListCount(String itemProjectName, String itemProjectDesc) {
+        return itemProjectDao.findItemProjectListCount(itemProjectName,itemProjectDesc);
     }
 }

@@ -2,7 +2,6 @@ package com.hz.gc.controller;
 
 import com.hz.gc.service.ProgressService;
 import com.hz.gc.utils.JsonMassage;
-import com.hz.gc.utils.ResultJson;
 import com.hz.gc.vo.ProgressVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +42,7 @@ public class ProgressController {
     }
 
 
-    @RequestMapping(value = "/saveProgress",method = RequestMethod.POST)
+/*    @RequestMapping(value = "/saveProgress",method = RequestMethod.POST)
     @ResponseBody
     public ResultJson saveProgress(String itemProjectName){
         int i = progressService.saveProgress(itemProjectName);
@@ -55,5 +54,5 @@ public class ProgressController {
     public ResultJson updateProgress(Integer progressId,String itemProjectName){
         int i = progressService.updateProgress(progressId,itemProjectName);
         return new ResultJson(i);
-    }
+    }*/
 }

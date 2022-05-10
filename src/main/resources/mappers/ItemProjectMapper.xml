@@ -5,15 +5,13 @@
 
     <!--//新增-->
     <insert id="saveItemProject">
-        insert into gc_item_project(itemProjectName,itemProjectDesc,itemProjectState,itemProjectStart,
-                    itemProjectEnd,itemProjectDay,userId,subProjectId)
+        insert into gc_item_project(itemProjectName,itemProjectDesc,itemProjectStart,
+                    itemProjectEnd,itemProjectDay,subProjectId)
         values(#{itemProjectName},
         #{itemProjectDesc},
-        #{itemProjectState},
         #{itemProjectStart},
         #{itemProjectEnd},
         (SELECT DATEDIFF(#{itemProjectEnd},#{itemProjectStart})),
-        #{userId},
         #{subProjectId})
     </insert>
 
@@ -25,16 +23,17 @@
         update gc_item_project set
         itemProjectName=#{itemProjectName},
         itemProjectDesc=#{itemProjectDesc},
-        itemProjectState=#{itemProjectState},
         itemProjectStart=#{itemProjectStart},
         itemProjectEnd=#{itemProjectEnd},
-        itemProjectDay=(SELECT DATEDIFF(#{itemProjectEnd},#{itemProjectStart})),
-        userId=#{userId} where
+        itemProjectDay=(SELECT DATEDIFF(#{itemProjectEnd},#{itemProjectStart}))
+        where
         itemProjectId=#{itemProjectId}
     </update>
+
     <!--根据id查询-->
     <select id="findItemProjectById" resultType="ItemProject">
         SELECT
+        a.itemProjectId,
         a.itemProjectName,
         a.itemProjectDesc,
         a.itemProjectState,
@@ -45,7 +44,7 @@
         a.subProjectId,
         b.subProjectName
         FROM gc_item_project a LEFT JOIN gc_sub_project b
-        ON a.itemProjectId = b.subProjectId
+        ON a.subProjectId = b.subProjectId
         WHERE itemProjectId=#{itemProjectId}
     </select>
 
@@ -57,15 +56,26 @@
                 and itemProjectDesc like concat('%',#{itemProjectDesc},'%')</if>
         </where>
     </sql>
-    <select id="finditemProjectList" resultType="com.hz.gc.vo.itemVo">
-        select * from gc_item_project
+    <select id="findItemProjectList" resultType="com.hz.gc.vo.itemVo">
+        select
+        a.itemProjectId,
+        a.itemProjectName,
+        a.itemProjectDesc,
+        a.itemProjectState,
+        a.itemProjectStart,
+        a.itemProjectEnd,
+        a.itemProjectDay,
+        b.subProjectName
+        FROM gc_item_project a LEFT JOIN gc_sub_project b
+        ON a.subProjectId = b.subProjectId
         <include refid="item_where"/>
-        /*order by userId desc*/
+        order by itemProjectId desc
         limit #{pyl},#{page_size}
     </select>
 
-    <select id="finditemProjectListCount" resultType="int" >
-        select count(1) from gc_item_project
+    <select id="findItemProjectListCount" resultType="int" >
+        select count(1) FROM gc_item_project a LEFT JOIN gc_sub_project b
+        ON a.subProjectId = b.subProjectId
         <include refid="item_where"/>
     </select>
 </mapper>

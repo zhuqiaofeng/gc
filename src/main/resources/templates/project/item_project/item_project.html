@@ -15,19 +15,19 @@
 
         <fieldset class="table-search-fieldset">
             <legend>搜索信息</legend>
-            <div style="margin: 10px 10px 10px 10px">
+            <div style="margin: 15px 15px 15px 15px">
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">工程名称</label>
+                            <label class="layui-form-label">分项工程名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="subProjectName" autocomplete="off" class="layui-input">
+                                <input type="text" name="totalProjectName" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">工程描述</label>
+                            <label class="layui-form-label">分项工程描述</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="subProjectDesc" autocomplete="off" class="layui-input">
+                                <input type="text" name="totalProjectDesc" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -51,68 +51,87 @@
             <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
-       <!-- <script type="text/html" id="sexTpl">
-            {{#  if(d.sex==1){   }}
+
+        <script type="text/html" id="sexTpl">
+        {{# if(d.sex==1){  }}
             男
-            {{# }else{ }}
+        {{#  } else{   }}
             女
-            {{#  }    }}
-        </script>-->
+        {{#  }   }}
+
+        </script>
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
 
-    var tab1 ;
+    var tab;
 
-    layui.use(['form', 'table'], function () {
+   /*加载模块*/
+   layui.use(['form', 'table'], function () {
         var $ = layui.jquery,
-            form = layui.form,
-            table = layui.table;
+            form = layui.form, //获取form模块
+            table = layui.table;//获取table模块
 
-        tab1=table.render({
-            elem: '#currentTableId',
-            url: '/itemProject/findItemProjectList',
-            toolbar: '#toolbarDemo',
-            defaultToolbar: ['filter', 'exports', 'print', {
-                title: '提示',
-                layEvent: 'LAYTABLE_TIPS',
-                icon: 'layui-icon-tips'
+      /*方法渲染*/
+       tab= table.render({
+            elem: '#currentTableId', //指定原始表格元素选择器（推荐id选择器）
+            url: '/itemProject/findItemProjectList',//异步数据接口相关参数
+            toolbar: '#toolbarDemo',//开启表格头部工具栏区域，该参数支持四种类型值：//指向自定义工具栏模板选择器
+            defaultToolbar: ['filter', 'exports', 'print', {//该参数可自由配置头部工具栏右侧的图标按钮
+                // filter: 显示筛选图标exports: 显示导出图标print: 显示打印图标
+                title: '提示', //标题
+                layEvent: 'LAYTABLE_TIPS',//事件名，用于 toolbar 事件中使用
+                icon: 'layui-icon-tips'//图标类名
             }],
-            cols: [[
-                {type: "checkbox", width: 50},
-                {field: 'subProjectId', width: 120, title: '工程ID', sort: true},
-                {field: 'subProjectName', width: 120, title: '工程名称'},
-                {field: 'subProjectDesc', width: 120, title: '工程描述'},
-                {field: 'subProjectStart', width: 120, title: '预计开始时间'},
-                {field: 'subProjectEnd', width: 120, title: '预计结束时间'},
-                {field: 'subProjectRegion', width: 120, title: '区域描述'},
-                {field: 'subProjectState', width: 120, title: '工程状态'},
-                {field: 'subProjectDay', width: 120, title: '天数'},
-                {field: 'userAddtime', width: 180, title: '用户添加时间'},
-                {fixed:'right',title: '操作', minWidth: 50, toolbar: '#currentTableBar', align: "center"}
+           /*设置表头。值是一个二维数组*/
+           cols: [[
+               {type: "checkbox", width: 50},
+               {field: 'itemProjectId', width: 120, title: '工程ID', sort: true},
+               {field: 'itemProjectName', width: 120, title: '工程名称'},
+               {field: 'itemProjectDesc', width: 120, title: '工程描述'},
+               {field: 'itemProjectStart', width: 120, title: '预计开始时间'},
+               {field: 'itemProjectEnd', width: 120, title: '预计结束时间'},
+               {field: 'itemProjectState', width: 120, title: '工程状态',templet:function(res){
+                       if(res.itemProjectState==1)
+                       {
+                           return "未开工";
+                       }else if (res.itemProjectState==2){
+                           return "在建";
+                       }else if (res.itemProjectState==3) {
+                           return "停工";
+                       }else if (res.itemProjectState==4) {
+                           return "逾期";
+                       }
+                   }},
+               {field: 'itemProjectDay', width: 120, title: '总工期'},
+               {field: 'subProjectName', width: 130, title: '所属分部工程'},
+                {fixed:'right', title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}//绑定工具条模板
             ]],
-            limits: [10, 15, 20, 25, 50, 100],
+            limits: [10, 15, 20, 25, 50, 100],//每页条数的选择项
             limit: 10,
-            page: true,
-            skin: 'line'
+            page: true,//是否开启分页
+            skin: 'line'//设定表格各种外观、尺寸等line （行边框风格）row （列边框风格）nob （无边框风格）
         });
 
         // 监听搜索操作
+       //  监听提交按钮
         form.on('submit(data-search-btn)', function (data) {
-            /*var result = JSON.stringify(data.field);
+
+            var result = JSON.stringify(data.field);
             layer.alert(result, {
                 title: '最终的搜索信息'
-            });*/
+            });
 
             //执行搜索重载
             table.reload('currentTableId', {
                 page: {
-                    curr: 1
+                    curr: 1 //重新从第 1 页开始
                 }
-                , where: {
-                    "subProjectName":data.field.subProjectName,
-                    "subProjectDesc":data.field.subProjectDesc
+                , where: {//设定异步数据接口的额外参数
+                    "itemProjectId":data.field.itemProjectId,
+                    "itemProjectName":data.field.itemProjectName,
+                    "itemProjectDesc":data.field.itemProjectDesc
                 }
             }, 'data');
 
@@ -124,16 +143,16 @@
          */
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
+
+
                 window.parent.open(
-                    "新增用户",
-                    "/user/user_add.html",
+                    "新增分项工程",
+                    "/project/item_project/item_add.html",
                     '800px',
                     '550px',
-                    tab1);
-
-
+                    tab);
             } else if (obj.event === 'delete') {  // 监听删除操作
-                var checkStatus = user.checkStatus('currentTableId')
+                var checkStatus = table.checkStatus('currentTableId')
                     , data = checkStatus.data;
                 layer.alert(JSON.stringify(data));
             }
@@ -149,20 +168,19 @@
             if (obj.event === 'edit') {
 
                 window.parent.open(
-                    "修改用户信息",
-                    "/user/selectUserById/" + data.userId,
-                    '600px',
-                    '500px',
-                    tab1);
+                    "修改分项工程信息",
+                    "/itemProject/findItemProjectById/"+data.itemProjectId,
+                    '800px',
+                    '550px',
+                    tab);
                 return false;
+            }  else if (obj.event === 'delete') {
+                layer.confirm('是否确认删除', function (index) {
 
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的    删除行么', function (index) {
 
+                    parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
-                    // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
-
-                    $.post("/user/deleteUserById",{userId:data.userId},function(res){
+                    $.post("/itemProject/deleteItemProjectById",{itemProjectId:data.itemProjectId},function(res){
                         var index = parent.layer.alert(res.msg, function () {
                             // 关闭弹出层
                             obj.del();
@@ -170,14 +188,13 @@
                             parent.layer.closeAll();
                         });
                     },"json");
+
                     layer.close(index);
                 });
             }
         });
 
     });
-
-
 </script>
 
 </body>

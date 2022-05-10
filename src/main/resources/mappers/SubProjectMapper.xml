@@ -11,15 +11,27 @@
     </sql>
 
 <!--//组合查询-->
-    <select id="findSubProjectList" resultType="SubProject">
-        select * from gc_sub_project
+    <select id="findSubProjectList" resultType="com.hz.gc.vo.SubProjectVo">
+        select
+        a.subProjectId,
+        a.subProjectName,
+        a.subProjectDesc,
+        a.subProjectStart,
+        a.subProjectEnd,
+        a.subProjectRegion,
+        a.subProjectState,
+        b.totalProjectName,
+        a.subProjectDay
+        from gc_sub_project a
+       left join gc_total_project b on a.totalProjectId = b.totalProjectId
         <include refid="provider_where"/>
---         order by creationDate desc
+       order by subProjectId desc
         limit #{pyl},#{page_size}
     </select>
     <!--计算条数-->
     <select id="findSubProjectListCount" resultType="int" >
-        select count(1) from gc_sub_project
+        select count(1) from gc_sub_project a
+        left join gc_total_project b on a.totalProjectId = b.totalProjectId
         <include refid="provider_where"/>
     </select>
 <!--根据id删除-->
@@ -35,14 +47,16 @@
         subProjectEnd=#{subProjectEnd},
         subProjectDay=(SELECT DATEDIFF(#{subProjectEnd},#{subProjectStart})),
         subProjectRegion=#{subProjectRegion},
-        subPranchUser=#{subPranchUser},
-        subProjectState=#{subProjectState}
+        subPranchUser=#{subPranchUser}
+
         where
         subProjectId=#{subProjectId}
     </update>
     <!--//根据id查询-->
     <select id="selectSubProjectById" resultType="com.hz.gc.pojo.SubProject">
-        select * from gc_sub_project where subProjectId=#{subProjectId}
+        select * from gc_sub_project
+        /*left join gc_total_project*/
+        where subProjectId=#{subProjectId}
     </select>
 
     <!--//新增-->
@@ -55,7 +69,8 @@
         subProjectDay,
         subProjectRegion,
         subPranchUser,
-        subProjectState)
+        totalProjectId
+        )
         values(#{subProjectName},
         #{subProjectDesc},
         #{subProjectStart},
@@ -63,7 +78,8 @@
         (SELECT DATEDIFF(#{subProjectEnd},#{subProjectStart})),
         #{subProjectRegion},
         #{subPranchUser},
-        #{subProjectState})
+        #{totalProjectId}
+        )
 
     </insert>
 

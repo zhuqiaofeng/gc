@@ -14,6 +14,7 @@
     <select id="findTotalProjectList" resultType="com.hz.gc.pojo.TotalProject">
         select * from gc_total_project
         <include refid="totalProject_where"/>
+        order by totalProjectId desc
         limit #{pyl},#{page_size}
     </select>
     <select id="findTotalProjectListCount" resultType="int" >
@@ -30,11 +31,11 @@
     </select>
 
     <insert id="saveTotalProject">
-        insert into gc_total_project(totalProjectName,totalProjectDesc,totalProjectState,totalProjectAddress,totalProjectStart,
+        insert into gc_total_project(totalProjectName,totalProjectDesc/*totalProjectState*/,totalProjectAddress,totalProjectStart,
                     totalProjectEnd,totalProjectDay)
         values(#{totalProjectName},
         #{totalProjectDesc},
-        #{totalProjectState},
+
         #{totalProjectAddress},
         #{totalProjectStart},
         #{totalProjectEnd},
@@ -49,7 +50,7 @@
         totalProjectState=#{totalProjectState},
         totalProjectStart=#{totalProjectStart},
         totalProjectEnd=#{totalProjectEnd},
-        totalProjectDay=(SELECT DATEDIFF(#{totalProjectEnd},#{totalProjectStart})),
+        totalProjectDay=(SELECT DATEDIFF(#{totalProjectEnd},#{totalProjectStart}))
 
          where
         totalProjectId=#{totalProjectId}

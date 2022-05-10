@@ -16,18 +16,18 @@
         a.userId,
         d.itemProjectId,
         a.dailyProgressId,
+        a.progressActualStart,
+        a.progressActualEnd,
         d.itemProjectName,
         b.userName,
         a.dailyProgressDesc,
-        a.progressActualStart,
-        a.progressActualEnd,
         a.dailyProgressAddtime
         from gc_daily_progress a
         left join gc_user b on a.userId = b.userId
         left join gc_progress c on a.progressId = c.progressId
         left join gc_item_project d on c.itemProjectId = d.itemProjectId
         <include refid="dailyProgress_where"/>
-        /*order by creationDate desc*/
+        order by dailyProgressId desc
         limit #{pyl},#{page_size}
     </select>
     <select id="findDailyProgressListCount" resultType="int" >

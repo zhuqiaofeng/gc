@@ -26,6 +26,7 @@
       left join gc_user b  on a.userId =b.userId
       left join gc_item_project c on a.itemProjectId =c.itemProjectId
       <include refid="change_where"/>
+        order by changeId desc
       limit #{pyl},#{page_size}
     </select>
 

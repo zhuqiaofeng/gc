@@ -14,18 +14,18 @@
     <div class="layuimini-main">
 
         <fieldset class="table-search-fieldset">
-            <legend>搜索信息</legend>
+            <legend>搜索总工程信息</legend>
             <div style="margin: 10px 10px 10px 10px">
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">工程名称</label>
+                            <label class="layui-form-label">总工程名称</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="totalProjectName" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">工程描述</label>
+                            <label class="layui-form-label">总工程描述</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="totalProjectDesc" autocomplete="off" class="layui-input">
                             </div>
@@ -40,7 +40,7 @@
 
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 新建 </button>
                 <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
             </div>
         </script>
@@ -84,11 +84,23 @@
                 {field: 'totalProjectId', width: 100, title: '工程ID', sort: true},
                 {field: 'totalProjectName', width: 120, title: '工程名称'},
                 {field: 'totalProjectDesc', width: 120, title: '工程描述'},
-                {field: 'totalProjectAddress', width: 120, title: '区域描述'},
                 {field: 'totalProjectStart', width: 120, title: '预计开始时间'},
                 {field: 'totalProjectEnd', width: 120, title: '预计结束时间'},
+                {field: 'totalProjectAddress', width: 120, title: '施工区域描述'},
+                {field: 'totalProjectState', width: 100, title: '工程状态',templet:function(res){
+                        if(res.totalProjectState==1)
+                        {
+                            return "未开工";
+                        }else if (res.totalProjectState==2){
+                            return "在建";
+                        }else if (res.totalProjectState==3) {
+                            return "停工";
+                        }else if (res.totalProjectState==4) {
+                            return "逾期";
+                        }
+                    }},
                 {field: 'totalProjectDay', width: 100, title: '总工期'},
-                {field: 'totalProjectState', width: 100, title: '工程状态'},
+
                 {fixed:'right',title: '操作', minWidth: 120, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -124,7 +136,7 @@
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
                 window.parent.open(
-                    "新增用户",
+                    "新建总工程",
                     "/project/total_project/total_project_add.html",
                     '800px',
                     '550px',
@@ -148,7 +160,7 @@
             if (obj.event === 'edit') {
 
                 window.parent.open(
-                    "修改用户信息",
+                    "修改总工程信息",
                     "/totalProject/findTotalProjectById/" + data.totalProjectId,
                     '600px',
                     '500px',
@@ -156,7 +168,7 @@
                 return false;
 
             } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
+                layer.confirm('是否删除此总工程信息', function (index) {
 
 
                     // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩

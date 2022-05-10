@@ -24,6 +24,7 @@
         left join gc_item_project
         on gc_progress.itemProjectId = gc_item_project.itemProjectId
         <include refid="progress_where"/>
+        order by progressId desc
         limit #{pyl},#{page_size}
 
 

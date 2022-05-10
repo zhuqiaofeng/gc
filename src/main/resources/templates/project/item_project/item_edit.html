@@ -15,66 +15,53 @@
     </style>
 </head>
 <body>
-<div class="layui-form layuimini-form">
 
+<div class="layui-form layuimini-form" >
     <div class="layui-form-item">
-        <label class="layui-form-label required">工程名名称</label>
-        <input th:value="${pro.itemProjectId}"  lay-verify="required" type="hidden" name="itemProjectId"/>
+        <label class="layui-form-label required">分项工程名称</label>
         <div class="layui-input-block">
-            <input type="text" name="itemProjectName" lay-verify="required" lay-reqtext="工程名不能为空" placeholder="请输入工程名" th:value="${pro.itemProjectName}" class="layui-input">
+            <input th:value="${pro.itemProjectId}" type="hidden" name="itemProjectId"/>
+            <input type="text" name="itemProjectName" lay-verify="required" lay-reqtext="分项工程名称不能为空" placeholder="请输入分项工程名称" th:value="${pro.itemProjectName}" value="" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">项目描述</label>
+        <label class="layui-form-label required">分项工程描述</label>
         <div class="layui-input-block">
-            <input type="text" name="itemProjectDesc" lay-verify="required" lay-reqtext="项目描述不能为空" placeholder="请输入描述" th:value="${pro.itemProjectDesc}" class="layui-input">
+            <input type="text" name="itemProjectDesc" lay-verify="required" lay-reqtext="分项工程描述不能为空" placeholder="请输入分项工程描述" th:value="${pro.itemProjectDesc}" value="" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">预计开始时间</label>
+        <label class="layui-form-label required">分项工程计划开始时间</label>
         <div class="layui-input-block">
-            <input type="text" name="itemProjectStart" lay-verify="required" lay-reqtext="预计开始时间不能为空" placeholder="预计开始时间不能为空" th:value="${pro.itemProjectStart}"  class="layui-input">
+            <input type="text" name="itemProjectStart" lay-verify="required" lay-reqtext="开始时间不能为空" placeholder="请输入开始时间" th:value="${pro.itemProjectStart}" value="" class="layui-input">
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label required">预计结束时间</label>
-            <div class="layui-input-block">
-                <input type="text" name="itemProjectEnd" lay-verify="required" lay-reqtext="预计结束时间不能为空" placeholder="请输入结束时间" th:value="${pro.itemProjectEnd}"  class="layui-input">
-            </div>
-        </div>
-
-    <!--<div class="layui-form-item">
-        <label class="layui-form-label required">岗位</label>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">分项工程计划结束时间</label>
         <div class="layui-input-block">
-            <input type="radio" name="positionId" title="监理" th:value="${user.positionId}">
-            <input type="radio" name="positionId" title="包工头" th:value="${user.positionId}">
-            <input type="radio" name="positionId" title="测绘人员" th:value="${user.positionId}">
+            <input type="text" name="itemProjectEnd" lay-verify="required" lay-reqtext="结束时间不能为空" placeholder="请输入结束时间" th:value="${pro.itemProjectEnd}" value="" class="layui-input">
         </div>
-    </div>-->
-    <!--<div class="layui-form-item layui-form-text">
-        <label class="layui-form-  label" >备注信息</label>
+    </div>
+    <div class="layui-form-item">
         <div class="layui-input-block">
-            <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息"></textarea>
-        </div>
-    </div>-->
-
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确 认 保存</button>
-            </div>
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
         </div>
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['form','laydate'], function () {
+    layui.use(['form', 'laydate'], function () {
         var form = layui.form,
             layer = layui.layer,
-            $ = layui.$;
-        laydate = layui.laydate;
-
+            $ = layui.$,
+            laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#addtime'
+        });
         //监听提交
         form.on('submit(saveBtn)', function (data) {
-            // parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
+            parent.layer.load(1, {shade: [0.1,'#fff'] });//开启遮罩
 
             $.post("/itemProject/updateItemProjectById",data.field,function(res){
                 var index = parent.layer.alert(res.msg, function () {
@@ -87,6 +74,7 @@
 
                 });
             },"json");
+
 
             return false;
         });

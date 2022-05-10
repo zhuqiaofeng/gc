@@ -15,7 +15,7 @@
         LEFT JOIN gc_position b
         ON a.positionId = b.positionId
         <include refid="user_where"/>
-        /*order by userId desc*/
+        order by userId desc
         limit #{pyl},#{page_size}
     </select>
 

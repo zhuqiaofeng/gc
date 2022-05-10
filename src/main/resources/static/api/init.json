@@ -1,10 +1,10 @@
 {
   "homeInfo": {
     "title": "首页",
-    "href": "page/welcome-1.html?t=1"
+    "href": "page/menu.html"
   },
   "logoInfo": {
-    "title": "后台",
+    "title": "管理后台",
     "image": "images/3.png",
     "href": ""
   },

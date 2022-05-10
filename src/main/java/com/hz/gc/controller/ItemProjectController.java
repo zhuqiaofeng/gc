@@ -35,9 +35,8 @@ public class ItemProjectController {
     //删除
     @RequestMapping(value = "/deleteItemProjectById",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson deleteItemProjectById(Integer subProjectId){
-        System.out.println("hhhh");
-        int i = itemProjectService.deleteItemProjectById(subProjectId);
+    public ResultJson deleteItemProjectById(Integer itemProjectId){
+        int i = itemProjectService.deleteItemProjectById(itemProjectId);
         return new ResultJson(i);
     }
 
@@ -46,7 +45,7 @@ public class ItemProjectController {
 
     @RequestMapping(value = "/updateItemProjectById",method = RequestMethod.POST)
     @ResponseBody
-    public ResultJson updateUserById( ItemProject itemProject){
+    public ResultJson updateItemProjectById( ItemProject itemProject){
         int i = itemProjectService.updateItemProjectById(itemProject);
         return new ResultJson(i);
     }
@@ -58,23 +57,23 @@ public class ItemProjectController {
     }
     /**
      * 分页+多条件模糊查询
-     * @param pyl 当前页
-     * @param pyl 显示条数
+     * @param page 当前页
+     * @param page_size 显示条数
      * @param itemProjectName 用户名
      * @param itemProjectDesc 描述
      * @return
      */
     @RequestMapping(value = "/findItemProjectList",method = RequestMethod.GET)
     @ResponseBody
-    public JsonMassage<List<itemVo>> finditemProjectList(
-            @RequestParam(value = "pyl",defaultValue = "1") Integer pyl,
+    public JsonMassage<List<itemVo>> findItemProjectList(
+            @RequestParam(value = "page",defaultValue = "1") Integer page,
             @RequestParam(value = "page_size",defaultValue = "10") Integer page_size,
             String itemProjectName,
             String itemProjectDesc
 
     ){
-        List<itemVo> list = itemProjectService.finditemProjectList(pyl,page_size,itemProjectName,itemProjectDesc);
-        Integer count = itemProjectService.finditemProjectListCount(itemProjectName,itemProjectDesc);
+        List<itemVo> list = itemProjectService.findItemProjectList(page,page_size,itemProjectName,itemProjectDesc);
+        Integer count = itemProjectService.findItemProjectListCount(itemProjectName,itemProjectDesc);
         JsonMassage<List<itemVo>> jsonMassage = new JsonMassage<List<itemVo>>();
         jsonMassage.setCode(0);
         jsonMassage.setMsg("请求成功");
