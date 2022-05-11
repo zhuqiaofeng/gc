@@ -24,28 +24,18 @@
             <!--<tip>填写自己管理账号的名称。</tip>-->
         </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label required">分部工程描述</label>
-        <div class="layui-input-block">
-            <input type="text" name="subProjectDesc" lay-verify="required" lay-reqtext="分部工程描述不能为空" placeholder="请输入分部工程描述" value="" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">分部工程计划开始时间</label>
+        <label class="layui-form-label">工程计划开始时间</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="test5" name="subProjectStart" placeholder="请选择分部工程计划开始时间">
+            <input type="text" class="layui-input" id="test5" name="subProjectStart" placeholder="请选择工程计划开始时间">
         </div>
-        <label class="layui-form-label">分部工程计划结束时间</label>
+        <label class="layui-form-label">工程计划结束时间</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="test6" name="subProjectEnd" placeholder="请选择分部工程计划结束日期">
+            <input type="text" class="layui-input" id="test6" name="subProjectEnd" placeholder="请选择工程计划结束日期">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">请输入分部地区描述</label>
-        <div class="layui-input-block">
-            <input type="text" name="subProjectRegion" lay-verify="required"  placeholder="请输入地区描述" value="" class="layui-input">
-        </div>
-    </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label required">请输入所属总工程编号</label>
         <div class="layui-input-block">
@@ -60,6 +50,24 @@
             <!--<input type="radio" name="positionId" value="3" title="测绘人员">-->
         <!--</div>-->
     <!--</div>-->
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label required">分部工程描述</label>
+        <div class="layui-input-block">
+            <input type="text" name="subProjectDesc" lay-verify="required" lay-reqtext="分部工程描述不能为空" placeholder="请输入分部工程描述" value="" class="layui-input">
+        </div>
+    </div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label required">请输入分部地区描述</label>
+        <div class="layui-input-block">
+            <input type="text" name="subProjectRegion" lay-verify="required"  placeholder="请输入地区描述" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label required">工程描述</label>
+        <div class="layui-input-block">
+            <textarea name="subProjectDesc" class="layui-textarea" lay-reqtext="工程描述不能为空" value="" placeholder="请输入工程描述"></textarea>
+        </div>
+    </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>

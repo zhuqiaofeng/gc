@@ -24,12 +24,7 @@
             <input type="text" name="totalProjectName" lay-verify="required" lay-reqtext="总工程名不能为空" placeholder="请输入总工程名" th:value="${totalProject.totalProjectName}" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">总工程描述</label>
-        <div class="layui-input-block">
-            <input type="text" name="totalProjectDesc" lay-verify="required" lay-reqtext="‘总工程描述不能为空" placeholder="请输入总工程描述" th:value="${totalProject.totalProjectDesc}" class="layui-input">
-        </div>
-    </div>
+
    <!-- <div class="layui-form-item">
         <label class="layui-form-label required">总工程状态</label>
         <div class="layui-input-block">
@@ -48,14 +43,24 @@
     <input type="text" name="totalProjectEnd" lay-verify="required" lay-reqtext="计划结束时间不能为空" placeholder="请输入计划结束时间" th:value="${totalProject.totalProjectEnd}"  class="layui-input">
     </div>
     </div>
-    <div class="layui-form-item">
+    <!--<div class="layui-form-item">
         <label class="layui-form-label required">总工期</label>
         <div class="layui-input-block">
             <input type="number" name="totalProjectDay" lay-verify="required" lay-reqtext="总工期不能为空" placeholder="请输入总工期" th:value="${totalProject.totalProjectDay}"  class="layui-input">
         </div>
+    </div>-->
+ <!--   <div class="layui-form-item">
+        <label class="layui-form-label required">总工程描述</label>
+        <div class="layui-input-block">
+            <input type="text" name="totalProjectDesc" lay-verify="required" lay-reqtext="‘总工程描述不能为空" placeholder="请输入总工程描述" th:value="${totalProject.totalProjectDesc}" class="layui-input">
+        </div>
+    </div>-->
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label required">工程描述</label>
+        <div class="layui-input-block">
+            <textarea name="totalProjectDesc" class="layui-textarea" lay-reqtext="工程描述不能为空" th:utext="${totalProject.totalProjectDesc}"></textarea>
+        </div>
     </div>
-
-
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>

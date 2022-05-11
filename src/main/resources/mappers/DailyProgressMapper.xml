@@ -27,7 +27,7 @@
         left join gc_progress c on a.progressId = c.progressId
         left join gc_item_project d on c.itemProjectId = d.itemProjectId
         <include refid="dailyProgress_where"/>
-        order by dailyProgressId desc
+        order by dailyProgressAddtime desc
         limit #{pyl},#{page_size}
     </select>
     <select id="findDailyProgressListCount" resultType="int" >

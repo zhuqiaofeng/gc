@@ -24,22 +24,29 @@
             <input type="text" name="itemProjectName" lay-verify="required" lay-reqtext="分项工程名称不能为空" placeholder="请输入分项工程名称" th:value="${pro.itemProjectName}" value="" class="layui-input">
         </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label required">分项工程描述</label>
-        <div class="layui-input-block">
-            <input type="text" name="itemProjectDesc" lay-verify="required" lay-reqtext="分项工程描述不能为空" placeholder="请输入分项工程描述" th:value="${pro.itemProjectDesc}" value="" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">分项工程计划开始时间</label>
+        <label class="layui-form-label required">计划开始时间</label>
         <div class="layui-input-block">
             <input type="text" name="itemProjectStart" lay-verify="required" lay-reqtext="开始时间不能为空" placeholder="请输入开始时间" th:value="${pro.itemProjectStart}" value="" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">分项工程计划结束时间</label>
+        <label class="layui-form-label required">计划结束时间</label>
         <div class="layui-input-block">
             <input type="text" name="itemProjectEnd" lay-verify="required" lay-reqtext="结束时间不能为空" placeholder="请输入结束时间" th:value="${pro.itemProjectEnd}" value="" class="layui-input">
+        </div>
+    </div>
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label required">分项工程描述</label>
+        <div class="layui-input-block">
+            <input type="text" name="itemProjectDesc" lay-verify="required" lay-reqtext="分项工程描述不能为空" placeholder="请输入分项工程描述" th:value="${pro.itemProjectDesc}" value="" class="layui-input">
+        </div>
+    </div>-->
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label required">工程描述</label>
+        <div class="layui-input-block">
+            <textarea name="itemProjectDesc" class="layui-textarea" lay-reqtext="工程描述不能为空" placeholder="请输入工程描述" th:utext="${pro.itemProjectDesc}"></textarea>
         </div>
     </div>
     <div class="layui-form-item">

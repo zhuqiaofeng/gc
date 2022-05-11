@@ -33,9 +33,6 @@
                         <div class="layui-inline">
                             <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
                         </div>
-                        <div class="layui-inline">
-                            <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn02"><i class="layui-icon"></i>男</button>
-                        </div>
                     </div>
                 </form>
             </div>
@@ -135,20 +132,6 @@
 
             return false;
         });
-/*
-        form.on('submit(data-search-btn02)', function (data) {
-
-            table.reload('currentTableId', {
-                page: {
-                    curr: 1
-                }
-                , where: {
-                    "positionSex":data.field.positionSex=='男',
-                }
-            }, 'data');
-
-            return false;
-        });*/
 
         /**
          * toolbar监听事件

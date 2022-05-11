@@ -25,13 +25,18 @@
         </div>
     </div>
 
-    <div class="layui-form-item">
+    <!--<div class="layui-form-item">
         <label class="layui-form-label required">角色描述</label>
         <div class="layui-input-block">
             <input type="text" name="roleDesc" lay-verify="required" lay-reqtext="角色描述不能为空" placeholder="请输入角色描述" th:value="${role.roleDesc}" class="layui-input">
         </div>
+    </div>-->
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label required">角色描述</label>
+        <div class="layui-input-block">
+            <textarea name="roleDesc" class="layui-textarea" lay-reqtext="角色描述不能为空" th:utext="${role.roleDesc}"></textarea>
+        </div>
     </div>
-
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
