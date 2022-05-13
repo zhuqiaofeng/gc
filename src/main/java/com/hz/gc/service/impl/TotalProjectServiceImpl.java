@@ -57,4 +57,9 @@ public class TotalProjectServiceImpl extends ServiceImpl<TotalProjectDao, TotalP
     public Integer findTotalProjectListCount(String totalProjectName, String totalProjectDesc) {
         return totalProjectDao.findTotalProjectListCount(totalProjectName,totalProjectDesc);
     }
+
+    @Override
+    public List<TotalProject> findTotalProjectNameList() {
+        return totalProjectDao.findTotalProjectNameList();
+    }
 }

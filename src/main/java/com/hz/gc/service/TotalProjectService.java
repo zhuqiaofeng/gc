@@ -26,4 +26,6 @@ public interface TotalProjectService extends IService<TotalProject> {
     List<TotalProject> findTotalProjectList(Integer page, Integer page_size, String totalProjectName, String totalProjectDesc);
 
     Integer findTotalProjectListCount(String totalProjectName, String totalProjectDesc);
+
+    List<TotalProject> findTotalProjectNameList();
 }

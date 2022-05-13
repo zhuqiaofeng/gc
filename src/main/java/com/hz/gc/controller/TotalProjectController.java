@@ -104,4 +104,19 @@ public class TotalProjectController {
         return new ResultJson(i);
     }
 
+
+    @RequestMapping(value = "/findTotalProjectNameList",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonMassage<List<TotalProject>> findTotalProjectNameList(
+
+    ){
+        List<TotalProject> list = totalProjectService.findTotalProjectNameList();
+
+        JsonMassage<List<TotalProject>> jsonMassage = new JsonMassage<List<TotalProject>>();
+        jsonMassage.setCode(0);
+        jsonMassage.setMsg("请求成功");
+        jsonMassage.setData(list);
+        return jsonMassage;
+    }
+
 }

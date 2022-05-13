@@ -39,4 +39,8 @@
     <select id="selectMaterialById" resultType="com.hz.gc.pojo.Material">
         select * from gc_material where materialId =#{materialId}
     </select>
+
+    <insert id="savePath">
+        insert into gc_material(materialUrl) values (#{materialUrl})
+    </insert>
 </mapper>

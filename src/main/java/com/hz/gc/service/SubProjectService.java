@@ -35,4 +35,6 @@ public interface SubProjectService extends IService<SubProject> {
 
 //根据id查询
     SubProject selectSubProjectById(Integer subProjectId);
+
+    List<SubProject> findSubProjectNameList();
 }

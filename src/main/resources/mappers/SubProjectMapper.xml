@@ -83,4 +83,10 @@
 
     </insert>
 
+    <select id="findSubProjectNameList" resultType="com.hz.gc.pojo.SubProject">
+        select
+        subProjectId,subProjectName
+        from gc_sub_project
+    </select>
+
 </mapper>

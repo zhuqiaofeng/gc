@@ -62,4 +62,9 @@ public class SubProjectServiceImpl extends ServiceImpl<SubProjectDao, SubProject
             return subProjectDao.selectSubProjectById(subProjectId);
     }
 
+    @Override
+    public List<SubProject> findSubProjectNameList() {
+        return subProjectDao.findSubProjectNameList();
+    }
+
 }

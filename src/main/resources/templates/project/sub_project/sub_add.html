@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/public.css" media="all">
+    <link rel="stylesheet" href="/lib/jquery-3.4.1/jquery-3.4.1.min.js" media="all">
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/modules/laydate/default/laydate.css" media="all">
     <style>
         body {
@@ -26,42 +27,38 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">工程计划开始时间</label>
+        <label class="layui-form-label">分部工程计划开始时间</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="test5" name="subProjectStart" placeholder="请选择工程计划开始时间">
+            <input type="text" class="layui-input" id="test5" name="subProjectStart" placeholder="请选择分部工程计划开始时间">
         </div>
-        <label class="layui-form-label">工程计划结束时间</label>
+        <label class="layui-form-label">分部工程计划结束时间</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="test6" name="subProjectEnd" placeholder="请选择工程计划结束日期">
+            <input type="text" class="layui-input" id="test6" name="subProjectEnd" placeholder="请选择分部工程计划结束日期">
         </div>
     </div>
 
-    <div class="layui-form-item">
+    <!--<div class="layui-form-item">
         <label class="layui-form-label required">请输入所属总工程编号</label>
         <div class="layui-input-block">
             <input type="number" name="totalProjectId" lay-verify="required"  placeholder="请输入所属总工程编号 " value="" class="layui-input">
         </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-        <!--<label class="layui-form-label required">岗位</label>-->
-        <!--<div class="layui-input-block">-->
-            <!--<input type="radi  o" name="positionId" value="1" title="监理">-->
-            <!--<input type="radio" name="positionId" value="2" title="包工头">-->
-            <!--<input type="radio" name="positionId" value="3" title="测绘人员">-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="layui-form-item">
-        <label class="layui-form-label required">分部工程描述</label>
-        <div class="layui-input-block">
-            <input type="text" name="subProjectDesc" lay-verify="required" lay-reqtext="分部工程描述不能为空" placeholder="请输入分部工程描述" value="" class="layui-input">
-        </div>
     </div>-->
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">所属总工程名称</label>
+        <div class="layui-input-block">
+           <!-- <input type="number" name="totalProjectId" lay-verify="required"  placeholder="请输入所属总工程编号 " value="" class="layui-input">-->
+       <select name="totalProjectId" id="findTotalProjectNameList"></select>
+        </div>
+    </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label required">请输入分部地区描述</label>
         <div class="layui-input-block">
             <input type="text" name="subProjectRegion" lay-verify="required"  placeholder="请输入地区描述" value="" class="layui-input">
         </div>
     </div>
+
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label required">工程描述</label>
         <div class="layui-input-block">
@@ -76,6 +73,7 @@
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="/lib/layui-v2.5.5/lay/modules/laydate.js" charset="utf-8"></script>
+<script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 <script>
     layui.use('laydate', function() {
         var laydate = layui.laydate;
@@ -92,6 +90,21 @@
         });
 
     });
+    $.ajax({
+        async:false,
+        type:"get",
+        url:"/totalProject/findTotalProjectNameList",
+        success:function (res) {
+            if (res.data && res.data.length>0){
+                let findTotalProjectNameList = $("#findTotalProjectNameList")
+                findTotalProjectNameList.empty();
+                findTotalProjectNameList.append("<option value='0'>请选择所属总工程</option>");
+                $.each(res.data,function (index,item) {
+                    findTotalProjectNameList.append("<option name='totalProjectId' value='"+item.totalProjectId+"'>"+item.totalProjectName+"</option>");
+                })
+            }
+        }
+    })
     layui.use(['form', 'laydate'], function () {
         var form = layui.form,
             layer = layui.layer,

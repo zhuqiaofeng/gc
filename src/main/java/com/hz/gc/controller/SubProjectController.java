@@ -75,4 +75,20 @@ public class SubProjectController {
         model.addAttribute("subProject",subProjectService.selectSubProjectById(subProjectId));
         return "project/sub_project/sub_edit";
     }
+
+
+    @RequestMapping(value = "/findSubProjectNameList",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonMassage<List<SubProject>> findTotalProjectNameList(
+
+    ){
+        List<SubProject> list = subProjectService.findSubProjectNameList();
+
+        JsonMassage<List<SubProject>> jsonMassage = new JsonMassage<List<SubProject>>();
+        jsonMassage.setCode(0);
+        jsonMassage.setMsg("请求成功");
+        jsonMassage.setData(list);
+        return jsonMassage;
+    }
+
 }

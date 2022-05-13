@@ -36,4 +36,6 @@ public interface TotalProjectDao extends BaseMapper<TotalProject> {
     int saveTotalProject(TotalProject totalProject);
 
     int updateTotalProject(TotalProject totalProject);
+
+    List<TotalProject> findTotalProjectNameList();
 }

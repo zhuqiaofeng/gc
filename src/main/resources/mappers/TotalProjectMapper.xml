@@ -57,4 +57,10 @@
     </update>
 
 
+    <select id="findTotalProjectNameList" resultType="com.hz.gc.pojo.TotalProject">
+        select
+         totalProjectId,totalProjectName
+        from gc_total_project
+    </select>
+
 </mapper>

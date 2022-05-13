@@ -52,6 +52,8 @@ public interface SubProjectDao extends BaseMapper<SubProject> {
 //根据id查询
     SubProject selectSubProjectById(@Param("subProjectId") Integer subProjectId);
 
+    List<SubProject> findSubProjectNameList();
+
 //    List<SubProject> findSubProjectList(
 //            @Param("pyl") Integer pyl,
 //            @Param("page_size") Integer page_size,

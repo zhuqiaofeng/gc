@@ -52,4 +52,7 @@ public interface MaterialDao extends BaseMapper<Material> {
      */
 
     int deleteMaterialById(Integer materialId);
+
+    int savePath(
+           @Param("materialUrl") String path);
 }

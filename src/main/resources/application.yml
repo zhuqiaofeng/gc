@@ -30,4 +30,11 @@ mybatis-plus:
 server:
   port: 8080
 
+# 七牛云存储
+oss:
+  qiniu:
+    domain: rbr188omj.hn-bkt.clouddn.com # 访问域名(默认使用七牛云测试域名)
+    accessKey: -P2hm2TK84JJJ6Gj9XQf_VJ3_TQ38uwqYcChV4zB # 公钥
+    secretKey: -gNMN0fBZZAGAyvrkd2sqMTiLCFaAZvf1LOsAPqm # 私钥
+    bucketName: zqfzone  #存储空间名称
 

@@ -65,9 +65,11 @@
         a.itemProjectStart,
         a.itemProjectEnd,
         a.itemProjectDay,
-        b.subProjectName
-        FROM gc_item_project a LEFT JOIN gc_sub_project b
-        ON a.subProjectId = b.subProjectId
+        b.subProjectName,
+        c.totalProjectName
+        FROM gc_item_project a
+        LEFT JOIN gc_sub_project b ON a.subProjectId = b.subProjectId
+        LEFT JOIN gc_total_project c ON b.totalProjectId = c.totalProjectId
         <include refid="item_where"/>
         order by itemProjectId desc
         limit #{pyl},#{page_size}
